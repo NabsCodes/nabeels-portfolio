@@ -37,7 +37,7 @@ export function NavLink({ href, label, name }: NavLinkProps) {
       >
         {name}
         <motion.span
-          className="absolute -bottom-0.5 left-0 right-0 h-px bg-primary-base dark:bg-primary-base-dark"
+          className="bg-primary-base dark:bg-primary-base-dark absolute right-0 -bottom-0.5 left-0 h-px"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: isActive ? 1 : 0 }}
           transition={{

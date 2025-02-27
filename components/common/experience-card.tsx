@@ -21,7 +21,7 @@ export const ExperienceCard: React.FC<{
       <span className="text-accent-base/80 dark:text-accent-base-dark/80">
         {experience.dates.start}
       </span>
-      <span className="mx-1 text-primary-base/50 dark:text-primary-base-dark/50">
+      <span className="text-primary-base/50 dark:text-primary-base-dark/50 mx-1">
         →
       </span>
       <span className="text-primary-base/80 dark:text-primary-base-dark/80">
@@ -33,18 +33,18 @@ export const ExperienceCard: React.FC<{
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="my-1 rounded-lg border border-primary-base/30 bg-background-base/50 p-6 backdrop-blur-sm transition-colors dark:border-primary-base-dark/10 dark:bg-background-base-dark/50"
+      className="border-primary-base/30 bg-background-base/50 dark:border-primary-base-dark/10 dark:bg-background-base-dark/50 my-1 rounded-lg border p-6 backdrop-blur-xs transition-colors"
     >
       {/* Header Section */}
       <div className="flex flex-col gap-4 pb-4 lg:flex-row lg:items-start lg:justify-between">
         {/* Role & Type */}
         <div className="flex items-center justify-between lg:flex-col lg:items-start">
-          <h3 className="bg-gradient-to-r from-primary-base to-accent-base bg-clip-text font-space-grotesk text-lg font-medium text-transparent dark:from-primary-base-dark dark:to-accent-base-dark">
+          <h3 className="from-primary-base to-accent-base font-space-grotesk dark:from-primary-base-dark dark:to-accent-base-dark bg-linear-to-r bg-clip-text text-lg font-medium text-transparent">
             {experience.role}
           </h3>
           <div className="lg:mt-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary-base/10 bg-primary-base/5 px-2.5 py-0.5 text-xs text-primary-base dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent-base/60 dark:bg-accent-base-dark/60" />
+            <span className="border-primary-base/10 bg-primary-base/5 text-primary-base dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs">
+              <span className="bg-accent-base/60 dark:bg-accent-base-dark/60 h-1.5 w-1.5 rounded-full" />
               {experience.type}
             </span>
           </div>
@@ -52,17 +52,17 @@ export const ExperienceCard: React.FC<{
 
         {/* Company Info */}
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-sm text-default-base/70 dark:text-default-base-dark/70">
-            <RiBuildingLine className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+          <div className="text-default-base/70 dark:text-default-base-dark/70 flex items-center gap-2 text-sm">
+            <RiBuildingLine className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
             {experience.companyUrl ? (
               <Link
                 href={experience.companyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-accent-base dark:hover:text-accent-base-dark"
+                className="hover:text-accent-base dark:hover:text-accent-base-dark transition-colors"
               >
                 {experience.company}
-                <span className="ml-1 text-xs text-primary-base dark:text-primary-base-dark">
+                <span className="text-primary-base dark:text-primary-base-dark ml-1 text-xs">
                   ↗
                 </span>
               </Link>
@@ -70,14 +70,14 @@ export const ExperienceCard: React.FC<{
               <span>{experience.company}</span>
             )}
           </div>
-          <div className="flex items-center gap-2 text-sm text-default-base/70 dark:text-default-base-dark/70">
-            <RiMapPinLine className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+          <div className="text-default-base/70 dark:text-default-base-dark/70 flex items-center gap-2 text-sm">
+            <RiMapPinLine className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
             <span>{experience.location}</span>
           </div>
         </div>
       </div>
       {/* Divider */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-base/80 to-transparent dark:via-primary-base-dark/20" />
+      <div className="via-primary-base/80 dark:via-primary-base-dark/20 h-px w-full bg-linear-to-r from-transparent to-transparent" />
 
       {/* Description & Achievements */}
       <motion.div
@@ -86,13 +86,13 @@ export const ExperienceCard: React.FC<{
         transition={{ duration: 0.3, delay: 0.1 }}
         className="mt-4 space-y-4"
       >
-        <p className="text-sm text-default-base/80 dark:text-default-base-dark/80">
+        <p className="text-default-base/80 dark:text-default-base-dark/80 text-sm">
           {experience.description}
         </p>
 
         {/* Achievements with terminal style */}
-        <div className="rounded-lg border border-primary-base/10 bg-primary-base/5 p-4 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5">
-          <div className="mb-2 font-mono text-xs text-primary-base/60 dark:text-primary-base-dark/60">
+        <div className="border-primary-base/10 bg-primary-base/5 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 rounded-lg border p-4">
+          <div className="text-primary-base/60 dark:text-primary-base-dark/60 mb-2 font-mono text-xs">
             $ achievements --list
           </div>
           <ul className="space-y-2">

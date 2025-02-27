@@ -50,10 +50,10 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
               viewport={{ once: true }}
-              className="rounded-lg border border-primary-base/30 bg-background-base/80 p-6 backdrop-blur-sm dark:border-primary-base-dark/10 dark:bg-background-base-dark/80"
+              className="border-primary-base/30 bg-background-base/80 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 rounded-lg border p-6 backdrop-blur-xs"
             >
               <div className="space-y-4">
-                <h3 className="flex items-center gap-2 font-space-grotesk text-lg font-medium text-primary-base dark:text-primary-base-dark">
+                <h3 className="font-space-grotesk text-primary-base dark:text-primary-base-dark flex items-center gap-2 text-lg font-medium">
                   <Code2 className="h-5 w-5" />
                   Let's Connect
                 </h3>
@@ -63,7 +63,7 @@ export default function Contact() {
                   <Link
                     href={`mailto:${contactData.email}`}
                     onClick={handleEmailClick}
-                    className="inline-flex items-center gap-1 text-accent-base underline decoration-dashed underline-offset-4 transition-colors hover:text-accent-base/80 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80"
+                    className="text-accent-base hover:text-accent-base/80 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80 inline-flex items-center gap-1 underline decoration-dashed underline-offset-4 transition-colors"
                   >
                     {contactData.email}
                     <ArrowRight className="h-3 w-3" />
@@ -78,7 +78,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ x: 4 }}
-                    className="flex items-center gap-3 rounded-lg border border-primary-base/10 bg-primary-base/5 px-4 py-3 text-primary-base transition-colors hover:bg-primary-base/10 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10"
+                    className="border-primary-base/10 bg-primary-base/5 text-primary-base hover:bg-primary-base/10 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10 flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors"
                   >
                     <SiGithub className="h-5 w-5" />
                     <span className="text-sm">Follow on GitHub</span>
@@ -89,7 +89,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ x: 4 }}
-                    className="flex items-center gap-3 rounded-lg border border-primary-base/10 bg-primary-base/5 px-4 py-3 text-primary-base transition-colors hover:bg-primary-base/10 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10"
+                    className="border-primary-base/10 bg-primary-base/5 text-primary-base hover:bg-primary-base/10 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10 flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors"
                   >
                     <SiLinkedin className="h-5 w-5" />
                     <span className="text-sm">Connect on LinkedIn</span>
@@ -101,7 +101,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ x: 4 }}
-                    className="flex items-center gap-3 rounded-lg border border-primary-base/10 bg-primary-base/5 px-4 py-3 text-primary-base transition-colors hover:bg-primary-base/10 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10"
+                    className="border-primary-base/10 bg-primary-base/5 text-primary-base hover:bg-primary-base/10 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10 flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors"
                   >
                     <FaXTwitter className="h-5 w-5" />
                     <span className="text-sm">Follow on X (Twitter)</span>

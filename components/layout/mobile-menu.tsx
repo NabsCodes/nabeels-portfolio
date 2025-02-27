@@ -21,7 +21,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-background-base/60 backdrop-blur-[2px] dark:bg-background-base-dark/60"
+            className="bg-background-base/60 dark:bg-background-base-dark/60 fixed inset-0 z-40 backdrop-blur-[2px]"
             onClick={onClose}
           />
 
@@ -31,7 +31,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute left-0 right-0 top-0 z-50 mt-[80px]"
+            className="absolute top-0 right-0 left-0 z-50 mt-[80px]"
           >
             <motion.div
               initial={false}
@@ -42,7 +42,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                 duration: 0.3,
                 ease: "easeOut",
               }}
-              className="mx-auto overflow-hidden rounded-lg border border-primary-base/30 bg-background-base/95 p-6 shadow-lg backdrop-blur-md dark:border-primary-base-dark/20 dark:bg-background-base-dark/95"
+              className="border-primary-base/30 bg-background-base/95 dark:border-primary-base-dark/20 dark:bg-background-base-dark/95 mx-auto overflow-hidden rounded-lg border p-6 shadow-lg backdrop-blur-md"
             >
               <nav className="max-w-lg">
                 <div className="flex flex-col space-y-6">
@@ -60,7 +60,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                       <Link
                         href={item.href}
                         onClick={onClose}
-                        className="text-lg text-default-base/70 transition-colors hover:text-accent-base dark:text-default-base-dark/70 dark:hover:text-accent-base-dark"
+                        className="text-default-base/70 hover:text-accent-base dark:text-default-base-dark/70 dark:hover:text-accent-base-dark text-lg transition-colors"
                       >
                         {item.name}
                       </Link>
@@ -81,7 +81,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                     <Link
                       href="/#contact"
                       onClick={onClose}
-                      className="inline-block rounded-lg bg-primary-base px-5 py-2.5 text-sm text-white shadow-lg transition-colors hover:bg-primary-base/90 dark:bg-primary-base-dark dark:hover:bg-primary-base-dark/90"
+                      className="bg-primary-base hover:bg-primary-base/90 dark:bg-primary-base-dark dark:hover:bg-primary-base-dark/90 inline-block rounded-lg px-5 py-2.5 text-sm text-white shadow-lg transition-colors"
                     >
                       Contact Me
                     </Link>

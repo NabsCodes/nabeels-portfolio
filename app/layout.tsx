@@ -159,7 +159,7 @@ export default function RootLayout({
   //   ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
   return (
-    <html lang="en" suppressHydrationWarning className="!scroll-smooth">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth!">
       <body
         className={cn(
           raleway.variable,

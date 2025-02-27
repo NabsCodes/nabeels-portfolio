@@ -66,7 +66,7 @@ export const ContactFormEmail = ({
                 <Text className="mb-2 text-base font-medium text-gray-900">
                   Message:
                 </Text>
-                <Text className="whitespace-pre-wrap text-base text-gray-600">
+                <Text className="text-base whitespace-pre-wrap text-gray-600">
                   {message}
                 </Text>
               </div>

@@ -24,7 +24,7 @@ export default function Experience() {
       />
 
       {/* Terminal-style intro */}
-      <div className="mb-16 mt-6 w-fit">
+      <div className="mt-6 mb-16 w-fit">
         <TerminalInfo
           command={experienceData.terminalInfo.command}
           flag={experienceData.terminalInfo.flag}
@@ -36,7 +36,7 @@ export default function Experience() {
       <div className="relative grid gap-12 md:gap-16">
         {/* Connector Line */}
         <div className="absolute inset-0 flex justify-center">
-          <div className="w-px bg-gradient-to-b from-primary-base/30 via-primary-base/20 to-transparent dark:from-primary-base-dark/30 dark:via-primary-base-dark/20" />
+          <div className="from-primary-base/30 via-primary-base/20 dark:from-primary-base-dark/30 dark:via-primary-base-dark/20 w-px bg-linear-to-b to-transparent" />
         </div>
 
         {/* Experience Items */}
@@ -51,7 +51,7 @@ export default function Experience() {
           >
             {/* Connector Dot */}
             <div className="absolute left-1/2 -translate-x-1/2 -translate-y-6">
-              <div className="h-[10px] w-[10px] rounded-full border-2 border-primary-base/30 bg-primary-base dark:border-primary-base-dark/30 dark:bg-primary-base-dark" />
+              <div className="border-primary-base/30 bg-primary-base dark:border-primary-base-dark/30 dark:bg-primary-base-dark h-[10px] w-[10px] rounded-full border-2" />
             </div>
 
             {/* Card - Alternating Layout */}

@@ -42,9 +42,9 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav
           className={cn(
-            "relative z-[60] mt-2 hidden w-full max-w-7xl flex-row items-center justify-between rounded-full bg-transparent px-4 transition-all duration-500 ease-in-out dark:bg-transparent lg:flex",
+            "relative z-60 mt-2 hidden w-full max-w-7xl flex-row items-center justify-between rounded-full bg-transparent px-4 transition-all duration-500 ease-in-out lg:flex dark:bg-transparent",
             isScrolled
-              ? "mx-auto mt-5 w-[720px] border border-primary-base/20 bg-background-base/80 py-2 shadow-nav backdrop-blur-md dark:border-primary-base-dark/20 dark:bg-background-base-dark/80"
+              ? "border-primary-base/20 bg-background-base/80 shadow-nav dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 mx-auto mt-5 w-[720px] border py-2 backdrop-blur-md"
               : "bg-transparent",
           )}
           role="navigation"
@@ -95,7 +95,7 @@ export function Header() {
                 <span className="text-text-base dark:text-text-base-dark">
                   nabeel
                 </span>
-                <span className="font-light text-primary-base dark:text-accent-base-dark">
+                <span className="text-primary-base dark:text-accent-base-dark font-light">
                   hassan
                 </span>
                 <span className="text-primary-base dark:text-primary-base-dark">
@@ -138,7 +138,7 @@ export function Header() {
             >
               <Link
                 href="/#contact"
-                className="relative hidden cursor-pointer rounded-lg bg-secondary-base px-5 py-2.5 text-center text-sm text-default-base shadow-lg shadow-secondary-base/20 transition-all duration-200 hover:bg-primary-base hover:shadow-xl dark:bg-secondary-base-dark dark:text-default-base-dark dark:shadow-secondary-base-dark/20 dark:hover:bg-primary-base-dark md:flex"
+                className="bg-secondary-base text-default-base shadow-secondary-base/20 hover:bg-primary-base dark:bg-secondary-base-dark dark:text-default-base-dark dark:shadow-secondary-base-dark/20 dark:hover:bg-primary-base-dark relative hidden cursor-pointer rounded-lg px-5 py-2.5 text-center text-sm shadow-lg transition-all duration-200 hover:shadow-xl md:flex"
                 aria-label="Contact me"
               >
                 Contact Me
@@ -163,12 +163,12 @@ export function Header() {
           className={cn(
             "relative z-50 mx-auto flex flex-col items-center justify-between bg-transparent px-4 py-2", // Is not scrolled and not open
             isScrolled &&
-              "mt-3 border border-primary-base/30 dark:border-primary-base-dark/20", // Is scrolled but open
+              "border-primary-base/30 dark:border-primary-base-dark/20 mt-3 border", // Is scrolled but open
             isScrolled &&
               !isMobileMenuOpen &&
-              "border border-primary-base/20 bg-background-base/80 backdrop-blur-md dark:border-primary-base-dark/20 dark:bg-background-base-dark/80", // Is scrolled but not open
+              "border-primary-base/20 bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 border backdrop-blur-md", // Is scrolled but not open
             isMobileMenuOpen &&
-              "bg-background-base/80 backdrop-blur-md dark:bg-background-base-dark/80", // Is open Mobile Menu and Navbar (scrolled or not)
+              "bg-background-base/80 dark:bg-background-base-dark/80 backdrop-blur-md", // Is open Mobile Menu and Navbar (scrolled or not)
           )}
         >
           <div className="flex w-full flex-row items-center justify-between">
@@ -205,14 +205,14 @@ export function Header() {
                 animate={!isMobileMenuOpen && isScrolled ? "hidden" : "visible"}
                 className="flex overflow-hidden"
               >
-                <span className="flex whitespace-nowrap text-base font-medium">
+                <span className="flex text-base font-medium whitespace-nowrap">
                   <span className="text-primary-base dark:text-primary-base-dark">
                     &lt;
                   </span>
                   <span className="text-text-base dark:text-text-base-dark">
                     nabeel
                   </span>
-                  <span className="font-light text-accent-base dark:text-accent-base-dark">
+                  <span className="text-accent-base dark:text-accent-base-dark font-light">
                     hassan
                   </span>
                   <span className="text-primary-base dark:text-primary-base-dark">
@@ -226,7 +226,7 @@ export function Header() {
               <ModeToggle />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-text-base dark:text-text-base-dark flex h-10 w-10 items-center justify-center rounded-full bg-secondary-base/30 transition-all hover:bg-secondary-base/50 dark:bg-secondary-base-dark/30 dark:hover:bg-secondary-base-dark/50"
+                className="text-text-base dark:text-text-base-dark bg-secondary-base/30 hover:bg-secondary-base/50 dark:bg-secondary-base-dark/30 dark:hover:bg-secondary-base-dark/50 flex h-10 w-10 items-center justify-center rounded-full transition-all"
                 aria-label="Toggle mobile menu"
               >
                 {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}

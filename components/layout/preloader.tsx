@@ -17,11 +17,11 @@ export default function PreLoader() {
         opacity: { duration: 0.5, delay: 1.5 },
         display: { delay: 2 }, // Ensure display:none happens after fade out
       }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background-base dark:bg-background-base-dark"
+      className="bg-background-base dark:bg-background-base-dark fixed inset-0 z-50 flex items-center justify-center"
     >
       <div className="flex flex-col items-center gap-4">
-        <Terminal className="h-8 w-8 animate-pulse text-primary-base dark:text-primary-base-dark" />
-        <div className="font-mono text-sm text-primary-base/70 dark:text-primary-base-dark/70">
+        <Terminal className="text-primary-base dark:text-primary-base-dark h-8 w-8 animate-pulse" />
+        <div className="text-primary-base/70 dark:text-primary-base-dark/70 font-mono text-sm">
           Initializing development environment...
         </div>
         <div className="flex gap-2">
@@ -34,7 +34,7 @@ export default function PreLoader() {
               duration: 1,
               delay: 0,
             }}
-            className="h-2 w-2 rounded-full bg-primary-base dark:bg-primary-base-dark"
+            className="bg-primary-base dark:bg-primary-base-dark h-2 w-2 rounded-full"
           />
           <motion.div
             initial={{ scale: 0.8 }}
@@ -45,7 +45,7 @@ export default function PreLoader() {
               duration: 1,
               delay: 0.2,
             }}
-            className="h-2 w-2 rounded-full bg-primary-base dark:bg-primary-base-dark"
+            className="bg-primary-base dark:bg-primary-base-dark h-2 w-2 rounded-full"
           />
           <motion.div
             initial={{ scale: 0.8 }}
@@ -56,7 +56,7 @@ export default function PreLoader() {
               duration: 1,
               delay: 0.4,
             }}
-            className="h-2 w-2 rounded-full bg-primary-base dark:bg-primary-base-dark"
+            className="bg-primary-base dark:bg-primary-base-dark h-2 w-2 rounded-full"
           />
         </div>
       </div>

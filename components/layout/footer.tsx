@@ -10,7 +10,7 @@ import ScrollToTopButton from "../ui/scroll-to-top-button";
 
 export function Footer() {
   return (
-    <footer className="relative mt-8 border-t border-primary-base/20 bg-gradient-to-b from-background-base/50 to-background-base/80 py-12 backdrop-blur-sm dark:border-primary-base-dark/10 dark:from-background-base-dark/50 dark:to-background-base-dark/80">
+    <footer className="border-primary-base/20 from-background-base/50 to-background-base/80 dark:border-primary-base-dark/10 dark:from-background-base-dark/50 dark:to-background-base-dark/80 relative mt-8 border-t bg-linear-to-b py-12 backdrop-blur-xs">
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]" />
 
@@ -51,7 +51,7 @@ export function Footer() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-default-base transition-colors hover:text-accent-base dark:text-default-base-dark dark:hover:text-accent-base-dark"
+                className="text-default-base hover:text-accent-base dark:text-default-base-dark dark:hover:text-accent-base-dark transition-colors"
               >
                 {item.name}
               </Link>
@@ -60,7 +60,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-6 border-t border-primary-base/5 pt-8 text-sm dark:border-primary-base-dark/5 md:flex-row">
+        <div className="border-primary-base/5 dark:border-primary-base-dark/5 mt-8 flex flex-col items-center justify-between gap-6 border-t pt-8 text-sm md:flex-row">
           {/* Developer signature */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -68,14 +68,14 @@ export function Footer() {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-2"
           >
-            <RiCodeSSlashLine className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+            <RiCodeSSlashLine className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
             <span className="text-default-base dark:text-default-base-dark">
               Design & Development by{" "}
               <Link
                 href="https://github.com/NabsCodes"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-base-dark transition-colors hover:text-accent-base dark:hover:text-accent-base-dark"
+                className="text-primary-base-dark hover:text-accent-base dark:hover:text-accent-base-dark transition-colors"
               >
                 Hassan Umar Hassan
               </Link>

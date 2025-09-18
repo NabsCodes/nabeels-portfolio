@@ -17,8 +17,8 @@ export const experienceData: ExperienceContent = {
       location: "Abuja, Nigeria",
       type: "Internship",
       dates: {
-        start: "Jul 2022",
-        end: "Aug 2022",
+        start: "2022-07",
+        end: "2022-08",
       },
       description:
         "Supported Technical Standards & Network Integrity Department with data analysis and documentation.",
@@ -37,8 +37,8 @@ export const experienceData: ExperienceContent = {
       location: "Abuja, Nigeria",
       type: "Internship",
       dates: {
-        start: "Aug 2023",
-        end: "May 2024",
+        start: "2023-08",
+        end: "2024-05",
       },
       description:
         "Developed and maintained multiple client projects and supported team members, focusing on scalable web applications.",
@@ -56,7 +56,7 @@ export const experienceData: ExperienceContent = {
       location: "Remote",
       type: "Freelance",
       dates: {
-        start: "May 2024",
+        start: "2024-05",
         end: "Present",
       },
       description:

@@ -9,6 +9,30 @@ import { PiGraduationCapBold, PiHandshakeBold } from "react-icons/pi";
 import type { Experience } from "@/lib/types";
 import Link from "next/link";
 
+// Convert YYYY-MM format to display format (MMM YYYY)
+const formatDate = (dateStr: string) => {
+  if (dateStr === "Present") return "Present";
+
+  const [year, month] = dateStr.split("-");
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const monthIndex = parseInt(month) - 1;
+  return `${monthNames[monthIndex]} ${year}`;
+};
+
 const getTypeIcon = (type: string) => {
   switch (type.toLowerCase()) {
     case "full-time":
@@ -39,13 +63,13 @@ export const ExperienceCard: React.FC<{
       className="mb-2 font-mono text-sm"
     >
       <span className="inline-flex items-center rounded-md border border-accent-base/30 bg-accent-base/[0.08] px-2 py-0.5 text-xs font-medium text-accent-base/90 dark:border-accent-base-dark/30 dark:bg-accent-base-dark/[0.08] dark:text-accent-base-dark/90">
-        {experience.dates.start}
+        {formatDate(experience.dates.start)}
       </span>
       <span className="mx-2 text-primary-base dark:text-primary-base-dark">
         →
       </span>
       <span className="inline-flex items-center rounded-md border border-primary-base/30 bg-primary-base/[0.08] px-2 py-0.5 text-xs font-medium text-primary-base/90 dark:border-primary-base-dark/30 dark:bg-primary-base-dark/[0.08] dark:text-primary-base-dark/90">
-        {experience.dates.end}
+        {formatDate(experience.dates.end)}
       </span>
     </motion.div>
 

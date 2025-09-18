@@ -14,36 +14,6 @@ export default function Experience() {
     desktopThreshold: 0.3,
   });
 
-  // Parse date string to proper Date object for comparison
-  const parseEndDate = (dateStr: string) => {
-    if (dateStr === "Present") return new Date(); // Current date for "Present"
-
-    // Handle "MMM YYYY" format (e.g., "May 2024")
-    const [month, year] = dateStr.split(" ");
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    const monthIndex = monthNames.indexOf(month);
-
-    if (monthIndex !== -1 && year) {
-      // Use last day of the month for end dates to ensure proper ordering
-      return new Date(parseInt(year), monthIndex + 1, 0);
-    }
-
-    return new Date(dateStr);
-  };
-
   // Sort experiences: current jobs first, then by end date (most recent first)
   const sortedExperienceData = React.useMemo(() => {
     return [...experienceData.experiences].sort((a, b) => {
@@ -51,11 +21,11 @@ export default function Experience() {
       if (a.current && !b.current) return -1;
       if (!a.current && b.current) return 1;
 
-      // Then by end date (most recent first)
-      const aEndDate = parseEndDate(a.dates.end);
-      const bEndDate = parseEndDate(b.dates.end);
+      // Then by end date (most recent first) - simple string comparison
+      if (a.dates.end === "Present") return -1;
+      if (b.dates.end === "Present") return 1;
 
-      return bEndDate.getTime() - aEndDate.getTime();
+      return b.dates.end.localeCompare(a.dates.end);
     });
   }, []);
 

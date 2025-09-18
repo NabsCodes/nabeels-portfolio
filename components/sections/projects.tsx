@@ -1,7 +1,7 @@
 "use client";
 
 import { trackEvent } from "@/lib/services/analytics";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
 import { projectsData, projectsSection } from "@/lib/data";
@@ -19,7 +19,11 @@ export default function Projects() {
     mobileThreshold: 0.1,
     desktopThreshold: 0.3,
   });
-  const [showAllProjects] = useState(false);
+  // Data filtering
+  const featuredProjects = projectsData.filter((p) => p.featured);
+  const otherProjects = projectsData.filter((p) => !p.featured);
+
+  // Featured projects toggle
   const {
     isExpanded: showAllFeatured,
     toggle: toggleFeatured,
@@ -27,37 +31,36 @@ export default function Projects() {
     firstExpandedRef: firstExpandedFeaturedRef,
   } = useToggleWithScroll();
 
-  // Track when someone views the projects section
-  useEffect(() => {
-    trackEvent("projects_view", "section", "projects");
-  }, []);
-
-  // Track when someone clicks a project or its links
-  const handleProjectClick = (
-    projectName: string,
-    type: "github" | "live" | "view",
-  ) => {
-    trackEvent("project_click", "project", `${type}_${projectName}`);
-  };
-
-  const featuredProjects = projectsData.filter((p) => p.featured);
-  const otherProjects = projectsData.filter((p) => !p.featured);
   const initialVisibleFeatured = 3;
   const hasHiddenFeatured = featuredProjects.length > initialVisibleFeatured;
   const displayedFeaturedProjects = showAllFeatured
     ? featuredProjects
     : featuredProjects.slice(0, initialVisibleFeatured);
-  // Hook instance for other projects
+
+  // Other projects toggle
   const {
     isExpanded: showAllOther,
     toggle: toggleOther,
     topRef: otherTopRef,
     firstExpandedRef: firstExpandedOtherRef,
   } = useToggleWithScroll();
+
   const initialVisibleOther = 3;
-  const displayedOtherProjects = showAllProjects
+  const displayedOtherProjects = showAllOther
     ? otherProjects
     : otherProjects.slice(0, initialVisibleOther);
+
+  // Analytics tracking
+  useEffect(() => {
+    trackEvent("projects_view", "section", "projects");
+  }, []);
+
+  const handleProjectClick = (
+    projectName: string,
+    type: "github" | "live" | "view",
+  ) => {
+    trackEvent("project_click", "project", `${type}_${projectName}`);
+  };
 
   return (
     <section

@@ -1,47 +1,57 @@
-"use client";
+import type { Metadata } from "next";
+import { getPostBySlug } from "@/lib/sanity-blog-data";
+import { BlogPostPage } from "@/components/blog/blog-post-page";
 
-import { useEffect, useState } from "react";
-import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/data/blog-data";
-import { BlogPost } from "@/lib/types/blog";
-import { BlogPostContent } from "@/components/blog/blog-post-content";
-import { BlogLoading } from "@/components/blog/blog-loading";
-import { use } from "react";
+export const revalidate = 3600;
 
-interface BlogPostPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
-
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const resolvedParams = use(params);
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const foundPost = getPostBySlug(resolvedParams.slug);
-    if (!foundPost) {
-      notFound();
-    }
-    setPost(foundPost);
-    setIsLoading(false);
-  }, [resolvedParams.slug]);
-
-  if (isLoading) {
-    return <BlogLoading />;
-  }
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
-    return notFound();
+    return {
+      title: "Post not found",
+    };
   }
 
-  return (
-    <>
-      {/* Main Content */}
-      <main className="relative mx-auto w-full max-w-4xl px-4 pt-24">
-        <BlogPostContent post={post} />
-      </main>
-    </>
-  );
+  const title = post.seo?.metaTitle ?? post.title;
+  const description = post.seo?.metaDescription ?? post.excerpt;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      publishedTime: post.publishedAt,
+      authors: [post.author.name],
+      tags: post.tags,
+      images: post.coverImage
+        ? [
+            {
+              url: post.coverImage,
+              alt: title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: post.coverImage ? [post.coverImage] : undefined,
+    },
+  };
+}
+
+export default function BlogPostServerPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  return <BlogPostPage slug={params.slug} />;
 }

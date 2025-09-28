@@ -39,7 +39,6 @@ export function useBlogSearch({
       filtered = filtered.filter(
         (post) =>
           post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
           post.tags.some((tag) =>
             tag.toLowerCase().includes(searchQuery.toLowerCase()),
           ),

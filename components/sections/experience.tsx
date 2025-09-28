@@ -8,6 +8,7 @@ import { experienceData } from "@/lib/data";
 import TerminalInfo from "@/components/ui/terminal-info";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeInUp, getStaggerDelay } from "@/lib/animation-presets";
+import { cn } from "@/lib/utils";
 
 export default function Experience() {
   const { ref } = useSectionInView("experience", {
@@ -52,9 +53,9 @@ export default function Experience() {
 
       {/* Experience Grid with Connection Lines */}
       <div className="relative flex flex-col gap-12 md:gap-16">
-        {/* Connector Line */}
-        <div className="absolute inset-0 flex justify-center">
-          <div className="w-px bg-gradient-to-b from-primary-base/40 via-primary-base/30 to-transparent dark:from-primary-base-dark/40 dark:via-primary-base-dark/30" />
+        {/* Connector Line - Left aligned on mobile, centered on desktop */}
+        <div className="absolute inset-0 flex justify-start md:justify-center">
+          <div className="ml-4 w-px bg-gradient-to-b from-primary-base/40 via-primary-base/30 to-transparent dark:from-primary-base-dark/40 dark:via-primary-base-dark/30 md:ml-0" />
         </div>
 
         {/* Experience Items */}
@@ -68,14 +69,17 @@ export default function Experience() {
             viewport={{ once: true }}
             className="relative flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-16"
           >
-            {/* Connector Dot */}
-            <div className="absolute left-1/2 -translate-x-1/2 -translate-y-6">
+            {/* Connector Dot - Left aligned on mobile, centered on desktop */}
+            <div className="absolute left-4 top-6 -translate-x-1/2 md:left-1/2 md:top-0 md:-translate-y-6">
               <div className="h-[10px] w-[10px] rounded-full border-2 border-primary-base/30 bg-primary-base dark:border-primary-base-dark/30 dark:bg-primary-base-dark" />
             </div>
 
             {/* Card - Alternating Layout (only on md+) */}
             <div
-              className={index % 2 === 0 ? "md:col-start-1" : "md:col-start-2"}
+              className={cn(
+                "ml-8 md:ml-0", // Add left margin on mobile to account for timeline
+                index % 2 === 0 ? "md:col-start-1" : "md:col-start-2",
+              )}
             >
               <ExperienceCard
                 experience={experience}

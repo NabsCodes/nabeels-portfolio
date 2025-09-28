@@ -1,19 +1,19 @@
 "use client";
 
-import { Terminal } from "lucide-react";
-import { motion } from "framer-motion";
+// import { Terminal } from "lucide-react";
+// import { motion } from "framer-motion";
 
-/* import { useState, useEffect } from "react";
-import { getAllPosts } from "@/lib/data/blog-data";
+import { useState, useEffect } from "react";
+import { getAllPosts } from "@/lib/sanity-blog-data";
 import { BlogPost } from "@/lib/types/blog";
 import { BlogPageHeader } from "@/components/blog/blog-page-header";
 import { BlogSearch } from "@/components/blog/blog-search";
 import { BlogPostsGrid } from "@/components/blog/blog-posts-grid";
 import { BlogLoading } from "@/components/blog/blog-loading";
-import { useBlogSearch } from "../../hooks/use-blog-search"; */
+import { useBlogSearch } from "@/hooks/use-blog-search";
 
 export default function BlogPage() {
-  /*   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const {
@@ -27,19 +27,28 @@ export default function BlogPage() {
   } = useBlogSearch({ posts });
 
   useEffect(() => {
-    const allPosts = getAllPosts();
-    setPosts(allPosts);
-    setIsLoading(false);
+    async function fetchPosts() {
+      try {
+        const allPosts = await getAllPosts();
+        setPosts(allPosts);
+      } catch (error) {
+        console.error("Error loading blog posts:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchPosts();
   }, []);
 
   if (isLoading) {
     return <BlogLoading />;
-  } */
+  }
 
   return (
     <>
       {/* TEMPORARY: Coming Soon Placeholder */}
-      <motion.main
+      {/* <motion.main
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 3, ease: "easeInOut" }}
@@ -68,13 +77,13 @@ export default function BlogPage() {
             Work in Progress
           </div>
         </div>
-      </motion.main>
+      </motion.main> */}
 
       {/* Blog Posts */}
-      {/* <main className="relative mx-auto w-full max-w-7xl px-4 py-12 pt-24 sm:pt-28 md:pt-32 lg:pt-24">
+      <main className="relative mx-auto w-full max-w-7xl px-4 py-12 pt-24 sm:pt-28 md:pt-32 lg:pt-24">
         <BlogPageHeader
           title="My Blog"
-          description="Sharing my journey as a developer, lessons learned, and insights from building things for the web."
+          description="Sharing my ideas, journey in tech, lessons learned, and insights from building and creating things."
         />
 
         <BlogSearch
@@ -92,8 +101,8 @@ export default function BlogPage() {
           searchQuery={searchQuery}
           selectedTag={selectedTag}
           clearFilters={clearFilters}
-        /> 
-      </main> */}
+        />
+      </main>
     </>
   );
 }

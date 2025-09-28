@@ -12,6 +12,11 @@ const nextConfig: import("next").NextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/**",
+      },
     ],
     formats: ["image/avif", "image/webp"],
   },

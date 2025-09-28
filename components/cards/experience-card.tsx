@@ -143,14 +143,7 @@ export const ExperienceCard: React.FC<{
       </div>
       <ul className="space-y-3">
         {experience.achievements.map((achievement, i) => (
-          <motion.li
-            key={i}
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 + i * 0.1 }}
-            viewport={{ once: true }}
-            className="group relative flex items-start gap-3"
-          >
+          <li key={i} className="group relative flex items-start gap-3">
             <div className="relative mt-1.5">
               <div className="absolute -left-[3px] h-full w-[2px] bg-gradient-to-b from-accent-base to-transparent dark:from-accent-base-dark" />
               <div className="relative h-2 w-2 rounded-full border border-accent-base/30 bg-accent-base/30 transition-colors group-hover:border-accent-base/50 group-hover:bg-accent-base/30 dark:border-accent-base-dark/30 dark:bg-accent-base-dark/30 dark:group-hover:border-accent-base-dark/50 dark:group-hover:bg-accent-base-dark/30" />
@@ -158,7 +151,7 @@ export const ExperienceCard: React.FC<{
             <span className="text-sm text-default-base/70 transition-colors group-hover:text-default-base/90 dark:text-default-base-dark/70 dark:group-hover:text-default-base-dark/90">
               {achievement}
             </span>
-          </motion.li>
+          </li>
         ))}
       </ul>
     </div>

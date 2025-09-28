@@ -9,4 +9,3 @@ export * from "./experience";
 
 // External service types
 export * from "./blog";
-export * from "./contentful";

@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 
 interface BlogPageHeaderProps {
   title: string;
-  description: string;
+  description?: string;
   breadcrumb?: string;
 }
 
 export function BlogPageHeader({
   title,
-  description,
+  description = "",
   breadcrumb = "Personal thoughts & experiences",
 }: BlogPageHeaderProps) {
   return (
@@ -34,12 +34,12 @@ export function BlogPageHeader({
       </div>
 
       {/* Main heading */}
-      <h1 className="font-raleway text-4xl font-bold text-default-base dark:text-default-base-dark md:text-5xl lg:text-6xl">
+      <h1 className="font-raleway text-4xl font-bold text-default-base dark:text-default-base-dark md:text-5xl">
         {title}
         <span className="text-accent-base dark:text-accent-base-dark">.</span>
       </h1>
 
-      <p className="max-w-2xl text-lg text-primary-base dark:text-primary-base-dark">
+      <p className="text-lg text-primary-base dark:text-primary-base-dark">
         {description}
       </p>
     </motion.div>

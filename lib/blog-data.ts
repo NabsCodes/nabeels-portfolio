@@ -2,6 +2,7 @@ import { Author, BlogPost } from "@/lib/types/blog";
 
 // Sample author data
 export const author: Author = {
+  id: "nabeel-hassan",
   name: "Nabeel Hassan",
   bio: "Software Developer & Tech Enthusiast",
   website: "https://nabeelhassan.dev",
@@ -234,7 +235,6 @@ For more advanced topics, check out the [official Next.js documentation](https:/
     readingTime: 8,
     tags: ["Next.js", "TypeScript", "React", "Web Development"],
     category: "Tutorial",
-    featured: true,
     coverImage: "/blog/nextjs-typescript.jpg",
   },
   {
@@ -916,7 +916,6 @@ Remember: **Premature optimization is the root of all evil**. Always measure bef
     readingTime: 15,
     tags: ["React", "Performance", "Optimization", "JavaScript"],
     category: "Advanced",
-    featured: false,
     coverImage: "/blog/react-performance.jpg",
   },
 ];
@@ -931,10 +930,6 @@ export function getAllPosts(): BlogPost[] {
 
 export function getPostBySlug(slug: string): BlogPost | null {
   return blogPosts.find((post) => post.slug === slug) || null;
-}
-
-export function getFeaturedPosts(): BlogPost[] {
-  return blogPosts.filter((post) => post.featured);
 }
 
 export function getPostsByCategory(category: string): BlogPost[] {

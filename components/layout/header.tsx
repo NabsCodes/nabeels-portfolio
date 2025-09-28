@@ -239,14 +239,11 @@ export function Header() {
                   className="flex overflow-hidden"
                   style={{ willChange: "width, opacity" }}
                 >
-                  <span className="flex text-lg font-medium">
+                  <span className="flex whitespace-nowrap text-base font-medium">
                     <span className="text-primary-base dark:text-primary-base-dark">
                       &lt;
                     </span>
                     <span className="text-text-base dark:text-text-base-dark">
-                      nabeel
-                    </span>
-                    <span className="font-light text-primary-base dark:text-accent-base-dark">
                       blog
                     </span>
                     <span className="text-primary-base dark:text-primary-base-dark">
@@ -360,9 +357,9 @@ export function Header() {
         >
           <div className="flex w-full flex-row items-center justify-between">
             <Link
-              href="/"
+              href={isBlogPage ? "/blog" : "/"}
               className="relative z-20 flex items-center gap-3 py-1"
-              aria-label="Go to homepage"
+              aria-label={isBlogPage ? "Go to blog" : "Go to homepage"}
             >
               {/* Logo components */}
               <div className="relative h-[30px] w-[30px] dark:hidden">
@@ -393,40 +390,66 @@ export function Header() {
                 className="flex overflow-hidden"
                 style={{ willChange: "width, opacity" }}
               >
-                <span className="flex whitespace-nowrap text-base font-medium">
-                  <span className="text-primary-base dark:text-primary-base-dark">
-                    &lt;
+                {isBlogPage ? (
+                  <span className="flex whitespace-nowrap text-base font-medium">
+                    <span className="text-primary-base dark:text-primary-base-dark">
+                      &lt;
+                    </span>
+                    <span className="text-text-base dark:text-text-base-dark">
+                      blog
+                    </span>
+                    <span className="text-primary-base dark:text-primary-base-dark">
+                      /&gt;
+                    </span>
                   </span>
-                  <span className="text-text-base dark:text-text-base-dark">
-                    nabeel
+                ) : (
+                  <span className="flex whitespace-nowrap text-base font-medium">
+                    <span className="text-primary-base dark:text-primary-base-dark">
+                      &lt;
+                    </span>
+                    <span className="text-text-base dark:text-text-base-dark">
+                      nabeel
+                    </span>
+                    <span className="font-light text-accent-base dark:text-accent-base-dark">
+                      hassan
+                    </span>
+                    <span className="text-primary-base dark:text-primary-base-dark">
+                      /&gt;
+                    </span>
                   </span>
-                  <span className="font-light text-accent-base dark:text-accent-base-dark">
-                    hassan
-                  </span>
-                  <span className="text-primary-base dark:text-primary-base-dark">
-                    /&gt;
-                  </span>
-                </span>
+                )}
               </motion.div>
             </Link>
 
             <div className="flex items-center gap-3">
               <ModeToggle />
-              <MobileMenuButton
-                isOpen={isMobileMenuOpen}
-                onClick={toggleMobileMenu}
-              />
+              {isBlogPage ? (
+                <Link
+                  href="/"
+                  className="relative cursor-pointer rounded-lg bg-primary-base/40 px-3 py-2 text-center text-sm transition-all duration-200 hover:bg-primary-base/60 hover:text-white dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/30"
+                  aria-label="Back to home"
+                >
+                  ← Portfolio
+                </Link>
+              ) : (
+                <MobileMenuButton
+                  isOpen={isMobileMenuOpen}
+                  onClick={toggleMobileMenu}
+                />
+              )}
             </div>
           </div>
         </motion.div>
       </motion.div>
 
       {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        isScrolled={isScrolled}
-        onClose={closeMobileMenu}
-      />
+      {!isBlogPage && (
+        <MobileMenu
+          isOpen={isMobileMenuOpen}
+          isScrolled={isScrolled}
+          onClose={closeMobileMenu}
+        />
+      )}
       {/* Reading Progress for Blog Posts */}
       {isBlogPost && <ScrollBar position="top" />}
     </motion.header>

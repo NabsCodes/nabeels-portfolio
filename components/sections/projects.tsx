@@ -122,7 +122,7 @@ export default function Projects() {
           >
             <button
               onClick={toggleFeatured}
-              className="group flex items-center gap-2 rounded-lg border border-primary-base/40 bg-primary-base/5 px-4 py-2 text-sm text-primary-base transition-all hover:border-primary-base/80 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10"
+              className="group flex items-center gap-2 rounded-lg border border-primary-base/50 bg-primary-base/5 px-4 py-2 text-sm text-primary-base transition-all hover:border-primary-base/80 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10"
               aria-expanded={showAllFeatured}
             >
               <span>
@@ -150,7 +150,7 @@ export default function Projects() {
           {/* Section Divider with Text */}
           <div className="relative mb-8 flex items-center justify-center">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-primary-base/50 dark:border-primary-base-dark/30" />
+              <div className="w-full border-t border-primary-base/50 dark:border-primary-base-dark/50" />
             </div>
             <div className="relative flex items-center gap-2 rounded-full border border-primary-base/50 bg-background-base/95 px-4 py-2 backdrop-blur-sm dark:border-primary-base-dark/30 dark:bg-background-base-dark/95">
               <Code2 className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
@@ -198,7 +198,7 @@ export default function Projects() {
             >
               <button
                 onClick={toggleOther}
-                className="group flex items-center gap-2 rounded-lg border border-primary-base/40 bg-primary-base/5 px-4 py-2 text-sm text-primary-base transition-all hover:border-primary-base/80 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10"
+                className="group flex items-center gap-2 rounded-lg border border-primary-base/50 bg-primary-base/5 px-4 py-2 text-sm text-primary-base transition-all hover:border-primary-base/80 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10"
               >
                 <span>
                   {showAllOther

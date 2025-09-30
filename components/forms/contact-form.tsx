@@ -95,7 +95,7 @@ const ContactForm = () => {
       viewport={{ once: true }}
       className="relative md:col-span-3"
     >
-      <div className="rounded-lg border border-primary-base/40 bg-background-base/80 p-6 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/80">
+      <div className="rounded-lg border border-primary-base/50 bg-background-base/80 p-6 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/80">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">

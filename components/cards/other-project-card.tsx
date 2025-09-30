@@ -28,7 +28,7 @@ const OtherProjectCard = ({ project }: { project: ProjectData }) => {
       viewport={{ once: true }}
       className="group"
     >
-      <div className="relative w-full overflow-hidden rounded-lg border border-primary-base/40 bg-background-base/80 p-6 backdrop-blur-sm transition-all hover:border-primary-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/40">
+      <div className="relative w-full overflow-hidden rounded-lg border border-primary-base/50 bg-background-base/80 p-6 backdrop-blur-sm transition-all hover:border-primary-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/40">
         <div className="flex flex-col">
           <div className="mb-4 flex items-start justify-between">
             <div className="rounded-lg bg-primary-base/10 p-2 dark:bg-primary-base-dark/10">

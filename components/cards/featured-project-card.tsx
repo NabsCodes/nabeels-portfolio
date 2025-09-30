@@ -46,7 +46,7 @@ export default function FeaturedProjectCard({
         className="group relative"
       >
         {/* Main Card Container */}
-        <div className="relative flex h-fit w-full flex-col overflow-hidden rounded-lg border border-primary-base/40 bg-background-base/80 backdrop-blur-sm transition-colors hover:border-primary-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/40">
+        <div className="relative flex h-fit w-full flex-col overflow-hidden rounded-lg border border-primary-base/50 bg-background-base/80 backdrop-blur-sm transition-colors hover:border-primary-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/40">
           {/* Header Section - Fixed height */}
           <div className="flex h-14 shrink-0 items-center border-b border-primary-base/10 bg-primary-base/5 px-5 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5">
             <div className="flex w-full items-center justify-between">

@@ -235,7 +235,6 @@ For more advanced topics, check out the [official Next.js documentation](https:/
     readingTime: 8,
     tags: ["Next.js", "TypeScript", "React", "Web Development"],
     category: "Tutorial",
-    coverImage: "/blog/nextjs-typescript.jpg",
   },
   {
     id: "2",
@@ -524,8 +523,6 @@ For more advanced techniques, explore the [Tailwind CSS documentation](https://t
     readingTime: 12,
     tags: ["Tailwind CSS", "CSS", "Design", "Frontend"],
     category: "Tutorial",
-    featured: true,
-    coverImage: "/blog/tailwind-css.jpg",
   },
   {
     id: "3",
@@ -916,7 +913,6 @@ Remember: **Premature optimization is the root of all evil**. Always measure bef
     readingTime: 15,
     tags: ["React", "Performance", "Optimization", "JavaScript"],
     category: "Advanced",
-    coverImage: "/blog/react-performance.jpg",
   },
 ];
 

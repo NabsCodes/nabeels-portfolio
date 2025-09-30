@@ -108,7 +108,7 @@ const About = () => {
             variants={fadeInUp}
             className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
           >
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/30 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
+            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
               <Award className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
               <div>
                 <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">
@@ -120,7 +120,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/30 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
+            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
               <CheckCircle className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
               <div>
                 <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">
@@ -132,7 +132,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/30 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
+            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
               <Users className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
               <div>
                 <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">
@@ -144,7 +144,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/30 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
+            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
               <Clock className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
               <div>
                 <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">

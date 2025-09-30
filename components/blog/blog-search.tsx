@@ -64,7 +64,7 @@ export function BlogSearch({
           placeholder="Search posts..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-lg border border-primary-base/20 bg-background-base/60 py-3 pl-10 pr-10 text-default-base backdrop-blur-sm transition-all placeholder:text-primary-base/60 focus:border-accent-base focus:outline-none focus:ring-1 focus:ring-accent-base/20 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 dark:text-default-base-dark dark:placeholder:text-primary-base-dark/60 dark:focus:border-accent-base-dark dark:focus:ring-accent-base-dark/20"
+          className="w-full rounded-lg border border-primary-base/50 bg-background-base/60 py-3 pl-10 pr-10 text-default-base backdrop-blur-sm transition-all placeholder:text-primary-base/60 focus:border-accent-base focus:outline-none focus:ring-1 focus:ring-accent-base/20 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 dark:text-default-base-dark dark:placeholder:text-primary-base-dark/60 dark:focus:border-accent-base-dark dark:focus:ring-accent-base-dark/20"
         />
         {searchQuery && (
           <button

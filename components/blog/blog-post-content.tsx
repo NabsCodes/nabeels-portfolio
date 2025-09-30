@@ -146,7 +146,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
           </div>
 
           {/* Share Buttons */}
-          <div className="mt-8 rounded-xl border border-primary-base/20 bg-background-base/60 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/60">
+          <div className="mt-8 rounded-xl border border-primary-base/50 bg-background-base/60 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/60">
             {/* Desktop Layout */}
             <div className="hidden p-4 md:flex md:items-center md:justify-between">
               <div className="flex items-center gap-3">

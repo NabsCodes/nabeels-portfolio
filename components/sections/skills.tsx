@@ -53,7 +53,7 @@ const Skills = () => {
             <motion.div
               key={group.title}
               variants={fadeInUp}
-              className="relative h-full rounded-xl border border-primary-base/40 bg-background-base/50 p-6 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50"
+              className="relative h-full rounded-xl border border-primary-base/50 bg-background-base/50 p-6 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50"
             >
               {/* Decorative gradient */}
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary-base/10 via-transparent to-transparent dark:from-primary-base-dark/5" />
@@ -73,7 +73,7 @@ const Skills = () => {
                 {group.skills.map((skill) => (
                   <motion.div
                     key={skill.name}
-                    className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-primary-base/20 bg-background-base/80 p-3 backdrop-blur-sm transition-all hover:border-primary-base/30 hover:shadow-sm dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/30"
+                    className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-primary-base/30 bg-background-base/80 p-3 backdrop-blur-sm transition-all hover:border-primary-base/30 hover:shadow-sm dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/30"
                     whileHover={{ y: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >

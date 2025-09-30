@@ -9,7 +9,7 @@ interface SanityDocument {
   _type: string;
 }
 
-// Sanity Image with asset reference
+// Sanity Image with asset reference (for content images only)
 export interface SanityImage {
   _type: "image";
   asset: {
@@ -51,7 +51,6 @@ export interface SanityBlogPost extends SanityDocument {
   tags?: string[];
   category: string;
   featured: boolean;
-  coverImage?: SanityImage;
   publishedAt: string;
   updatedAt?: string;
   readingTime: number;
@@ -85,7 +84,6 @@ export interface BlogPost {
   updatedAt?: string;
   readingTime: number;
   category: string;
-  coverImage?: string;
   seo?: {
     metaTitle?: string;
     metaDescription?: string;

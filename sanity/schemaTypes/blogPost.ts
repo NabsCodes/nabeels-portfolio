@@ -300,22 +300,6 @@ export const blogPost = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "coverImage",
-      title: "Cover Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alt Text",
-          description: "Important for SEO and accessibility",
-        },
-      ],
-    }),
-    defineField({
       name: "publishedAt",
       title: "Published At",
       type: "datetime",
@@ -366,15 +350,13 @@ export const blogPost = defineType({
   preview: {
     select: {
       title: "title",
-      author: "author.name",
-      media: "coverImage",
       category: "category",
     },
     prepare(selection) {
-      const { author, category } = selection;
+      const { category } = selection;
       return {
         ...selection,
-        subtitle: `${category} by ${author}`,
+        subtitle: category,
       };
     },
   },

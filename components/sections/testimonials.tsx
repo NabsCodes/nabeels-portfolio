@@ -28,7 +28,7 @@ function TestimonialCard({
     <motion.div
       variants={fadeInUp}
       className={clsx(
-        "group relative h-full overflow-hidden rounded-xl border border-primary-base/40 bg-background-base/70 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/70 dark:hover:border-primary-base-dark/40",
+        "group relative h-full overflow-hidden rounded-xl border border-primary-base/50 bg-background-base/70 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/70 dark:hover:border-primary-base-dark/40",
         className,
       )}
       ref={containerRef}
@@ -41,7 +41,7 @@ function TestimonialCard({
 
       <div className="mb-2 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Avatar className="h-10 w-10 border border-primary-base/20 dark:border-primary-base-dark/20">
+          <Avatar className="h-10 w-10 border border-primary-base/50 dark:border-primary-base-dark/20">
             <AvatarImage src={t.author.avatarUrl} alt={t.author.name} />
             <AvatarFallback>
               {t.author.name
@@ -69,7 +69,7 @@ function TestimonialCard({
         </div>
       </div>
 
-      <p className="line-clamp-5 border-l-2 border-primary-base/30 pl-4 text-sm italic leading-relaxed text-default-base/80 dark:border-primary-base-dark/20 dark:text-default-base-dark/80">
+      <p className="line-clamp-5 border-l-2 border-primary-base/50 pl-4 text-sm italic leading-relaxed text-default-base/80 dark:border-primary-base-dark/20 dark:text-default-base-dark/80">
         {t.quote}
       </p>
 

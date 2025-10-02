@@ -18,7 +18,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { useCallback, useMemo, useState } from "react";
 import { BlogPost } from "@/lib/types/blog";
 import { BlogPortableTextRenderer } from "@/components/blog/blog-portable-text";
-import { BlogPageHeader } from "./blog-page-header";
+import { BlogPageHeader } from "@/components/blog/blog-page-header";
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -100,21 +100,8 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
           transition={{ duration: 0.6 }}
           className="mb-8"
         >
-          {/* Category Badge */}
-          {/* <div className="mb-4">
-            <span className="inline-flex items-center rounded-md bg-accent-base/10 px-2 py-1 text-xs font-medium text-accent-base ring-1 ring-inset ring-accent-base/20 dark:bg-accent-base-dark/10 dark:text-accent-base-dark dark:ring-accent-base-dark/20">
-              {post.category}
-            </span>
-          </div> */}
-
           {/* Title */}
           <BlogPageHeader title={post.title} breadcrumb={post.category} />
-          {/* <h1 className="mb-6 font-raleway text-4xl font-bold text-default-base dark:text-default-base-dark md:text-5xl">
-            {post.title}
-            <span className="text-accent-base dark:text-accent-base-dark">
-              .
-            </span>
-          </h1> */}
 
           {/* Meta Information */}
           <div className="flex flex-wrap items-center gap-6 text-sm text-primary-base dark:text-primary-base-dark">
@@ -134,7 +121,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
 
           {/* Tags */}
           <div className="mt-6 flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
+            {post.tags.map((tag: string) => (
               <span
                 key={tag}
                 className="inline-flex items-center gap-1 rounded-md bg-primary-base/10 px-2 py-1 text-xs font-medium text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark"
@@ -283,30 +270,6 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-8 border-t border-primary-base/50 pt-8 dark:border-primary-base-dark/20"
         >
-          {/* Next/Previous Post Navigation */}
-          <div className="flex justify-between gap-4">
-            <div className="flex-1">
-              {/* TODO: Add previous post logic */}
-              {/* <Link 
-                href={`/blog/${previousPost?.slug}`}
-                className="block rounded-lg border border-primary-base/20 p-4 transition-colors hover:bg-secondary-base/50 dark:border-primary-base-dark/20 dark:hover:bg-secondary-base-dark/50"
-              >
-                <span className="text-sm text-primary-base dark:text-primary-base-dark">Previous</span>
-                <h3 className="font-medium text-default-base dark:text-default-base-dark">{previousPost?.title}</h3>
-              </Link> */}
-            </div>
-            <div className="flex-1 text-right">
-              {/* TODO: Add next post logic */}
-              {/* <Link 
-                href={`/blog/${nextPost?.slug}`}
-                className="block rounded-lg border border-primary-base/20 p-4 transition-colors hover:bg-secondary-base/50 dark:border-primary-base-dark/20 dark:hover:bg-secondary-base-dark/50"
-              >
-                <span className="text-sm text-primary-base dark:text-primary-base-dark">Next</span>
-                <h3 className="font-medium text-default-base dark:text-default-base-dark">{nextPost?.title}</h3>
-              </Link> */}
-            </div>
-          </div>
-
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-accent-base transition-colors hover:text-accent-base/80 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80"

@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
 import type { BlogPost, Author, SanityBlogPost } from "@/lib/types/blog";
 
 // GROQ queries for blog data
@@ -9,14 +9,12 @@ const BLOG_POST_QUERY = `
     title,
     slug,
     excerpt,
-    content,
     tags,
     category,
-    coverImage,
     publishedAt,
     updatedAt,
     readingTime,
-    seo
+    "content": []
   }
 `;
 
@@ -29,24 +27,6 @@ const BLOG_POST_BY_SLUG_QUERY = `
     content,
     tags,
     category,
-    coverImage,
-    publishedAt,
-    updatedAt,
-    readingTime,
-    seo
-  }
-`;
-
-const FEATURED_POSTS_QUERY = `
-  *[_type == "blogPost" && featured == true] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    excerpt,
-    content,
-    tags,
-    category,
-    coverImage,
     publishedAt,
     updatedAt,
     readingTime,
@@ -60,15 +40,12 @@ const POSTS_BY_CATEGORY_QUERY = `
     title,
     slug,
     excerpt,
-    content,
     tags,
     category,
-    featured,
-    coverImage,
     publishedAt,
     updatedAt,
     readingTime,
-    seo
+    "content": []
   }
 `;
 
@@ -95,10 +72,6 @@ function transformBlogPost(sanityPost: SanityBlogPost): BlogPost {
     author: DEFAULT_AUTHOR,
     tags: sanityPost.tags || [],
     category: sanityPost.category,
-    coverImage:
-      sanityPost.coverImage && sanityPost.coverImage.asset
-        ? urlFor(sanityPost.coverImage).width(800).height(400).url()
-        : undefined,
     publishedAt: sanityPost.publishedAt,
     updatedAt: sanityPost.updatedAt,
     readingTime: sanityPost.readingTime,
@@ -135,17 +108,6 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   }
 }
 
-export async function getFeaturedPosts(): Promise<BlogPost[]> {
-  try {
-    const sanityPosts: SanityBlogPost[] =
-      await client.fetch(FEATURED_POSTS_QUERY);
-    return sanityPosts.map(transformBlogPost);
-  } catch (error) {
-    console.error("Error fetching featured blog posts:", error);
-    return [];
-  }
-}
-
 export async function getPostsByCategory(
   category: string,
 ): Promise<BlogPost[]> {
@@ -169,14 +131,12 @@ export async function getPostsByTag(tag: string): Promise<BlogPost[]> {
         title,
         slug,
         excerpt,
-        content,
         tags,
         category,
-        coverImage,
         publishedAt,
         updatedAt,
         readingTime,
-        seo
+        "content": []
       }
     `;
 
@@ -192,12 +152,9 @@ export async function getPostsByTag(tag: string): Promise<BlogPost[]> {
 
 export async function getAllTags(): Promise<string[]> {
   try {
-    const query = `*[_type == "blogPost" && defined(tags)] { tags }`;
-    const results: { tags: string[] }[] = await client.fetch(query);
-
-    // Flatten and deduplicate tags
-    const allTags = results.flatMap((post) => post.tags || []);
-    return Array.from(new Set(allTags)).sort();
+    const query = `array::unique(*[_type == "blogPost"].tags[])`;
+    const tags: string[] = await client.fetch(query);
+    return tags.sort();
   } catch (error) {
     console.error("Error fetching tags:", error);
     return [];
@@ -206,57 +163,11 @@ export async function getAllTags(): Promise<string[]> {
 
 export async function getAllCategories(): Promise<string[]> {
   try {
-    const query = `*[_type == "blogPost" && defined(category)] { category }`;
-    const results: { category: string }[] = await client.fetch(query);
-
-    // Deduplicate categories
-    const categories = results.map((post) => post.category);
-    return Array.from(new Set(categories)).sort();
+    const query = `array::unique(*[_type == "blogPost"].category)`;
+    const categories: string[] = await client.fetch(query);
+    return categories.sort();
   } catch (error) {
     console.error("Error fetching categories:", error);
-    return [];
-  }
-}
-
-// Get related posts (by same author or similar tags)
-export async function getRelatedPosts(
-  currentPostId: string,
-  tags: string[] = [],
-  limit: number = 3,
-): Promise<BlogPost[]> {
-  try {
-    const query = `
-      *[
-        _type == "blogPost"
-        && _id != $currentPostId
-        && (
-          count(tags[@ in $tags]) > 0
-        )
-      ] | order(publishedAt desc) [0...$limit] {
-        _id,
-        title,
-        slug,
-        excerpt,
-        content,
-        tags,
-        category,
-        coverImage,
-        publishedAt,
-        updatedAt,
-        readingTime,
-        seo
-      }
-    `;
-
-    const sanityPosts: SanityBlogPost[] = await client.fetch(query, {
-      currentPostId,
-      tags,
-      limit,
-    } as any);
-
-    return sanityPosts.map(transformBlogPost);
-  } catch (error) {
-    console.error("Error fetching related posts:", error);
     return [];
   }
 }
@@ -277,14 +188,12 @@ export async function searchPosts(searchTerm: string): Promise<BlogPost[]> {
         title,
         slug,
         excerpt,
-        content,
         tags,
         category,
-        coverImage,
         publishedAt,
         updatedAt,
         readingTime,
-        seo
+        "content": []
       }
     `;
 

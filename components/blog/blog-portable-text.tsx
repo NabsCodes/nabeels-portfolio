@@ -80,9 +80,9 @@ export function BlogPortableTextRenderer({
                 customStyle={{
                   margin: 0,
                   borderRadius: 0,
-                  background: isDark ? "#f1f1f1" : "#ffffff",
+                  background: isDark ? "#1a1b26" : "#ffffff",
                   fontSize: "0.875rem",
-                  lineHeight: "1.6",
+                  lineHeight: "1.7",
                   padding: "1.25rem",
                   fontFamily: "Space Grotesk",
                 }}
@@ -90,15 +90,16 @@ export function BlogPortableTextRenderer({
                 wrapLongLines={true}
                 showLineNumbers={code.split("\n").length > 5}
                 lineNumberStyle={{
-                  color: isDark ? "#6e7681" : "#656d76",
+                  color: isDark ? "#565f89" : "#9ca3af",
                   fontSize: "0.75rem",
                   paddingRight: "1rem",
                   userSelect: "none",
+                  minWidth: "2.5rem",
                 }}
                 lineProps={(lineNumber) => {
                   const style: React.CSSProperties = {};
                   if (highlightedLines?.includes(lineNumber)) {
-                    style.backgroundColor = isDark ? "#374151" : "#f3f4f6";
+                    style.backgroundColor = isDark ? "#292e42" : "#f3f4f6";
                     style.display = "block";
                     style.marginLeft = "-1.25rem";
                     style.marginRight = "-1.25rem";
@@ -209,7 +210,7 @@ export function BlogPortableTextRenderer({
       h1: ({ children, value }: any) => (
         <h1
           id={value?._key}
-          className="mb-6 mt-8 scroll-mt-20 font-raleway text-3xl font-bold text-default-base dark:text-default-base-dark"
+          className="mb-6 mt-12 scroll-mt-20 font-raleway text-4xl font-bold leading-tight text-default-base first:mt-0 dark:text-default-base-dark"
         >
           {children}
         </h1>
@@ -218,7 +219,7 @@ export function BlogPortableTextRenderer({
       h2: ({ children, value }: any) => (
         <h2
           id={value?._key}
-          className="mb-4 mt-8 scroll-mt-20 font-raleway text-2xl font-semibold text-default-base dark:text-default-base-dark"
+          className="mb-4 mt-10 scroll-mt-20 font-raleway text-3xl font-semibold leading-tight text-default-base dark:text-default-base-dark"
         >
           {children}
         </h2>
@@ -227,7 +228,7 @@ export function BlogPortableTextRenderer({
       h3: ({ children, value }: any) => (
         <h3
           id={value?._key}
-          className="mb-3 mt-6 scroll-mt-20 font-raleway text-xl font-semibold text-default-base dark:text-default-base-dark"
+          className="mb-3 mt-8 scroll-mt-20 font-raleway text-2xl font-semibold leading-snug text-default-base dark:text-default-base-dark"
         >
           {children}
         </h3>
@@ -236,7 +237,7 @@ export function BlogPortableTextRenderer({
       h4: ({ children, value }: any) => (
         <h4
           id={value?._key}
-          className="mb-2 mt-4 scroll-mt-20 font-raleway text-lg font-semibold text-default-base dark:text-default-base-dark"
+          className="mb-3 mt-6 scroll-mt-20 font-raleway text-xl font-semibold leading-snug text-default-base dark:text-default-base-dark"
         >
           {children}
         </h4>
@@ -244,14 +245,14 @@ export function BlogPortableTextRenderer({
 
       // Enhanced blockquotes
       blockquote: ({ children }: any) => (
-        <blockquote className="my-6 rounded-r-lg border border-l-4 border-accent-base border-primary-base/20 border-l-accent-base bg-primary-base/5 py-4 pl-6 italic text-primary-base dark:border-accent-base-dark dark:border-primary-base-dark/20 dark:border-l-accent-base-dark dark:bg-primary-base-dark/5 dark:text-primary-base-dark">
+        <blockquote className="my-6 rounded-r-lg border border-l-4 border-primary-base/20 border-l-accent-base bg-accent-base/5 py-4 pl-6 pr-4 italic leading-relaxed text-gray-700 dark:border-primary-base-dark/20 dark:border-l-accent-base-dark dark:bg-accent-base-dark/5 dark:text-gray-300">
           {children}
         </blockquote>
       ),
 
       // Normal paragraphs
       normal: ({ children }: any) => (
-        <p className="my-4 leading-relaxed text-primary-base dark:text-primary-base-dark">
+        <p className="my-4 leading-[1.75] text-gray-700 dark:text-gray-300">
           {children}
         </p>
       ),
@@ -274,13 +275,13 @@ export function BlogPortableTextRenderer({
 
     listItem: {
       bullet: ({ children }: any) => (
-        <li className="leading-relaxed text-primary-base dark:text-primary-base-dark">
+        <li className="leading-[1.75] text-gray-700 dark:text-gray-300">
           {children}
         </li>
       ),
 
       number: ({ children }: any) => (
-        <li className="leading-relaxed text-primary-base dark:text-primary-base-dark">
+        <li className="leading-[1.75] text-gray-700 dark:text-gray-300">
           {children}
         </li>
       ),
@@ -297,10 +298,10 @@ export function BlogPortableTextRenderer({
               href={value.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-base underline decoration-1 underline-offset-2 transition-all hover:text-accent-base/80 hover:decoration-2 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80"
+              className="inline-flex items-center gap-1 text-accent-base underline decoration-1 underline-offset-2 transition-all hover:text-accent-base/80 hover:decoration-2 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80"
             >
-              <ExternalLink className="h-3 w-3" />
               {children}
+              <ExternalLink className="inline h-3.5 w-3.5" />
             </Link>
           );
         }

@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
-import { getPostBySlug } from "@/lib/sanity-blog-data";
-import { BlogPostPage } from "@/components/blog/blog-post-page";
+import { notFound } from "next/navigation";
+import { getPostBySlug, getAllPosts } from "@/lib/sanity-blog-data";
+import { BlogPostContent } from "@/components/blog/blog-post-content";
 
 export const revalidate = 3600;
+
+// Generate static params for all blog posts at build time
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -30,28 +40,30 @@ export async function generateMetadata({
       publishedTime: post.publishedAt,
       authors: [post.author.name],
       tags: post.tags,
-      images: post.coverImage
-        ? [
-            {
-              url: post.coverImage,
-              alt: title,
-            },
-          ]
-        : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: post.coverImage ? [post.coverImage] : undefined,
     },
   };
 }
 
-export default function BlogPostServerPage({
+export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  return <BlogPostPage slug={params.slug} />;
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <main className="relative mx-auto w-full max-w-4xl px-4 pt-24">
+      <BlogPostContent post={post} />
+    </main>
+  );
 }

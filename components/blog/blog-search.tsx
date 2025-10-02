@@ -14,8 +14,8 @@ import { Input } from "@/components/ui/input";
 interface BlogSearchProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  selectedTag: string;
-  setSelectedTag: (tag: string) => void;
+  selectedTags: string[];
+  toggleTag: (tag: string) => void;
   allTags: string[];
   clearFilters: () => void;
   resultsCount: number;
@@ -24,8 +24,8 @@ interface BlogSearchProps {
 export function BlogSearch({
   searchQuery,
   setSearchQuery,
-  selectedTag,
-  setSelectedTag,
+  selectedTags,
+  toggleTag,
   allTags,
   clearFilters,
   resultsCount,
@@ -42,10 +42,6 @@ export function BlogSearch({
       hiddenTags: allTags.slice(MAX_VISIBLE_TAGS),
     };
   }, [allTags]);
-
-  const handleTagSelect = (tag: string) => {
-    setSelectedTag(selectedTag === tag ? "" : tag);
-  };
 
   return (
     <motion.div
@@ -87,22 +83,12 @@ export function BlogSearch({
             </div>
             <div className="-mx-4 overflow-x-auto pb-1 pl-4 pr-6">
               <div className="flex w-max flex-nowrap gap-2">
-                <button
-                  onClick={() => setSelectedTag("")}
-                  className={`rounded-full px-4 py-1.5 font-mono text-xs transition-all ${
-                    !selectedTag
-                      ? "bg-accent-base text-white shadow-lg dark:bg-accent-base-dark"
-                      : "bg-primary-base/10 text-primary-base hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20"
-                  }`}
-                >
-                  All
-                </button>
-                {allTags.map((tag) => (
+                {allTags.map((tag: string) => (
                   <button
                     key={`mobile-${tag}`}
-                    onClick={() => handleTagSelect(tag)}
+                    onClick={() => toggleTag(tag)}
                     className={`rounded-full px-4 py-1.5 font-mono text-xs transition-all ${
-                      selectedTag === tag
+                      selectedTags.includes(tag)
                         ? "bg-accent-base text-white shadow-lg dark:bg-accent-base-dark"
                         : "bg-primary-base/10 text-primary-base hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20"
                     }`}
@@ -121,25 +107,13 @@ export function BlogSearch({
               <span>Topics:</span>
             </div>
 
-            {/* All Button */}
-            <button
-              onClick={() => setSelectedTag("")}
-              className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all ${
-                !selectedTag
-                  ? "bg-accent-base text-white shadow-lg dark:bg-accent-base-dark"
-                  : "bg-primary-base/10 text-primary-base hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20"
-              }`}
-            >
-              All
-            </button>
-
             {/* Tag Buttons */}
-            {visibleTags.map((tag) => (
+            {visibleTags.map((tag: string) => (
               <button
                 key={tag}
-                onClick={() => handleTagSelect(tag)}
+                onClick={() => toggleTag(tag)}
                 className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all ${
-                  selectedTag === tag
+                  selectedTags.includes(tag)
                     ? "bg-accent-base text-white shadow-lg dark:bg-accent-base-dark"
                     : "bg-primary-base/10 text-primary-base hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20"
                 }`}
@@ -160,15 +134,15 @@ export function BlogSearch({
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="max-h-64 w-48 overflow-y-auto border border-primary-base/20 bg-background-base/95 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/95">
-                  {hiddenTags.map((tag) => (
+                  {hiddenTags.map((tag: string) => (
                     <DropdownMenuItem
                       key={tag}
                       className={`cursor-pointer font-mono text-xs transition-colors ${
-                        selectedTag === tag
+                        selectedTags.includes(tag)
                           ? "bg-accent-base/10 text-accent-base hover:bg-accent-base/20 dark:bg-accent-base-dark/10 dark:text-accent-base-dark"
                           : "text-primary-base hover:bg-primary-base/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10"
                       }`}
-                      onSelect={() => handleTagSelect(tag)}
+                      onSelect={() => toggleTag(tag)}
                     >
                       {tag}
                     </DropdownMenuItem>
@@ -179,7 +153,7 @@ export function BlogSearch({
           </div>
 
           {/* Clear all filters and results count */}
-          {(searchQuery || selectedTag) && (
+          {(searchQuery || selectedTags.length > 0) && (
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <button
                 onClick={clearFilters}
@@ -193,7 +167,8 @@ export function BlogSearch({
               <div className="font-mono text-sm text-primary-base/70 dark:text-primary-base-dark/70">
                 {resultsCount} post{resultsCount !== 1 ? "s" : ""} found
                 {searchQuery && ` for "${searchQuery}"`}
-                {selectedTag && ` in "${selectedTag}"`}
+                {selectedTags.length > 0 &&
+                  ` in ${selectedTags.length} topic${selectedTags.length !== 1 ? "s" : ""}`}
               </div>
             </div>
           )}

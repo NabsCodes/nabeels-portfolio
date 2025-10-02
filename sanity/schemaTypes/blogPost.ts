@@ -247,10 +247,91 @@ export const blogPost = defineType({
       name: "tags",
       title: "Tags",
       type: "array",
-      of: [{ type: "string" }],
+      of: [
+        {
+          type: "string",
+          options: {
+            list: [
+              // Frameworks & Libraries
+              { title: "React", value: "React" },
+              { title: "Next.js", value: "Next.js" },
+              { title: "Vue", value: "Vue" },
+              { title: "Angular", value: "Angular" },
+              { title: "Node.js", value: "Node.js" },
+              { title: "Express", value: "Express" },
+              { title: "Svelte", value: "Svelte" },
+              { title: "Remix", value: "Remix" },
+
+              // Languages
+              { title: "JavaScript", value: "JavaScript" },
+              { title: "TypeScript", value: "TypeScript" },
+              { title: "Python", value: "Python" },
+              { title: "Go", value: "Go" },
+              { title: "Rust", value: "Rust" },
+              { title: "PHP", value: "PHP" },
+              { title: "Java", value: "Java" },
+
+              // Styling
+              { title: "CSS", value: "CSS" },
+              { title: "Tailwind CSS", value: "Tailwind CSS" },
+              { title: "Sass", value: "Sass" },
+              { title: "Styled Components", value: "Styled Components" },
+
+              // Tools & DevOps
+              { title: "Git", value: "Git" },
+              { title: "Docker", value: "Docker" },
+              { title: "Kubernetes", value: "Kubernetes" },
+              { title: "CI/CD", value: "CI/CD" },
+              { title: "Webpack", value: "Webpack" },
+              { title: "Vite", value: "Vite" },
+
+              // Cloud & Services
+              { title: "AWS", value: "AWS" },
+              { title: "Vercel", value: "Vercel" },
+              { title: "Netlify", value: "Netlify" },
+              { title: "Firebase", value: "Firebase" },
+              { title: "Supabase", value: "Supabase" },
+
+              // Databases
+              { title: "PostgreSQL", value: "PostgreSQL" },
+              { title: "MongoDB", value: "MongoDB" },
+              { title: "Redis", value: "Redis" },
+              { title: "MySQL", value: "MySQL" },
+
+              // Concepts
+              { title: "Performance", value: "Performance" },
+              { title: "SEO", value: "SEO" },
+              { title: "Accessibility", value: "Accessibility" },
+              { title: "Testing", value: "Testing" },
+              { title: "Security", value: "Security" },
+              { title: "API", value: "API" },
+              { title: "GraphQL", value: "GraphQL" },
+              { title: "REST", value: "REST" },
+              { title: "WebSockets", value: "WebSockets" },
+              { title: "Authentication", value: "Authentication" },
+              { title: "State Management", value: "State Management" },
+              { title: "Animations", value: "Animations" },
+              { title: "Deployment", value: "Deployment" },
+              { title: "Architecture", value: "Architecture" },
+              { title: "Design Patterns", value: "Design Patterns" },
+
+              // CMS & Backend
+              { title: "Sanity", value: "Sanity" },
+              { title: "Contentful", value: "Contentful" },
+              { title: "Strapi", value: "Strapi" },
+
+              // Mobile
+              { title: "React Native", value: "React Native" },
+              { title: "Flutter", value: "Flutter" },
+            ],
+          },
+        },
+      ],
       options: {
         layout: "tags",
       },
+      validation: (Rule) =>
+        Rule.max(5).warning("Keep tags focused (max 5 recommended)"),
     }),
     defineField({
       name: "category",

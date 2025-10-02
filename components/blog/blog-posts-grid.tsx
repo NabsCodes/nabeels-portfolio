@@ -7,14 +7,14 @@ import { BlogPost } from "@/lib/types/blog";
 interface BlogPostsGridProps {
   posts: BlogPost[];
   searchQuery: string;
-  selectedTag: string;
+  selectedTags: string[];
   clearFilters: () => void;
 }
 
 export function BlogPostsGrid({
   posts,
   searchQuery,
-  selectedTag,
+  selectedTags,
   clearFilters,
 }: BlogPostsGridProps) {
   if (posts.length > 0) {
@@ -60,11 +60,11 @@ export function BlogPostsGrid({
         </span>
       </div>
       <p className="mb-6 text-primary-base dark:text-primary-base-dark">
-        {searchQuery || selectedTag
+        {searchQuery || selectedTags.length > 0
           ? "Try different search terms or clear filters"
           : "Coming soon..."}
       </p>
-      {(searchQuery || selectedTag) && (
+      {(searchQuery || selectedTags.length > 0) && (
         <button
           onClick={clearFilters}
           className="rounded-lg bg-accent-base px-6 py-3 text-sm text-white transition-colors hover:bg-accent-base/80 dark:bg-accent-base-dark dark:hover:bg-accent-base-dark/80"

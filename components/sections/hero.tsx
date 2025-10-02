@@ -205,28 +205,33 @@ export default function Hero() {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div variants={fadeInUp} className="mt-12">
-            <div className="inline-flex items-center gap-4 rounded-lg border border-primary-base/50 bg-background-base p-2 dark:border-primary-base-dark/30 dark:bg-background-base-dark/50">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="mt-12 flex items-center gap-4"
+          >
+            <span className="font-space-grotesk text-sm text-primary-base-dark/50 dark:text-primary-base-dark/50">
+              Connect:
+            </span>
+            <div className="flex gap-3">
               <Link
                 href={heroContent.social.github}
                 onClick={() => handleSocialClick("github")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-md p-2 transition-colors hover:bg-primary-base/10 dark:hover:bg-primary-base-dark/10"
+                className="group rounded-full border border-primary-base-dark/20 p-2.5 transition-all hover:border-primary-base-dark/40 hover:bg-primary-base-dark/5 dark:border-primary-base-dark/30 dark:hover:border-primary-base-dark/50 dark:hover:bg-primary-base-dark/10"
               >
-                <SiGithub className="h-5 w-5 text-primary-base-dark transition-colors group-hover:text-primary-base/80 dark:text-primary-base-dark dark:group-hover:text-primary-base-dark/80" />
+                <SiGithub className="h-5 w-5 text-primary-base-dark/70 transition-colors group-hover:text-primary-base-dark dark:text-primary-base-dark/60 dark:group-hover:text-primary-base-dark" />
               </Link>
-
-              <div className="h-5 w-1 border-r border-primary-base dark:border-primary-base-dark/30"></div>
-
               <Link
                 href={heroContent.social.linkedin}
                 onClick={() => handleSocialClick("linkedin")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-md p-2 transition-colors hover:bg-primary-base/10 dark:hover:bg-primary-base-dark/10"
+                className="group rounded-full border border-primary-base-dark/20 p-2.5 transition-all hover:border-primary-base-dark/40 hover:bg-primary-base-dark/5 dark:border-primary-base-dark/30 dark:hover:border-primary-base-dark/50 dark:hover:bg-primary-base-dark/10"
               >
-                <SiLinkedin className="h-5 w-5 text-primary-base-dark transition-colors group-hover:text-primary-base/80 dark:text-primary-base-dark dark:group-hover:text-primary-base-dark/80" />
+                <SiLinkedin className="h-5 w-5 text-primary-base-dark/70 transition-colors group-hover:text-primary-base-dark dark:text-primary-base-dark/60 dark:group-hover:text-primary-base-dark" />
               </Link>
             </div>
           </motion.div>

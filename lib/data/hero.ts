@@ -2,7 +2,8 @@ import { Terminal, Code2, Boxes, ArrowRight } from "lucide-react";
 import { HeroContent } from "@/lib/types";
 
 export const heroContent: HeroContent = {
-  intro: " Available for hire ",
+  // intro: " Available for hire ",
+  intro: " Open to Strategic Partnerships ",
   // intro: " CODE • CREATE • INNOVATE ",
   description:
     // "Software developer who enjoys building things for the web. Whether it's a full website or a specific feature, I create solutions that work well and look good. Discover my portfolio and explore my work.",

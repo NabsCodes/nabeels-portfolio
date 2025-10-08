@@ -178,7 +178,7 @@ export const projectsData: ProjectData[] = [
       "Enhanced academic planning platform with goal setting, scenario analysis, and progress visualization. Empowers students to make strategic academic decisions and track long-term performance trends.",
     featured: true,
     cover: {
-      url: "/projects/cgpa-calculator.png",
+      url: "/projects/cgpa-calculator-1.png",
       alt: "CGPA Calculator V2",
     },
     tech: [

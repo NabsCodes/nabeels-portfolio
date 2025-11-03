@@ -8,6 +8,8 @@ import { SparklesBackground } from "@/components/layout/sparkles-background";
 import { cn } from "@/lib/utils";
 import { AnalyticsProviders } from "@/app/_providers";
 import { CommandPalette } from "@/components/ui/command-palette";
+import { CommandPaletteProvider } from "@/contexts/command-palette-context";
+import { CommandLauncher } from "@/components/ui/command-launcher";
 
 // Raleway for body text
 const raleway = Raleway({
@@ -166,16 +168,19 @@ export default function RootLayout({
         <AnalyticsProviders>
           <ToastProvider>
             <ActiveSectionContextProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                <CommandPalette />
-                <SparklesBackground />
-                {children}
-              </ThemeProvider>
+              <CommandPaletteProvider>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                  disableTransitionOnChange
+                >
+                  <CommandPalette />
+                  <CommandLauncher />
+                  <SparklesBackground />
+                  {children}
+                </ThemeProvider>
+              </CommandPaletteProvider>
             </ActiveSectionContextProvider>
           </ToastProvider>
         </AnalyticsProviders>

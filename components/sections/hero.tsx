@@ -212,7 +212,7 @@ export default function Hero() {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="mt-12 flex items-center gap-4"
           >
-            <span className="font-space-grotesk text-sm text-primary-base-dark/50 dark:text-primary-base-dark/50">
+            <span className="font-space-grotesk text-sm text-primary-base-dark dark:text-primary-base-dark">
               Connect:
             </span>
             <div className="flex gap-3">
@@ -221,7 +221,7 @@ export default function Hero() {
                 onClick={() => handleSocialClick("github")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded-full border border-primary-base-dark/20 p-2.5 transition-all hover:border-primary-base-dark/40 hover:bg-primary-base-dark/5 dark:border-primary-base-dark/30 dark:hover:border-primary-base-dark/50 dark:hover:bg-primary-base-dark/10"
+                className="group rounded-full border border-primary-base-dark/50 p-2.5 transition-all hover:border-primary-base-dark/40 hover:bg-primary-base-dark/5 dark:border-primary-base-dark/30 dark:hover:border-primary-base-dark/50 dark:hover:bg-primary-base-dark/10"
               >
                 <SiGithub className="h-5 w-5 text-primary-base-dark/70 transition-colors group-hover:text-primary-base-dark dark:text-primary-base-dark/60 dark:group-hover:text-primary-base-dark" />
               </Link>
@@ -230,7 +230,7 @@ export default function Hero() {
                 onClick={() => handleSocialClick("linkedin")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded-full border border-primary-base-dark/20 p-2.5 transition-all hover:border-primary-base-dark/40 hover:bg-primary-base-dark/5 dark:border-primary-base-dark/30 dark:hover:border-primary-base-dark/50 dark:hover:bg-primary-base-dark/10"
+                className="group rounded-full border border-primary-base-dark/50 p-2.5 transition-all hover:border-primary-base-dark/40 hover:bg-primary-base-dark/5 dark:border-primary-base-dark/30 dark:hover:border-primary-base-dark/50 dark:hover:bg-primary-base-dark/10"
               >
                 <SiLinkedin className="h-5 w-5 text-primary-base-dark/70 transition-colors group-hover:text-primary-base-dark dark:text-primary-base-dark/60 dark:group-hover:text-primary-base-dark" />
               </Link>
@@ -242,12 +242,12 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="mt-6 flex items-center gap-2 font-mono text-xs text-primary-base-dark/40 dark:text-primary-base-dark/40"
+            className="mt-6 hidden items-center gap-2 font-mono text-xs text-primary-base-dark dark:text-primary-base-dark md:flex"
           >
             <span>Quick search:</span>
             <Kbd>⌘</Kbd>
             <Kbd>K</Kbd>
-            <span className="text-primary-base-dark/30 dark:text-primary-base-dark/30">
+            <span className="text-primary-base-dark dark:text-primary-base-dark">
               or
             </span>
             <Kbd>/</Kbd>

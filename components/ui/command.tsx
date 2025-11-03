@@ -25,7 +25,7 @@ Command.displayName = CommandPrimitive.displayName;
 const CommandDialog = ({ children, ...props }: DialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-2xl">
+      <DialogContent className="overflow-hidden border border-primary-base/20 bg-background-base p-0 shadow-2xl dark:border-primary-base-dark/20 dark:bg-background-base-dark">
         <DialogTitle className="sr-only">Command Palette</DialogTitle>
         <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-space-grotesk [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:text-primary-base [&_[cmdk-group-heading]]:dark:text-primary-base-dark [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
@@ -63,7 +63,11 @@ const CommandList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.List
     ref={ref}
-    className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className)}
+    className={cn(
+      "max-h-[300px] overflow-y-auto overflow-x-hidden",
+      "[&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-thumb]:bg-primary-base/20 dark:[&::-webkit-scrollbar-thumb]:bg-primary-base-dark/20 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2",
+      className,
+    )}
     {...props}
   />
 ));
@@ -106,7 +110,7 @@ const CommandSeparator = React.forwardRef<
   <CommandPrimitive.Separator
     ref={ref}
     className={cn(
-      "-mx-1 h-px bg-primary-base/10 dark:bg-primary-base-dark/10",
+      "-mx-1 h-px bg-primary-base/15 dark:bg-primary-base-dark/15",
       className,
     )}
     {...props}
@@ -121,7 +125,12 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md px-3 py-2.5 text-sm outline-none transition-colors data-[disabled=true]:pointer-events-none data-[selected=true]:bg-primary-base/10 data-[selected=true]:text-primary-base data-[disabled=true]:opacity-50 dark:data-[selected=true]:bg-primary-base-dark/10 dark:data-[selected=true]:text-primary-base-dark [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+      "relative flex cursor-default select-none items-center gap-2 rounded-md px-3 py-2.5 text-sm outline-none transition-colors",
+      "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
+      "hover:bg-primary-base/10 data-[selected=true]:bg-primary-base/15 data-[selected=true]:text-primary-base",
+      "dark:hover:bg-primary-base-dark/10 dark:data-[selected=true]:bg-primary-base-dark/15 dark:data-[selected=true]:text-primary-base-dark",
+      "focus-visible:ring-2 focus-visible:ring-primary-base/30 dark:focus-visible:ring-primary-base-dark/30",
+      "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
       className,
     )}
     {...props}

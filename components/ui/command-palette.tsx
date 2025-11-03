@@ -21,10 +21,15 @@ import {
   AiOutlineSun,
   AiOutlineMoon,
   AiOutlineLaptop,
-  AiOutlineSearch,
+  AiOutlineStar,
+  AiOutlineThunderbolt,
 } from "react-icons/ai";
 import { HiOutlineBriefcase, HiOutlineExternalLink } from "react-icons/hi";
-import { projectsData } from "@/lib/data";
+import { SiGithub, SiLinkedin } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6";
+import { FiCopy, FiDownload } from "react-icons/fi";
+import { projectsData, contactData, heroContent } from "@/lib/data";
+import { useCommandPalette } from "@/contexts/command-palette-context";
 
 interface CommandPaletteProps {
   blogPosts?: Array<{
@@ -34,7 +39,7 @@ interface CommandPaletteProps {
 }
 
 export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
-  const [open, setOpen] = React.useState(false);
+  const { open, setOpen, toggle } = useCommandPalette();
   const router = useRouter();
   const { setTheme } = useTheme();
 
@@ -44,7 +49,7 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
       // Cmd+K or Ctrl+K
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        toggle();
       }
       // Forward slash
       if (e.key === "/" && !open) {
@@ -63,7 +68,7 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, [open]);
+  }, [open, setOpen, toggle]);
 
   const runCommand = React.useCallback(
     (command: () => void) => {
@@ -85,14 +90,16 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
     });
   };
 
-  // Get unique tech stacks
-  const uniqueTech = React.useMemo(() => {
-    const techSet = new Set<string>();
-    projectsData.forEach((project) => {
-      project.tech.forEach((tech) => techSet.add(tech.name));
-    });
-    return Array.from(techSet).sort();
+  // Copy email to clipboard
+  const copyEmail = React.useCallback(() => {
+    navigator.clipboard.writeText(contactData.email);
+    // Could add toast notification here if you have a toast system
   }, []);
+
+  // Open external link
+  const openLink = (url: string) => {
+    runCommand(() => window.open(url, "_blank"));
+  };
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
@@ -122,6 +129,27 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
           >
             <HiOutlineBriefcase className="h-4 w-4" />
             <span>Projects</span>
+          </CommandItem>
+          <CommandItem
+            onSelect={() => scrollToSection("skills")}
+            className="gap-2"
+          >
+            <AiOutlineThunderbolt className="h-4 w-4" />
+            <span>Skills</span>
+          </CommandItem>
+          <CommandItem
+            onSelect={() => scrollToSection("experience")}
+            className="gap-2"
+          >
+            <AiOutlineCode className="h-4 w-4" />
+            <span>Experience</span>
+          </CommandItem>
+          <CommandItem
+            onSelect={() => scrollToSection("testimonials")}
+            className="gap-2"
+          >
+            <AiOutlineStar className="h-4 w-4" />
+            <span>Testimonials</span>
           </CommandItem>
           <CommandItem
             onSelect={() => scrollToSection("contact")}
@@ -161,31 +189,6 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
           ))}
         </CommandGroup>
 
-        <CommandSeparator />
-
-        {/* Filter by Tech */}
-        <CommandGroup heading="Filter by Technology">
-          {uniqueTech.slice(0, 8).map((tech) => (
-            <CommandItem
-              key={tech}
-              onSelect={() => {
-                runCommand(() => {
-                  // Navigate to projects section and trigger filter
-                  scrollToSection("projects");
-                  // Dispatch custom event to trigger filter
-                  window.dispatchEvent(
-                    new CustomEvent("filterProjects", { detail: tech }),
-                  );
-                });
-              }}
-              className="gap-2"
-            >
-              <AiOutlineSearch className="h-4 w-4" />
-              <span>Show {tech} projects</span>
-            </CommandItem>
-          ))}
-        </CommandGroup>
-
         {/* Blog Posts */}
         {blogPosts.length > 0 && (
           <>
@@ -204,6 +207,67 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
             </CommandGroup>
           </>
         )}
+
+        <CommandSeparator />
+
+        {/* Social Links */}
+        <CommandGroup heading="Connect">
+          <CommandItem
+            onSelect={() => openLink(contactData.socials.github)}
+            className="gap-2"
+          >
+            <SiGithub className="h-4 w-4" />
+            <span>GitHub</span>
+            <HiOutlineExternalLink className="ml-auto h-3 w-3 opacity-50" />
+          </CommandItem>
+          <CommandItem
+            onSelect={() => openLink(contactData.socials.linkedin)}
+            className="gap-2"
+          >
+            <SiLinkedin className="h-4 w-4" />
+            <span>LinkedIn</span>
+            <HiOutlineExternalLink className="ml-auto h-3 w-3 opacity-50" />
+          </CommandItem>
+          {contactData.socials.twitter && (
+            <CommandItem
+              onSelect={() => openLink(contactData.socials.twitter)}
+              className="gap-2"
+            >
+              <FaXTwitter className="h-4 w-4" />
+              <span>Twitter</span>
+              <HiOutlineExternalLink className="ml-auto h-3 w-3 opacity-50" />
+            </CommandItem>
+          )}
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        {/* Contact & Resume */}
+        <CommandGroup heading="Contact & Resume">
+          <CommandItem
+            onSelect={() => {
+              runCommand(() => {
+                copyEmail();
+                scrollToSection("contact");
+              });
+            }}
+            className="gap-2"
+          >
+            <FiCopy className="h-4 w-4" />
+            <span>Copy Email</span>
+            <span className="ml-auto text-xs text-default-base/60 dark:text-default-base-dark/60">
+              {contactData.email}
+            </span>
+          </CommandItem>
+          <CommandItem
+            onSelect={() => openLink(heroContent.cta.secondary.href)}
+            className="gap-2"
+          >
+            <FiDownload className="h-4 w-4" />
+            <span>Download Resume</span>
+            <HiOutlineExternalLink className="ml-auto h-3 w-3 opacity-50" />
+          </CommandItem>
+        </CommandGroup>
 
         <CommandSeparator />
 

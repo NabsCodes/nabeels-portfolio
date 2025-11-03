@@ -58,5 +58,12 @@ export function useToggleWithScroll(options?: ToggleWithScrollOptions) {
     });
   };
 
-  return { isExpanded, setIsExpanded, toggle, topRef, firstExpandedRef, buttonRef };
+  return {
+    isExpanded,
+    setIsExpanded,
+    toggle,
+    topRef,
+    firstExpandedRef,
+    buttonRef,
+  };
 }

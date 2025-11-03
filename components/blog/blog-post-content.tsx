@@ -104,7 +104,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
           <BlogPageHeader title={post.title} breadcrumb={post.category} />
 
           {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-primary-base dark:text-primary-base-dark">
+          <div className="text-primary-base dark:text-primary-base-dark flex flex-wrap items-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <User className="h-4 w-4" />
               <span>{post.author.name}</span>
@@ -124,7 +124,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
             {post.tags.map((tag: string) => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1 rounded-md bg-primary-base/10 px-2 py-1 text-xs font-medium text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark"
+                className="bg-primary-base/10 text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium"
               >
                 <Tag className="h-3 w-3" />
                 {tag}
@@ -133,18 +133,18 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
           </div>
 
           {/* Share Buttons */}
-          <div className="mt-8 rounded-xl border border-primary-base/50 bg-background-base/60 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/60">
+          <div className="border-primary-base/50 bg-background-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 mt-8 rounded-xl border backdrop-blur-sm">
             {/* Desktop Layout */}
             <div className="hidden p-4 md:flex md:items-center md:justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-base/10 text-accent-base dark:bg-accent-base-dark/10 dark:text-accent-base-dark">
+                <div className="bg-accent-base/10 text-accent-base dark:bg-accent-base-dark/10 dark:text-accent-base-dark flex h-10 w-10 items-center justify-center rounded-lg">
                   <Share className="h-4 w-4" />
                 </div>
                 <div>
-                  <p className="font-semibold text-default-base dark:text-default-base-dark">
+                  <p className="text-default-base dark:text-default-base-dark font-semibold">
                     Share this article
                   </p>
-                  <p className="text-xs text-primary-base/70 dark:text-primary-base-dark/70">
+                  <p className="text-primary-base/70 dark:text-primary-base-dark/70 text-xs">
                     Spread the word with your network
                   </p>
                 </div>
@@ -154,7 +154,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                 <button
                   type="button"
                   onClick={handleNativeShare}
-                  className="inline-flex items-center gap-2 rounded-lg border border-accent-base/30 px-3 py-1.5 text-xs font-medium text-accent-base transition-colors hover:bg-accent-base/10 dark:border-accent-base-dark/30 dark:text-accent-base-dark dark:hover:bg-accent-base-dark/10"
+                  className="border-accent-base/30 text-accent-base hover:bg-accent-base/10 dark:border-accent-base-dark/30 dark:text-accent-base-dark dark:hover:bg-accent-base-dark/10 inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors"
                 >
                   <Send className="h-3 w-3" />
                   Share
@@ -163,12 +163,12 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                 <button
                   type="button"
                   onClick={handleCopyLink}
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary-base/10 px-3 py-1.5 text-xs font-medium text-primary-base transition-colors hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20"
+                  className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors"
                 >
                   {isCopied ? (
-                    <Check className="h-3 w-3" />
+                    <Check className="text-primary-base dark:text-primary-base-dark h-3 w-3" />
                   ) : (
-                    <Copy className="h-3 w-3" />
+                    <Copy className="text-primary-base dark:text-primary-base-dark h-3 w-3" />
                   )}
                   {isCopied ? "Copied" : "Copy link"}
                 </button>
@@ -177,7 +177,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                   href={twitterShareHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary-base/10 px-3 py-1.5 text-xs font-medium text-primary-base transition-colors hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20"
+                  className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors"
                 >
                   <FaXTwitter className="h-3 w-3" />
                   Post on X
@@ -187,7 +187,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                   href={linkedinShareHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary-base/10 px-3 py-1.5 text-xs font-medium text-primary-base transition-colors hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20"
+                  className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors"
                 >
                   <FaLinkedinIn className="h-3 w-3" />
                   Share on LinkedIn
@@ -198,10 +198,10 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
             {/* Mobile Layout */}
             <div className="flex items-center justify-between p-3 md:hidden">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-md bg-accent-base/10 text-accent-base dark:bg-accent-base-dark/10 dark:text-accent-base-dark">
+                <div className="bg-accent-base/10 text-accent-base dark:bg-accent-base-dark/10 dark:text-accent-base-dark flex h-8 w-8 items-center justify-center rounded-md">
                   <Share className="h-3 w-3" />
                 </div>
-                <span className="text-sm font-medium text-default-base dark:text-default-base-dark">
+                <span className="text-default-base dark:text-default-base-dark text-sm font-medium">
                   Share
                 </span>
               </div>
@@ -211,7 +211,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                   type="button"
                   onClick={handleNativeShare}
                   title="Share"
-                  className="flex h-8 w-8 items-center justify-center rounded-md border border-accent-base/30 text-accent-base transition-colors hover:bg-accent-base/10 dark:border-accent-base-dark/30 dark:text-accent-base-dark dark:hover:bg-accent-base-dark/10"
+                  className="border-accent-base/30 text-accent-base hover:bg-accent-base/10 dark:border-accent-base-dark/30 dark:text-accent-base-dark dark:hover:bg-accent-base-dark/10 flex h-8 w-8 items-center justify-center rounded-md border transition-colors"
                 >
                   <Send className="h-3 w-3" />
                 </button>
@@ -220,12 +220,12 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                   type="button"
                   onClick={handleCopyLink}
                   title={isCopied ? "Link copied!" : "Copy link"}
-                  className="flex h-8 w-8 items-center justify-center rounded-md bg-primary-base/10 text-primary-base transition-colors hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20"
+                  className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 flex h-8 w-8 items-center justify-center rounded-md transition-colors"
                 >
                   {isCopied ? (
-                    <Check className="h-3 w-3" />
+                    <Check className="text-primary-base dark:text-primary-base-dark h-3 w-3" />
                   ) : (
-                    <Copy className="h-3 w-3" />
+                    <Copy className="text-primary-base dark:text-primary-base-dark h-3 w-3" />
                   )}
                 </button>
 
@@ -234,7 +234,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Post on X"
-                  className="flex h-8 w-8 items-center justify-center rounded-md bg-primary-base/10 text-primary-base transition-colors hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20"
+                  className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 flex h-8 w-8 items-center justify-center rounded-md transition-colors"
                 >
                   <FaXTwitter className="h-3 w-3" />
                 </Link>
@@ -244,7 +244,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Share on LinkedIn"
-                  className="flex h-8 w-8 items-center justify-center rounded-md bg-primary-base/10 text-primary-base transition-colors hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20"
+                  className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 flex h-8 w-8 items-center justify-center rounded-md transition-colors"
                 >
                   <FaLinkedinIn className="h-3 w-3" />
                 </Link>
@@ -258,7 +258,7 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="rounded-lg border border-primary-base/50 bg-background-base/60 p-4 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 lg:px-12"
+          className="border-primary-base/50 bg-background-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 rounded-lg border p-4 backdrop-blur-sm lg:px-12"
         >
           <BlogPortableTextRenderer content={post.content} />
         </motion.div>
@@ -268,11 +268,11 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 border-t border-primary-base/50 pt-8 dark:border-primary-base-dark/20"
+          className="border-primary-base/50 dark:border-primary-base-dark/20 mt-8 border-t pt-8"
         >
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-accent-base transition-colors hover:text-accent-base/80 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80"
+            className="text-accent-base hover:text-accent-base/80 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80 inline-flex items-center gap-2 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to all posts

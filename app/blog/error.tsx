@@ -22,12 +22,12 @@ export default function Error({
           <AlertTriangle className="h-12 w-12 text-red-500" />
         </div>
 
-        <h1 className="mb-4 font-raleway text-3xl font-bold text-default-base dark:text-default-base-dark">
+        <h1 className="font-raleway text-default-base dark:text-default-base-dark mb-4 text-3xl font-bold">
           Something went wrong
           <span className="text-accent-base dark:text-accent-base-dark">!</span>
         </h1>
 
-        <p className="mb-8 text-lg text-primary-base dark:text-primary-base-dark">
+        <p className="text-primary-base dark:text-primary-base-dark mb-8 text-lg">
           We encountered an error while loading the blog posts. Please try
           again.
         </p>
@@ -35,7 +35,7 @@ export default function Error({
         <div className="flex justify-center gap-4">
           <button
             onClick={reset}
-            className="inline-flex items-center gap-2 rounded-lg border border-accent-base bg-accent-base px-6 py-3 font-medium text-white transition-colors hover:bg-accent-base/90 dark:border-accent-base-dark dark:bg-accent-base-dark dark:hover:bg-accent-base-dark/90"
+            className="border-accent-base bg-accent-base hover:bg-accent-base/90 dark:border-accent-base-dark dark:bg-accent-base-dark dark:hover:bg-accent-base-dark/90 inline-flex items-center gap-2 rounded-lg border px-6 py-3 font-medium text-white transition-colors"
           >
             <RefreshCw className="h-4 w-4" />
             Try again
@@ -43,7 +43,7 @@ export default function Error({
 
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-lg border border-primary-base/20 bg-background-base/60 px-6 py-3 font-medium text-default-base backdrop-blur-sm transition-colors hover:bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 dark:text-default-base-dark dark:hover:bg-background-base-dark/80"
+            className="border-primary-base/20 bg-background-base/60 text-default-base hover:bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 dark:text-default-base-dark dark:hover:bg-background-base-dark/80 inline-flex items-center gap-2 rounded-lg border px-6 py-3 font-medium backdrop-blur-sm transition-colors"
           >
             <Home className="h-4 w-4" />
             Go home

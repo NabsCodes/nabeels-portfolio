@@ -28,20 +28,20 @@ function TestimonialCard({
     <motion.div
       variants={fadeInUp}
       className={clsx(
-        "group relative h-full overflow-hidden rounded-xl border border-primary-base/50 bg-background-base/70 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/70 dark:hover:border-primary-base-dark/40",
+        "group border-primary-base/50 bg-background-base/70 hover:border-primary-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/70 dark:hover:border-primary-base-dark/40 relative h-full overflow-hidden rounded-xl border p-6 backdrop-blur-sm transition-all duration-300",
         className,
       )}
       ref={containerRef}
     >
       {/* Decorative background icon */}
-      <Quote className="pointer-events-none absolute -right-2 -top-2 h-14 w-14 rotate-12 text-primary-base/10 dark:text-primary-base-dark/10" />
+      <Quote className="text-primary-base/10 dark:text-primary-base-dark/10 pointer-events-none absolute -top-2 -right-2 h-14 w-14 rotate-12" />
 
       {/* Accent bar */}
-      <div className="mb-3 h-1 w-24 rounded bg-gradient-to-r from-primary-base/40 to-accent-base/40 dark:from-primary-base-dark/30 dark:to-accent-base-dark/30" />
+      <div className="from-primary-base/40 to-accent-base/40 dark:from-primary-base-dark/30 dark:to-accent-base-dark/30 mb-3 h-1 w-24 rounded bg-linear-to-r" />
 
       <div className="mb-2 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Avatar className="h-10 w-10 border border-primary-base/50 dark:border-primary-base-dark/20">
+          <Avatar className="border-primary-base/50 dark:border-primary-base-dark/20 h-10 w-10 border">
             <AvatarImage src={t.author.avatarUrl} alt={t.author.name} />
             <AvatarFallback>
               {t.author.name
@@ -54,22 +54,22 @@ function TestimonialCard({
           </Avatar>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-space-grotesk text-sm font-medium text-primary-base-dark dark:text-primary-base-dark">
+              <span className="font-space-grotesk text-primary-base-dark dark:text-primary-base-dark text-sm font-medium">
                 {t.author.name}
               </span>
             </div>
-            <div className="text-xs text-default-base/60 dark:text-default-base-dark/60">
+            <div className="text-default-base/60 dark:text-default-base-dark/60 text-xs">
               {[t.author.role, t.author.company].filter(Boolean).join(" • ")}
             </div>
           </div>
         </div>
 
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-base/10 dark:bg-primary-base-dark/10">
-          <Quote className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+        <div className="bg-primary-base/10 dark:bg-primary-base-dark/10 flex h-8 w-8 items-center justify-center rounded-lg">
+          <Quote className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
         </div>
       </div>
 
-      <p className="line-clamp-5 border-l-2 border-primary-base/50 pl-4 text-sm italic leading-relaxed text-default-base/80 dark:border-primary-base-dark/20 dark:text-default-base-dark/80">
+      <p className="border-primary-base/50 text-default-base/80 dark:border-primary-base-dark/20 dark:text-default-base-dark/80 line-clamp-5 border-l-2 pl-4 text-sm leading-relaxed italic">
         {t.quote}
       </p>
 

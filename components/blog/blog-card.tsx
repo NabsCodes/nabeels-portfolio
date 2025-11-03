@@ -26,24 +26,24 @@ export function BlogCard({ post, index }: BlogCardProps) {
       className="group relative h-full"
     >
       <Link href={`/blog/${post.slug}`} className="block h-full">
-        <div className="flex h-full flex-col rounded-lg border border-primary-base/50 bg-background-base/60 p-6 backdrop-blur-sm transition-all duration-300 hover:border-accent-base dark:border-primary-base-dark/20 dark:bg-background-base-dark dark:hover:border-accent-base-dark">
+        <div className="border-primary-base/50 bg-background-base/60 hover:border-accent-base dark:border-primary-base-dark/20 dark:bg-background-base-dark dark:hover:border-accent-base-dark flex h-full flex-col rounded-lg border p-6 backdrop-blur-sm transition-all duration-300">
           {/* Header: Date + Category */}
           <div className="mb-4 flex items-start justify-between gap-3">
-            <time className="font-mono text-xs text-primary-base/70 dark:text-primary-base-dark/70">
+            <time className="text-primary-base/70 dark:text-primary-base-dark/70 font-mono text-xs">
               {formatDate(post.publishedAt)}
             </time>
-            <span className="shrink-0 rounded-full bg-accent-base/10 px-2.5 py-1 text-xs font-medium text-accent-base dark:bg-accent-base-dark/10 dark:text-accent-base-dark">
+            <span className="bg-accent-base/10 text-accent-base dark:bg-accent-base-dark/10 dark:text-accent-base-dark shrink-0 rounded-full px-2.5 py-1 text-xs font-medium">
               {post.category}
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="mb-3 line-clamp-2 text-xl font-semibold leading-snug text-default-base transition-colors group-hover:text-accent-base dark:text-default-base-dark dark:group-hover:text-accent-base-dark">
+          <h2 className="text-default-base group-hover:text-accent-base dark:text-default-base-dark dark:group-hover:text-accent-base-dark mb-3 line-clamp-2 text-xl leading-snug font-semibold transition-colors">
             {post.title}
           </h2>
 
           {/* Excerpt */}
-          <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-primary-base dark:text-primary-base-dark">
+          <p className="text-primary-base dark:text-primary-base-dark mb-4 line-clamp-3 text-sm leading-relaxed">
             {post.excerpt}
           </p>
 
@@ -52,26 +52,26 @@ export function BlogCard({ post, index }: BlogCardProps) {
             {post.tags.slice(0, 3).map((tag, idx) => (
               <span
                 key={idx}
-                className="rounded-md bg-primary-base/10 px-2.5 py-1 text-xs font-medium text-primary-base transition-opacity duration-200 hover:opacity-70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark"
+                className="bg-primary-base/10 text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark rounded-md px-2.5 py-1 text-xs font-medium transition-opacity duration-200 hover:opacity-70"
               >
                 {tag}
               </span>
             ))}
             {post.tags.length > 3 && (
-              <span className="rounded-md px-2.5 py-1 text-xs font-medium text-primary-base/50 dark:text-primary-base-dark/50">
+              <span className="text-primary-base/50 dark:text-primary-base-dark/50 rounded-md px-2.5 py-1 text-xs font-medium">
                 +{post.tags.length - 3}
               </span>
             )}
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between border-t border-primary-base/30 pt-4 dark:border-primary-base-dark/10">
-            <span className="text-xs font-medium text-primary-base/70 dark:text-primary-base-dark/70">
+          <div className="border-primary-base/30 dark:border-primary-base-dark/10 flex items-center justify-between border-t pt-4">
+            <span className="text-primary-base/70 dark:text-primary-base-dark/70 text-xs font-medium">
               {post.readingTime} min read
             </span>
 
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-base/10 transition-colors dark:bg-primary-base-dark/10">
-              <ArrowUpRight className="h-4 w-4 text-primary-base transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
+            <div className="bg-primary-base/10 dark:bg-primary-base-dark/10 flex h-7 w-7 items-center justify-center rounded-full transition-colors">
+              <ArrowUpRight className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </div>
           </div>
         </div>

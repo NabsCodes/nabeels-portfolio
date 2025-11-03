@@ -57,15 +57,15 @@ export default function Now() {
 
         {/* Terminal-style description */}
         <div className="mx-auto mt-6 max-w-2xl">
-          <div className="mb-12 rounded-lg border border-primary-base/20 bg-background-base/50 p-3 font-mono text-sm dark:border-primary-base-dark/10 dark:bg-background-base-dark/50">
-            <Terminal className="mb-2 h-4 w-4 text-accent-base dark:text-accent-base-dark" />
+          <div className="border-primary-base/20 bg-background-base/50 dark:border-primary-base-dark/10 dark:bg-background-base-dark/50 mb-12 rounded-lg border p-3 font-mono text-sm">
+            <Terminal className="text-accent-base dark:text-accent-base-dark mb-2 h-4 w-4" />
             <span className="text-accent-base dark:text-accent-base-dark">
               $ status
             </span>
-            <span className="ml-2 text-primary-base/70 dark:text-primary-base-dark/70">
+            <span className="text-primary-base/70 dark:text-primary-base-dark/70 ml-2">
               --fetch
             </span>
-            <span className="ml-2 text-primary-base-dark">
+            <span className="text-primary-base-dark ml-2">
               &gt;&gt;&gt; Real-time glimpse into my developer life
             </span>
           </div>
@@ -77,9 +77,9 @@ export default function Now() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group relative overflow-hidden rounded-lg border border-primary-base/10 bg-background-base/80 backdrop-blur-sm transition-all hover:border-primary-base/30 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80"
+            className="group border-primary-base/10 bg-background-base/80 hover:border-primary-base/30 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 relative overflow-hidden rounded-lg border backdrop-blur-sm transition-all"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background-base/50 to-background-base/80 dark:via-background-base-dark/50 dark:to-background-base-dark/80" />
+            <div className="via-background-base/50 to-background-base/80 dark:via-background-base-dark/50 dark:to-background-base-dark/80 absolute inset-0 bg-linear-to-b from-transparent" />
 
             {data?.spotify?.isPlaying && (
               <div className="absolute inset-0">
@@ -97,7 +97,7 @@ export default function Now() {
                   <SiSpotify className="h-6 w-6 text-green-500" />
                 </div>
                 <div>
-                  <h3 className="font-space-grotesk text-sm font-medium text-default-base/50 dark:text-default-base-dark/50">
+                  <h3 className="font-space-grotesk text-default-base/50 dark:text-default-base-dark/50 text-sm font-medium">
                     {data?.spotify?.isPlaying ? "NOW PLAYING" : "SPOTIFY"}
                   </h3>
                   <p className="text-default-base dark:text-default-base-dark">
@@ -116,7 +116,7 @@ export default function Now() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="overflow-hidden rounded-lg border border-primary-base/10 bg-background-base/80 backdrop-blur-sm transition-all hover:border-primary-base/30 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80"
+            className="border-primary-base/10 bg-background-base/80 hover:border-primary-base/30 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 overflow-hidden rounded-lg border backdrop-blur-sm transition-all"
           >
             <div className="p-6">
               <div className="flex items-center gap-4">
@@ -124,13 +124,13 @@ export default function Now() {
                   <SiGithub className="h-6 w-6 text-purple-500" />
                 </div>
                 <div>
-                  <h3 className="font-space-grotesk text-sm font-medium text-default-base/50 dark:text-default-base-dark/50">
+                  <h3 className="font-space-grotesk text-default-base/50 dark:text-default-base-dark/50 text-sm font-medium">
                     LATEST COMMIT
                   </h3>
                   <p className="text-default-base dark:text-default-base-dark">
                     {data?.github?.latestRepo || "Loading..."}
                   </p>
-                  <p className="mt-1 text-xs text-default-base/60 dark:text-default-base-dark/60">
+                  <p className="text-default-base/60 dark:text-default-base-dark/60 mt-1 text-xs">
                     {data?.github?.latestCommit || ""}
                   </p>
                 </div>
@@ -144,7 +144,7 @@ export default function Now() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="overflow-hidden rounded-lg border border-primary-base/10 bg-background-base/80 backdrop-blur-sm transition-all hover:border-primary-base/30 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80"
+            className="border-primary-base/10 bg-background-base/80 hover:border-primary-base/30 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 overflow-hidden rounded-lg border backdrop-blur-sm transition-all"
           >
             <div className="p-6">
               <div className="flex items-center gap-4">
@@ -152,13 +152,13 @@ export default function Now() {
                   <Activity className="h-6 w-6 text-blue-500" />
                 </div>
                 <div>
-                  <h3 className="font-space-grotesk text-sm font-medium text-default-base/50 dark:text-default-base-dark/50">
+                  <h3 className="font-space-grotesk text-default-base/50 dark:text-default-base-dark/50 text-sm font-medium">
                     CODING ACTIVITY
                   </h3>
                   <p className="text-default-base dark:text-default-base-dark">
                     {data?.coding?.dailyHours || 0} hours today
                   </p>
-                  <p className="mt-1 text-xs text-default-base/60 dark:text-default-base-dark/60">
+                  <p className="text-default-base/60 dark:text-default-base-dark/60 mt-1 text-xs">
                     {data?.coding?.topLanguage || "TypeScript"} •{" "}
                     {data?.coding?.currentStreak || 0} day streak
                   </p>
@@ -174,13 +174,13 @@ export default function Now() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-lg border border-primary-base/10 bg-background-base/80 p-4 text-center backdrop-blur-sm dark:border-primary-base-dark/10 dark:bg-background-base-dark/80"
+            className="border-primary-base/10 bg-background-base/80 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 rounded-lg border p-4 text-center backdrop-blur-sm"
           >
-            <Clock className="mx-auto h-5 w-5 text-primary-base/70 dark:text-primary-base-dark/70" />
-            <p className="mt-2 text-xs text-default-base/50 dark:text-default-base-dark/50">
+            <Clock className="text-primary-base/70 dark:text-primary-base-dark/70 mx-auto h-5 w-5" />
+            <p className="text-default-base/50 dark:text-default-base-dark/50 mt-2 text-xs">
               LOCAL TIME
             </p>
-            <p className="font-mono text-sm text-default-base dark:text-default-base-dark">
+            <p className="text-default-base dark:text-default-base-dark font-mono text-sm">
               {new Date().toLocaleTimeString()}
             </p>
           </motion.div>

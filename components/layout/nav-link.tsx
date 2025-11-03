@@ -35,7 +35,7 @@ export function NavLink({ item }: NavLinkProps) {
       className={cn(
         "relative px-3 py-2",
         isBlog &&
-          "group flex items-center gap-1 rounded-full border border-primary-base/10 bg-primary-base/[0.1] px-4 transition-colors hover:border-primary-base/20 hover:bg-primary-base/[0.15] dark:border-primary-base-dark/10 dark:bg-primary-base-dark/[0.1] dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/[0.15]",
+          "group border-primary-base/10 bg-primary-base/10 hover:border-primary-base/20 hover:bg-primary-base/15 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/10 dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/15 flex items-center gap-1 rounded-full border px-4 transition-colors",
         // Hide contact link on desktop
         isContact && "lg:hidden",
       )}
@@ -57,12 +57,12 @@ export function NavLink({ item }: NavLinkProps) {
       >
         {item.name}
         {isBlog && (
-          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         )}
         {/* Underline */}
         {!isBlog && (
           <motion.span
-            className="absolute -bottom-0.5 left-0 right-0 h-px bg-primary-base dark:bg-primary-base-dark"
+            className="bg-primary-base dark:bg-primary-base-dark absolute right-0 -bottom-0.5 left-0 h-px"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: isActive ? 1 : 0 }}
             transition={{

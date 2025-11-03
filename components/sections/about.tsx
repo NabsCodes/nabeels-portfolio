@@ -48,17 +48,17 @@ const About = () => {
           variants={fadeInUp}
           className="mx-auto hidden w-full max-w-[280px] lg:col-span-4 lg:block lg:max-w-none"
         >
-          <div className="relative overflow-hidden rounded-2xl border border-primary-base/20 bg-background-base shadow-lg dark:border-primary-base-dark/20 dark:bg-background-base-dark">
-            <div className="relative aspect-[3/4] w-full">
-              <div className="absolute left-0 top-0 z-10 w-full border-b border-primary-base/10 bg-gradient-to-r from-primary-base/5 to-accent-base/5 px-4 py-3 backdrop-blur-sm dark:border-primary-base-dark/10 dark:from-primary-base-dark/5 dark:to-accent-base-dark/5">
+          <div className="border-primary-base/20 bg-background-base dark:border-primary-base-dark/20 dark:bg-background-base-dark relative overflow-hidden rounded-2xl border shadow-lg">
+            <div className="relative aspect-3/4 w-full">
+              <div className="border-primary-base/10 from-primary-base/5 to-accent-base/5 dark:border-primary-base-dark/10 dark:from-primary-base-dark/5 dark:to-accent-base-dark/5 absolute top-0 left-0 z-10 w-full border-b bg-linear-to-r px-4 py-3 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-2.5 w-2.5 rounded-full bg-green-500/60" />
-                    <span className="font-space-grotesk text-xs font-medium text-primary-base/80 dark:text-primary-base-dark/80">
+                    <span className="font-space-grotesk text-primary-base/80 dark:text-primary-base-dark/80 text-xs font-medium">
                       Professional Profile
                     </span>
                   </div>
-                  <span className="font-mono text-xs text-primary-base/60 dark:text-primary-base-dark/60">
+                  <span className="text-primary-base/60 dark:text-primary-base-dark/60 font-mono text-xs">
                     Available
                   </span>
                 </div>
@@ -96,7 +96,7 @@ const About = () => {
               <motion.p
                 key={index}
                 variants={fadeInUp}
-                className="text-pretty font-raleway leading-relaxed text-default-base/80 dark:text-default-base-dark/80 md:text-justify md:text-base"
+                className="font-raleway text-default-base/80 dark:text-default-base-dark/80 leading-relaxed text-pretty md:text-justify md:text-base"
               >
                 {detail}
               </motion.p>
@@ -108,49 +108,49 @@ const About = () => {
             variants={fadeInUp}
             className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
           >
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
-              <Award className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+            <div className="border-primary-base/50 bg-background-base/50 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30 flex items-center gap-3 rounded-lg border px-3 py-3 transition-colors duration-300">
+              <Award className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
               <div>
-                <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">
+                <div className="font-space-grotesk text-primary-base-dark text-sm font-medium">
                   15+ Projects
                 </div>
-                <div className="text-xs text-default-base/60 dark:text-default-base-dark/60">
+                <div className="text-default-base/60 dark:text-default-base-dark/60 text-xs">
                   Delivered
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
-              <CheckCircle className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+            <div className="border-primary-base/50 bg-background-base/50 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30 flex items-center gap-3 rounded-lg border px-3 py-3 transition-colors duration-300">
+              <CheckCircle className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
               <div>
-                <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">
+                <div className="font-space-grotesk text-primary-base-dark text-sm font-medium">
                   100% Satisfaction
                 </div>
-                <div className="text-xs text-default-base/60 dark:text-default-base-dark/60">
+                <div className="text-default-base/60 dark:text-default-base-dark/60 text-xs">
                   Client feedback
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
-              <Users className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+            <div className="border-primary-base/50 bg-background-base/50 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30 flex items-center gap-3 rounded-lg border px-3 py-3 transition-colors duration-300">
+              <Users className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
               <div>
-                <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">
+                <div className="font-space-grotesk text-primary-base-dark text-sm font-medium">
                   5+ Industries
                 </div>
-                <div className="text-xs text-default-base/60 dark:text-default-base-dark/60">
+                <div className="text-default-base/60 dark:text-default-base-dark/60 text-xs">
                   Experience across
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 rounded-lg border border-primary-base/50 bg-background-base/50 px-3 py-3 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30">
-              <Clock className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+            <div className="border-primary-base/50 bg-background-base/50 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30 flex items-center gap-3 rounded-lg border px-3 py-3 transition-colors duration-300">
+              <Clock className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
               <div>
-                <div className="font-space-grotesk text-sm font-medium text-primary-base-dark">
+                <div className="font-space-grotesk text-primary-base-dark text-sm font-medium">
                   3+ Years
                 </div>
-                <div className="text-xs text-default-base/60 dark:text-default-base-dark/60">
+                <div className="text-default-base/60 dark:text-default-base-dark/60 text-xs">
                   Experience
                 </div>
               </div>
@@ -165,16 +165,16 @@ const About = () => {
             {aboutContent.interests.map((section, index) => (
               <div
                 key={index}
-                className="rounded-lg border border-primary-base/50 bg-background-base/50 px-5 py-4 transition-colors duration-300 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30"
+                className="border-primary-base/50 bg-background-base/50 hover:border-primary-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-primary-base-dark/30 rounded-lg border px-5 py-4 transition-colors duration-300"
               >
                 {/* Header */}
                 <div className="flex items-center gap-2">
                   {index === 0 ? (
-                    <MonitorPlay className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+                    <MonitorPlay className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
                   ) : (
-                    <Trophy className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+                    <Trophy className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
                   )}
-                  <h3 className="font-space-grotesk text-sm font-medium text-primary-base-dark">
+                  <h3 className="font-space-grotesk text-primary-base-dark text-sm font-medium">
                     {section.type}
                   </h3>
                 </div>
@@ -184,7 +184,7 @@ const About = () => {
                   {section.items.map((item, i) => (
                     <div
                       key={i}
-                      className="border-l-2 border-primary-base/20 py-2 pl-4 text-sm text-default-base/80 transition-colors duration-300 hover:border-primary-base/50 hover:text-default-base dark:border-primary-base-dark/20 dark:text-default-base-dark/80 dark:hover:border-primary-base-dark/40 dark:hover:text-default-base-dark"
+                      className="border-primary-base/20 text-default-base/80 hover:border-primary-base/50 hover:text-default-base dark:border-primary-base-dark/20 dark:text-default-base-dark/80 dark:hover:border-primary-base-dark/40 dark:hover:text-default-base-dark border-l-2 py-2 pl-4 text-sm transition-colors duration-300"
                     >
                       {item}
                     </div>

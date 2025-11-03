@@ -62,13 +62,13 @@ export function ProjectPreview({
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed inset-x-0 bottom-0 top-[4.5rem] z-50 sm:top-20">
+        <div className="fixed inset-x-0 top-18 bottom-0 z-50 sm:top-20">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-background-base/60 backdrop-blur-[2px] dark:bg-background-base-dark/60"
+            className="bg-background-base/60 dark:bg-background-base-dark/60 absolute inset-0 backdrop-blur-[2px]"
             onClick={onClose}
           />
 
@@ -82,23 +82,23 @@ export function ProjectPreview({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="relative mx-auto flex h-full max-w-6xl flex-col overflow-hidden rounded-lg border border-primary-base/30 bg-background-base/95 shadow-xl dark:border-primary-base-dark/10 dark:bg-background-base-dark/95"
+                className="border-primary-base/30 bg-background-base/95 dark:border-primary-base-dark/10 dark:bg-background-base-dark/95 relative mx-auto flex h-full max-w-6xl flex-col overflow-hidden rounded-lg border shadow-xl"
               >
                 {/* Header with Safe Area */}
-                <div className="flex h-12 items-center justify-between border-b border-primary-base/10 bg-primary-base/5 px-3 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 sm:h-14 sm:px-4">
+                <div className="border-primary-base/10 bg-primary-base/5 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 flex h-12 items-center justify-between border-b px-3 sm:h-14 sm:px-4">
                   <div className="flex items-center space-x-2">
                     <div className="h-2.5 w-2.5 rounded-full bg-red-500 sm:h-3 sm:w-3" />
                     <div className="h-2.5 w-2.5 rounded-full bg-yellow-500 sm:h-3 sm:w-3" />
                     <div className="h-2.5 w-2.5 rounded-full bg-green-500 sm:h-3 sm:w-3" />
                   </div>
                   <div className="flex-1 px-4 text-center">
-                    <p className="truncate text-xs text-default-base/70 dark:text-default-base-dark/70 sm:text-sm">
+                    <p className="text-default-base/70 dark:text-default-base-dark/70 truncate text-xs sm:text-sm">
                       {url}
                     </p>
                   </div>
                   <button
                     onClick={onClose}
-                    className="rounded-md p-1.5 text-default-base/70 hover:bg-primary-base/10 hover:text-default-base dark:text-default-base-dark/70 dark:hover:bg-primary-base-dark/10 dark:hover:text-default-base-dark sm:p-2"
+                    className="text-default-base/70 hover:bg-primary-base/10 hover:text-default-base dark:text-default-base-dark/70 dark:hover:bg-primary-base-dark/10 dark:hover:text-default-base-dark rounded-md p-1.5 sm:p-2"
                   >
                     <X className="h-4 w-4 sm:h-5 sm:w-5" />
                   </button>
@@ -106,8 +106,8 @@ export function ProjectPreview({
 
                 {/* Loading State */}
                 {isLoading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-background-base dark:bg-background-base-dark">
-                    <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-base border-t-transparent" />
+                  <div className="bg-background-base dark:bg-background-base-dark absolute inset-0 flex items-center justify-center">
+                    <div className="border-primary-base h-8 w-8 animate-spin rounded-full border-2 border-t-transparent" />
                   </div>
                 )}
 

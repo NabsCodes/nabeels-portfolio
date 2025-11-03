@@ -23,8 +23,8 @@ const Skills = () => {
       <div className="relative overflow-hidden">
         {/* Background decorations */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -left-4 top-1/2 h-64 w-64 rounded-full bg-primary-base/5 blur-3xl dark:bg-primary-base-dark/5" />
-          <div className="absolute -right-4 top-1/4 h-64 w-64 rounded-full bg-accent-base/5 blur-3xl dark:bg-accent-base-dark/5" />
+          <div className="bg-primary-base/5 dark:bg-primary-base-dark/5 absolute top-1/2 -left-4 h-64 w-64 rounded-full blur-3xl" />
+          <div className="bg-accent-base/5 dark:bg-accent-base-dark/5 absolute top-1/4 -right-4 h-64 w-64 rounded-full blur-3xl" />
         </div>
 
         <SectionHeader
@@ -53,16 +53,16 @@ const Skills = () => {
             <motion.div
               key={group.title}
               variants={fadeInUp}
-              className="relative h-full rounded-xl border border-primary-base/50 bg-background-base/50 p-6 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50"
+              className="border-primary-base/50 bg-background-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 relative h-full rounded-xl border p-6"
             >
               {/* Decorative gradient */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary-base/10 via-transparent to-transparent dark:from-primary-base-dark/5" />
+              <div className="from-primary-base/10 dark:from-primary-base-dark/5 absolute inset-0 -z-10 bg-linear-to-br via-transparent to-transparent" />
 
               {/* Group header */}
               <div className="mb-6 flex items-center gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary-base/10 px-3 py-1 dark:bg-primary-base-dark/10">
-                  <Code2 className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
-                  <h3 className="bg-gradient-to-r from-primary-base to-accent-base bg-clip-text font-space-grotesk text-sm font-medium text-transparent dark:from-primary-base-dark dark:to-accent-base-dark">
+                <div className="bg-primary-base/10 dark:bg-primary-base-dark/10 inline-flex items-center gap-2 rounded-full px-3 py-1">
+                  <Code2 className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
+                  <h3 className="from-primary-base to-accent-base font-space-grotesk dark:from-primary-base-dark dark:to-accent-base-dark bg-linear-to-r bg-clip-text text-sm font-medium text-transparent">
                     {group.title}
                   </h3>
                 </div>
@@ -73,12 +73,12 @@ const Skills = () => {
                 {group.skills.map((skill) => (
                   <motion.div
                     key={skill.name}
-                    className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-primary-base/30 bg-background-base/80 p-3 backdrop-blur-sm transition-all hover:border-primary-base/30 hover:shadow-sm dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/30"
+                    className="group border-primary-base/30 bg-background-base/80 hover:border-primary-base/30 dark:border-primary-base-dark/10 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/30 flex flex-col items-center justify-center gap-2 rounded-lg border p-3 backdrop-blur-sm transition-all hover:shadow-sm"
                     whileHover={{ y: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    <skill.icon className="h-6 w-6 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
-                    <span className="text-center text-xs font-medium text-default-base/70 transition-colors group-hover:text-default-base dark:text-default-base-dark/70 dark:group-hover:text-default-base-dark">
+                    <skill.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-6 w-6 transition-colors" />
+                    <span className="text-default-base/70 group-hover:text-default-base dark:text-default-base-dark/70 dark:group-hover:text-default-base-dark text-center text-xs font-medium transition-colors">
                       {skill.name}
                     </span>
                   </motion.div>
@@ -86,7 +86,7 @@ const Skills = () => {
               </div>
 
               {/* Bottom border line */}
-              <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-primary-base/80 to-transparent dark:via-primary-base-dark/20" />
+              <div className="via-primary-base/80 dark:via-primary-base-dark/20 mt-6 h-px w-full bg-linear-to-r from-transparent to-transparent" />
             </motion.div>
           ))}
         </motion.div>

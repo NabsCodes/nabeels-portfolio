@@ -1,22 +1,74 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@custom-variant dark (&:where(.dark, .dark *));
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+@plugin "@tailwindcss/typography";
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+@theme {
+  /* Custom Screens */
+  --breakpoint-xs: 480px;
+
+  /* Custom Max Width */
+  --max-width-8xl: 90rem;
+  --max-width-9xl: 96rem;
+
+  /* Custom Font Families */
+  --font-raleway: "Raleway", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+
+  /* Custom Colors */
+  --color-background-base: #f3f6f5;
+  --color-background-base-dark: #0e1714;
+  --color-default-base: #090c0b;
+  --color-default-base-dark: #f3f6f5;
+  --color-primary-base: #71a295;
+  --color-primary-base-dark: #5d8e81;
+  --color-secondary-base: #a1c9be;
+  --color-secondary-base-dark: #365e53;
+  --color-accent-base: #82c0b0;
+  --color-accent-base-dark: #3f7d6e;
+
+  /* Alternate Colors */
+  /* --color-background-base: #ffffff;
+  --color-background-base-dark: #0a0a0a;
+  --color-default-base: #000000;
+  --color-default-base-dark: #ffffff;
+  --color-primary-base: #666666;
+  --color-primary-base-dark: #999999;
+  --color-secondary-base: #cccccc;
+  --color-secondary-base-dark: #333333;
+  --color-accent-base: #888888;
+  --color-accent-base-dark: #444444; */
+
+  /* Box Shadow */
+  --shadow-nav:
+    0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08),
+    0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+
+  /* Animations */
+  --animate-spin-slow: spin 3s linear infinite;
+  --animate-blink: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
   }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 @layer base {
@@ -77,6 +129,6 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 }

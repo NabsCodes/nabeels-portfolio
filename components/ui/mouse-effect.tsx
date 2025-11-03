@@ -86,7 +86,7 @@ export default function MouseEffect() {
     <>
       {/* Main cursor */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[999] hidden rounded-full lg:block"
+        className="pointer-events-none fixed top-0 left-0 z-999 hidden rounded-full lg:block"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -98,7 +98,7 @@ export default function MouseEffect() {
       />
       {/* Cursor dot */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[999] hidden h-1.5 w-1.5 rounded-full bg-primary-base/80 dark:bg-primary-base-dark/80 lg:block"
+        className="bg-primary-base/80 dark:bg-primary-base-dark/80 pointer-events-none fixed top-0 left-0 z-999 hidden h-1.5 w-1.5 rounded-full lg:block"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,

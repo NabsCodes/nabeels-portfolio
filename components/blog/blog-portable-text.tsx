@@ -44,7 +44,7 @@ export function BlogPortableTextRenderer({
         return (
           <div className="group relative my-6">
             {/* IDE-style header */}
-            <div className="flex items-center justify-between rounded-t-lg border border-b-0 border-primary-base/50 bg-background-base/60 px-4 py-3 dark:border-primary-base-dark/30 dark:bg-background-base-dark/50">
+            <div className="border-primary-base/50 bg-background-base/60 dark:border-primary-base-dark/30 dark:bg-background-base-dark/50 flex items-center justify-between rounded-t-lg border border-b-0 px-4 py-3">
               <div className="flex items-center gap-2">
                 {/* IDE-style dots */}
                 <div className="flex gap-1.5">
@@ -52,29 +52,33 @@ export function BlogPortableTextRenderer({
                   <div className="h-2 w-2 rounded-full bg-yellow-500/50"></div>
                   <div className="h-2 w-2 rounded-full bg-green-500/50"></div>
                 </div>
-                <span className="font-space-grotesk text-sm font-medium text-slate-300 dark:text-slate-400">
+                <span className="font-space-grotesk text-default-base dark:text-default-base-dark text-sm font-medium">
                   {filename || language || "code"}
                 </span>
               </div>
               <button
                 onClick={() => copyToClipboard(code, codeKey)}
-                className="flex items-center gap-2 rounded-md border border-primary-base/50 bg-background-base/60 px-3 py-1.5 transition-colors hover:bg-primary-base/10 dark:border-primary-base-dark/30 dark:bg-background-base-dark/50 dark:hover:bg-primary-base-dark/10"
+                className="border-primary-base/50 bg-background-base/60 hover:bg-primary-base/10 dark:border-primary-base-dark/30 dark:bg-background-base-dark/50 dark:hover:bg-primary-base-dark/10 flex items-center gap-2 rounded-md border px-3 py-1.5 transition-colors"
               >
                 {copiedCode === codeKey ? (
                   <>
-                    <Check className="h-3 w-3" />
-                    <span className="text-xs">Copied!</span>
+                    <Check className="text-primary-base dark:text-primary-base-dark h-3 w-3" />
+                    <span className="text-primary-base dark:text-primary-base-dark text-xs">
+                      Copied!
+                    </span>
                   </>
                 ) : (
                   <>
-                    <Copy className="h-3 w-3" />
-                    <span className="text-xs">Copy</span>
+                    <Copy className="text-primary-base dark:text-primary-base-dark h-3 w-3" />
+                    <span className="text-primary-base dark:text-primary-base-dark text-xs">
+                      Copy
+                    </span>
                   </>
                 )}
               </button>
             </div>
             {/* Code content */}
-            <div className="overflow-hidden rounded-b-lg border border-primary-base/50 dark:border-primary-base-dark/30">
+            <div className="border-primary-base/50 dark:border-primary-base-dark/30 overflow-hidden rounded-b-lg border">
               <SyntaxHighlighter
                 language={language || "text"}
                 customStyle={{
@@ -128,7 +132,7 @@ export function BlogPortableTextRenderer({
           const imageUrl = urlFor(value).width(800).height(600).url();
 
           return (
-            <div className="my-6 overflow-hidden rounded-lg border border-primary-base/20 dark:border-primary-base-dark/20">
+            <div className="border-primary-base/20 dark:border-primary-base-dark/20 my-6 overflow-hidden rounded-lg border">
               <Image
                 src={imageUrl}
                 alt={alt || ""}
@@ -137,7 +141,7 @@ export function BlogPortableTextRenderer({
                 className="h-auto w-full object-cover"
               />
               {(alt || caption) && (
-                <div className="border-t border-primary-base/20 bg-primary-base/5 px-4 py-2 text-center text-sm text-primary-base dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark">
+                <div className="border-primary-base/20 bg-primary-base/5 text-primary-base dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark border-t px-4 py-2 text-center text-sm">
                   {caption || alt}
                 </div>
               )}
@@ -164,9 +168,9 @@ export function BlogPortableTextRenderer({
 
         return (
           <div className="my-6 overflow-x-auto">
-            <table className="w-full min-w-[600px] table-auto border-collapse overflow-hidden rounded-lg border border-primary-base/20 text-left dark:border-primary-base-dark/20">
+            <table className="border-primary-base/20 dark:border-primary-base-dark/20 w-full min-w-[600px] table-auto border-collapse overflow-hidden rounded-lg border text-left">
               {caption && (
-                <caption className="border-b border-primary-base/20 bg-primary-base/5 px-4 py-2 text-left text-sm text-primary-base dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark">
+                <caption className="border-primary-base/20 bg-primary-base/5 text-primary-base dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark border-b px-4 py-2 text-left text-sm">
                   {caption}
                 </caption>
               )}
@@ -175,7 +179,7 @@ export function BlogPortableTextRenderer({
                   {headers.map((h, i) => (
                     <th
                       key={i}
-                      className="border-b border-primary-base/20 px-4 py-3 text-sm font-semibold text-default-base dark:border-primary-base-dark/20 dark:text-default-base-dark"
+                      className="border-primary-base/20 text-default-base dark:border-primary-base-dark/20 dark:text-default-base-dark border-b px-4 py-3 text-sm font-semibold"
                     >
                       {h}
                     </th>
@@ -191,7 +195,7 @@ export function BlogPortableTextRenderer({
                     {row.cells?.map((cell, cIdx) => (
                       <td
                         key={cIdx}
-                        className="border-b border-primary-base/10 px-4 py-3 text-primary-base dark:border-primary-base-dark/10 dark:text-primary-base-dark"
+                        className="border-primary-base/10 text-primary-base dark:border-primary-base-dark/10 dark:text-primary-base-dark border-b px-4 py-3"
                       >
                         {cell}
                       </td>
@@ -210,7 +214,7 @@ export function BlogPortableTextRenderer({
       h1: ({ children, value }: any) => (
         <h1
           id={value?._key}
-          className="mb-6 mt-12 scroll-mt-20 font-raleway text-4xl font-bold leading-tight text-default-base first:mt-0 dark:text-default-base-dark"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-12 mb-6 scroll-mt-20 text-4xl leading-tight font-bold first:mt-0"
         >
           {children}
         </h1>
@@ -219,7 +223,7 @@ export function BlogPortableTextRenderer({
       h2: ({ children, value }: any) => (
         <h2
           id={value?._key}
-          className="mb-4 mt-10 scroll-mt-20 font-raleway text-3xl font-semibold leading-tight text-default-base dark:text-default-base-dark"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-10 mb-4 scroll-mt-20 text-3xl leading-tight font-semibold"
         >
           {children}
         </h2>
@@ -228,7 +232,7 @@ export function BlogPortableTextRenderer({
       h3: ({ children, value }: any) => (
         <h3
           id={value?._key}
-          className="mb-3 mt-8 scroll-mt-20 font-raleway text-2xl font-semibold leading-snug text-default-base dark:text-default-base-dark"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-8 mb-3 scroll-mt-20 text-2xl leading-snug font-semibold"
         >
           {children}
         </h3>
@@ -237,7 +241,7 @@ export function BlogPortableTextRenderer({
       h4: ({ children, value }: any) => (
         <h4
           id={value?._key}
-          className="mb-3 mt-6 scroll-mt-20 font-raleway text-xl font-semibold leading-snug text-default-base dark:text-default-base-dark"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-6 mb-3 scroll-mt-20 text-xl leading-snug font-semibold"
         >
           {children}
         </h4>
@@ -245,7 +249,7 @@ export function BlogPortableTextRenderer({
 
       // Enhanced blockquotes
       blockquote: ({ children }: any) => (
-        <blockquote className="my-6 rounded-r-lg border border-l-4 border-primary-base/20 border-l-accent-base bg-accent-base/5 py-4 pl-6 pr-4 italic leading-relaxed text-gray-700 dark:border-primary-base-dark/20 dark:border-l-accent-base-dark dark:bg-accent-base-dark/5 dark:text-gray-300">
+        <blockquote className="border-primary-base/20 border-l-accent-base bg-accent-base/5 dark:border-primary-base-dark/20 dark:border-l-accent-base-dark dark:bg-accent-base-dark/5 my-6 rounded-r-lg border border-l-4 py-4 pr-4 pl-6 leading-relaxed text-gray-700 italic dark:text-gray-300">
           {children}
         </blockquote>
       ),
@@ -261,13 +265,13 @@ export function BlogPortableTextRenderer({
     list: {
       // Enhanced lists
       bullet: ({ children }: any) => (
-        <ul className="my-4 list-outside list-disc space-y-2 pl-6">
+        <ul className="[&_li::marker]:text-primary-base [&_li::marker]:dark:text-primary-base-dark my-4 list-outside list-disc space-y-2 pl-6">
           {children}
         </ul>
       ),
 
       number: ({ children }: any) => (
-        <ol className="my-4 list-outside list-decimal space-y-2 pl-6">
+        <ol className="[&_li::marker]:text-primary-base [&_li::marker]:dark:text-primary-base-dark my-4 list-outside list-decimal space-y-2 pl-6 [&_li::marker]:font-semibold">
           {children}
         </ol>
       ),
@@ -298,7 +302,7 @@ export function BlogPortableTextRenderer({
               href={value.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-accent-base underline decoration-1 underline-offset-2 transition-all hover:text-accent-base/80 hover:decoration-2 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80"
+              className="text-accent-base hover:text-accent-base/80 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80 inline-flex items-center gap-1 underline decoration-1 underline-offset-2 transition-all hover:decoration-2"
             >
               {children}
               <ExternalLink className="inline h-3.5 w-3.5" />
@@ -309,7 +313,7 @@ export function BlogPortableTextRenderer({
         return (
           <Link
             href={value?.href || "#"}
-            className="text-accent-base underline decoration-1 underline-offset-2 transition-all hover:text-accent-base/80 hover:decoration-2 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80"
+            className="text-accent-base hover:text-accent-base/80 dark:text-accent-base-dark dark:hover:text-accent-base-dark/80 underline decoration-1 underline-offset-2 transition-all hover:decoration-2"
           >
             {children}
           </Link>
@@ -318,22 +322,30 @@ export function BlogPortableTextRenderer({
 
       // Inline code
       code: ({ children }: any) => (
-        <code className="relative rounded border border-primary-base/20 bg-primary-base/10 px-1.5 py-0.5 font-mono text-sm text-accent-base dark:border-primary-base-dark/20 dark:bg-primary-base-dark/10 dark:text-accent-base-dark">
+        <code className="border-primary-base/20 bg-primary-base/10 text-accent-base dark:border-primary-base-dark/20 dark:bg-primary-base-dark/10 dark:text-accent-base-dark relative rounded border px-1.5 py-0.5 font-mono text-sm">
           {children}
         </code>
       ),
 
       // Text formatting
       strong: ({ children }: any) => (
-        <strong className="font-semibold">{children}</strong>
+        <strong className="text-default-base dark:text-default-base-dark font-semibold">
+          {children}
+        </strong>
       ),
 
-      em: ({ children }: any) => <em className="italic">{children}</em>,
+      em: ({ children }: any) => (
+        <em className="text-default-base dark:text-default-base-dark italic">
+          {children}
+        </em>
+      ),
     },
   };
 
   return (
-    <div className={`prose prose-lg max-w-none ${className}`}>
+    <div
+      className={`prose prose-lg prose-headings:text-default-base prose-headings:dark:text-default-base-dark prose-p:text-gray-700 prose-p:dark:text-gray-300 prose-strong:text-default-base prose-strong:dark:text-default-base-dark prose-em:text-default-base prose-em:dark:text-default-base-dark prose-li:text-gray-700 prose-li:dark:text-gray-300 prose-a:text-accent-base prose-a:dark:text-accent-base-dark max-w-none ${className}`}
+    >
       <PortableText value={content} components={components} />
     </div>
   );

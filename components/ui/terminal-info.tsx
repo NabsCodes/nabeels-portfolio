@@ -52,7 +52,7 @@ const TerminalInfo: React.FC<TerminalInfoProps> = ({
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       className={cn(
-        "mb-8 rounded-lg border border-primary-base/50 bg-background-base/50 p-4 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/50",
+        "border-primary-base/50 bg-background-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 mb-8 rounded-lg border p-4 backdrop-blur-sm",
         className,
       )}
     >
@@ -63,12 +63,12 @@ const TerminalInfo: React.FC<TerminalInfoProps> = ({
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.5 }}
           >
-            <Terminal className="h-4 w-4 shrink-0 text-accent-base/80 dark:text-accent-base-dark/80" />
+            <Terminal className="text-accent-base/80 dark:text-accent-base-dark/80 h-4 w-4 shrink-0" />
           </motion.div>
           <div className="flex items-center gap-2 overflow-x-auto">
             <motion.span
               variants={itemVariants}
-              className="whitespace-nowrap font-mono text-sm text-primary-base/90 dark:text-primary-base-dark/90"
+              className="text-primary-base/90 dark:text-primary-base-dark/90 font-mono text-sm whitespace-nowrap"
             >
               {command}
             </motion.span>
@@ -79,7 +79,7 @@ const TerminalInfo: React.FC<TerminalInfoProps> = ({
                 </span>
                 <motion.span
                   variants={itemVariants}
-                  className="whitespace-nowrap font-mono text-sm text-accent-base/90 dark:text-accent-base-dark/90"
+                  className="text-accent-base/90 dark:text-accent-base-dark/90 font-mono text-sm whitespace-nowrap"
                 >
                   {flag}
                 </motion.span>
@@ -89,9 +89,9 @@ const TerminalInfo: React.FC<TerminalInfoProps> = ({
         </motion.div>
         <motion.div
           variants={itemVariants}
-          className="ml-6 border-l-2 border-primary-base/10 pl-3 dark:border-primary-base-dark/10"
+          className="border-primary-base/10 dark:border-primary-base-dark/10 ml-6 border-l-2 pl-3"
         >
-          <span className="text-sm text-default-base/70 dark:text-default-base-dark/70">
+          <span className="text-default-base/70 dark:text-default-base-dark/70 text-sm">
             {content}
           </span>
         </motion.div>
@@ -100,12 +100,12 @@ const TerminalInfo: React.FC<TerminalInfoProps> = ({
       {/* Desktop layout */}
       <div className="hidden md:flex md:items-center md:gap-3">
         <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
-          <Terminal className="h-4 w-4 shrink-0 text-accent-base/80 dark:text-accent-base-dark/80" />
+          <Terminal className="text-accent-base/80 dark:text-accent-base-dark/80 h-4 w-4 shrink-0" />
         </motion.div>
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <motion.span
             variants={itemVariants}
-            className="font-mono text-sm text-primary-base/90 dark:text-primary-base-dark/90"
+            className="text-primary-base/90 dark:text-primary-base-dark/90 font-mono text-sm"
           >
             {command}
           </motion.span>
@@ -116,7 +116,7 @@ const TerminalInfo: React.FC<TerminalInfoProps> = ({
               </span>
               <motion.span
                 variants={itemVariants}
-                className="font-mono text-sm text-accent-base/90 dark:text-accent-base-dark/90"
+                className="text-accent-base/90 dark:text-accent-base-dark/90 font-mono text-sm"
               >
                 {flag}
               </motion.span>
@@ -130,7 +130,7 @@ const TerminalInfo: React.FC<TerminalInfoProps> = ({
           </motion.span>
           <motion.span
             variants={itemVariants}
-            className="text-sm text-default-base/70 dark:text-default-base-dark/70"
+            className="text-default-base/70 dark:text-default-base-dark/70 text-sm"
           >
             {content}
           </motion.span>

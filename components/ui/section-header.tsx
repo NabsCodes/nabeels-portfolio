@@ -37,7 +37,7 @@ export function SectionHeader({
           <div className="flex items-center gap-2">
             <svg
               viewBox="0 0 24 24"
-              className="h-5 w-5 text-primary-base dark:text-primary-base-dark"
+              className="text-primary-base dark:text-primary-base-dark h-5 w-5"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -47,18 +47,18 @@ export function SectionHeader({
               <path d="M6 9a9 9 0 0 0 9 9" />
               <circle cx="18" cy="18" r="3" />
             </svg>
-            <span className="font-space-grotesk text-lg font-medium tracking-wide text-default-base dark:text-default-base-dark sm:text-xl md:text-2xl">
+            <span className="font-space-grotesk text-default-base dark:text-default-base-dark text-lg font-medium tracking-wide sm:text-xl md:text-2xl">
               {title}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="rounded-full bg-accent-base/10 px-2 py-0.5 font-space-grotesk text-sm text-primary-base dark:bg-accent-base-dark/10 dark:text-primary-base-dark">
+            <span className="bg-accent-base/10 font-space-grotesk text-primary-base dark:bg-accent-base-dark/10 dark:text-primary-base-dark rounded-full px-2 py-0.5 text-sm">
               main
             </span>
-            <span className="font-mono text-sm text-primary-base/70 dark:text-primary-base-dark/70">
+            <span className="text-primary-base/70 dark:text-primary-base-dark/70 font-mono text-sm">
               /{" "}
             </span>
-            <span className="rounded-full bg-primary-base/10 px-2 py-0.5 font-space-grotesk text-sm text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark">
+            <span className="bg-primary-base/10 font-space-grotesk text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark rounded-full px-2 py-0.5 text-sm">
               {subtitle}
             </span>
           </div>

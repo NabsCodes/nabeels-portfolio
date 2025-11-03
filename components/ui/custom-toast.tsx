@@ -24,7 +24,7 @@ export function CustomToast({ title, message, variant }: CustomToastProps) {
           <AlertCircle className="mt-[2px] h-4 w-4 shrink-0" />
         )}
         <div>
-          <AlertTitle className="text-sm font-medium leading-none">
+          <AlertTitle className="text-sm leading-none font-medium">
             {title}
           </AlertTitle>
           <AlertDescription className="mt-1 text-xs">

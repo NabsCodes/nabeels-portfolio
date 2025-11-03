@@ -95,21 +95,21 @@ const ContactForm = () => {
       viewport={{ once: true }}
       className="relative md:col-span-3"
     >
-      <div className="rounded-lg border border-primary-base/50 bg-background-base/80 p-6 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/80">
+      <div className="border-primary-base/50 bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 rounded-lg border p-6 backdrop-blur-sm">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <label className="text-xs text-default-base dark:text-default-base-dark">
+              <label className="text-default-base dark:text-default-base-dark text-xs">
                 NAME
               </label>
               <div className="flex">
-                <div className="flex items-center border border-r-0 border-primary-base/30 bg-background-base px-3 dark:border-primary-base-dark/10 dark:bg-background-base-dark">
-                  <User className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+                <div className="border-primary-base/30 bg-background-base dark:border-primary-base-dark/10 dark:bg-background-base-dark flex items-center border border-r-0 px-3">
+                  <User className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
                 </div>
                 <Input
                   {...register("name")}
                   placeholder="Your Name"
-                  className={`rounded-l-none border-primary-base/30 transition-colors dark:border-primary-base-dark/10 ${
+                  className={`border-primary-base/30 dark:border-primary-base-dark/10 rounded-l-none transition-colors ${
                     errors.name
                       ? "border-red-500/50 bg-red-500/5 dark:border-red-400/50 dark:bg-red-400/5"
                       : ""
@@ -125,18 +125,18 @@ const ContactForm = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs text-default-base dark:text-default-base-dark">
+              <label className="text-default-base dark:text-default-base-dark text-xs">
                 EMAIL
               </label>
               <div className="flex">
-                <div className="flex items-center border border-r-0 border-primary-base/30 bg-background-base px-3 dark:border-primary-base-dark/10 dark:bg-background-base-dark">
-                  <Mail className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+                <div className="border-primary-base/30 bg-background-base dark:border-primary-base-dark/10 dark:bg-background-base-dark flex items-center border border-r-0 px-3">
+                  <Mail className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
                 </div>
                 <Input
                   {...register("email")}
                   type="email"
                   placeholder="Your Email"
-                  className={`rounded-l-none border-primary-base/30 transition-colors dark:border-primary-base-dark/10 ${
+                  className={`border-primary-base/30 dark:border-primary-base-dark/10 rounded-l-none transition-colors ${
                     errors.email
                       ? "border-red-500/50 bg-red-500/5 dark:border-red-400/50 dark:bg-red-400/5"
                       : ""
@@ -153,18 +153,18 @@ const ContactForm = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs text-default-base dark:text-default-base-dark">
+            <label className="text-default-base dark:text-default-base-dark text-xs">
               MESSAGE
             </label>
             <div className="flex">
-              <div className="flex items-start border border-r-0 border-primary-base/30 bg-background-base px-3 pt-3 dark:border-primary-base-dark/10 dark:bg-background-base-dark">
-                <MessageSquare className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+              <div className="border-primary-base/30 bg-background-base dark:border-primary-base-dark/10 dark:bg-background-base-dark flex items-start border border-r-0 px-3 pt-3">
+                <MessageSquare className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
               </div>
               <Textarea
                 {...register("message")}
                 placeholder="What's on your mind? Have an idea or project to discuss?"
                 rows={6}
-                className={`rounded-l-none border-primary-base/30 transition-colors dark:border-primary-base-dark/10 ${
+                className={`border-primary-base/30 dark:border-primary-base-dark/10 rounded-l-none transition-colors ${
                   errors.message
                     ? "border-red-500/50 bg-red-500/5 dark:border-red-400/50 dark:bg-red-400/5"
                     : ""
@@ -182,7 +182,7 @@ const ContactForm = () => {
           <Button
             type="submit"
             disabled={mutation.isPending}
-            className="w-full gap-2 bg-primary-base text-white hover:bg-primary-base/90 dark:bg-primary-base-dark dark:hover:bg-primary-base-dark/90"
+            className="bg-primary-base hover:bg-primary-base/90 dark:bg-primary-base-dark dark:hover:bg-primary-base-dark/90 w-full gap-2 text-white"
           >
             {mutation.isPending ? (
               <>

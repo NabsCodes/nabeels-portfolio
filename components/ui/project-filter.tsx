@@ -46,9 +46,9 @@ export function ProjectFilter({
         key={option.name}
         onClick={() => onFilterChange(option.name)}
         className={cn(
-          "relative inline-flex flex-shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all",
+          "relative inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all",
           isActive
-            ? "bg-primary-base text-white shadow-sm dark:bg-primary-base-dark dark:text-background-base-dark"
+            ? "bg-primary-base dark:bg-primary-base-dark dark:text-background-base-dark text-white shadow-sm"
             : "bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20",
         )}
         whileHover={{ scale: 1.02 }}
@@ -75,8 +75,8 @@ export function ProjectFilter({
       <div className="space-y-3">
         {/* Mobile: horizontal scroll with all options */}
         <div className="space-y-2 md:hidden">
-          <div className="flex items-center gap-2 text-sm font-medium text-default-base/80 dark:text-default-base-dark/80">
-            <BiFilter className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+          <div className="text-default-base/80 dark:text-default-base-dark/80 flex items-center gap-2 text-sm font-medium">
+            <BiFilter className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
             <span>Filter:</span>
           </div>
           <div className="scrollbar-hide -mx-4 overflow-x-auto pb-1 pl-4">
@@ -90,8 +90,8 @@ export function ProjectFilter({
 
         {/* Desktop: limited options + dropdown */}
         <div className="hidden flex-wrap items-center gap-2 md:flex">
-          <div className="flex items-center gap-2 text-sm font-medium text-default-base/80 dark:text-default-base-dark/80">
-            <BiFilter className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+          <div className="text-default-base/80 dark:text-default-base-dark/80 flex items-center gap-2 text-sm font-medium">
+            <BiFilter className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
             <span>Filter:</span>
           </div>
 
@@ -102,15 +102,15 @@ export function ProjectFilter({
           {hiddenOptions.length > 0 && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="inline-flex items-center gap-1.5 rounded-lg bg-primary-base/10 px-3 py-1.5 text-xs font-medium text-primary-base transition-all hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20">
+                <button className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all">
                   <BiDotsHorizontalRounded className="h-4 w-4" />
                   More
-                  <span className="flex h-4 min-w-[16px] items-center justify-center rounded bg-primary-base/10 px-1 text-[10px] font-semibold text-primary-base/70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark/70">
+                  <span className="bg-primary-base/10 text-primary-base/70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark/70 flex h-4 min-w-[16px] items-center justify-center rounded px-1 text-[10px] font-semibold">
                     {hiddenOptions.length}
                   </span>
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="max-h-64 w-48 overflow-y-auto border border-primary-base/20 bg-background-base/95 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/95">
+              <DropdownMenuContent className="border-primary-base/20 bg-background-base/95 dark:border-primary-base-dark/20 dark:bg-background-base-dark/95 max-h-64 w-48 overflow-y-auto border backdrop-blur-sm">
                 {hiddenOptions.map((option) => (
                   <DropdownMenuItem
                     key={option.name}
@@ -124,7 +124,7 @@ export function ProjectFilter({
                   >
                     <span className="flex items-center gap-2">
                       {option.name}
-                      <span className="ml-auto text-[10px] text-default-base/60 dark:text-default-base-dark/60">
+                      <span className="text-default-base/60 dark:text-default-base-dark/60 ml-auto text-[10px]">
                         {option.count}
                       </span>
                     </span>
@@ -159,10 +159,10 @@ export function ProjectFilter({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden text-xs text-default-base/60 dark:text-default-base-dark/60"
+              className="text-default-base/60 dark:text-default-base-dark/60 overflow-hidden text-xs"
             >
               Showing{" "}
-              <span className="font-medium text-primary-base dark:text-primary-base-dark">
+              <span className="text-primary-base dark:text-primary-base-dark font-medium">
                 {options.find((opt) => opt.name === activeFilter)?.count}
               </span>{" "}
               {activeFilter} project

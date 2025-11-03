@@ -47,10 +47,10 @@ export function Footer() {
       initial="hidden"
       animate={hasAnimated ? "visible" : "hidden"}
       variants={footerVariants}
-      className="relative z-10 mt-8 border-t border-primary-base/40 bg-gradient-to-b from-background-base/50 to-background-base/80 py-12 backdrop-blur-sm dark:border-primary-base-dark/20 dark:from-background-base-dark/50 dark:to-background-base-dark/80"
+      className="border-primary-base/40 from-background-base/50 to-background-base/80 dark:border-primary-base-dark/20 dark:from-background-base-dark/50 dark:to-background-base-dark/80 relative z-10 mt-8 border-t bg-linear-to-b py-12 backdrop-blur-sm"
     >
       {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1.2px,transparent_1px),linear-gradient(to_bottom,#80808012_1.2px,transparent_1px)] bg-[size:24px_24px] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1.2px,transparent_1px),linear-gradient(to_bottom,#80808012_1.2px,transparent_1px)] mask-[linear-gradient(to_bottom,transparent,black,transparent)] bg-size-[24px_24px]" />
 
       {/* Scroll to Top Button */}
       <ScrollToTopButton />
@@ -97,15 +97,15 @@ export function Footer() {
                   key={item.name}
                   href={item.fullHref}
                   className={cn(
-                    "group inline-flex items-center text-default-base transition-colors hover:text-accent-base dark:text-default-base-dark dark:hover:text-accent-base-dark",
+                    "group text-default-base hover:text-accent-base dark:text-default-base-dark dark:hover:text-accent-base-dark inline-flex items-center transition-colors",
                     isBlog &&
-                      "group flex items-center gap-1 rounded-full border border-primary-base/10 bg-primary-base/[0.1] px-3 py-1 transition-colors hover:border-primary-base/20 hover:bg-primary-base/[0.15] dark:border-primary-base-dark/10 dark:bg-primary-base-dark/[0.1] dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/[0.15]",
+                      "group border-primary-base/10 bg-primary-base/10 hover:border-primary-base/20 hover:bg-primary-base/15 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/10 dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/15 flex items-center gap-1 rounded-full border px-3 py-1 transition-colors",
                     isContact && "hidden",
                   )}
                 >
-                  <span className="relative top-[1px]">{item.name}</span>
+                  <span className="relative top-px">{item.name}</span>
                   {isBlog && (
-                    <ArrowUpRight className="relative h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <ArrowUpRight className="relative h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   )}
                 </Link>
               );
@@ -114,17 +114,17 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col items-center justify-between gap-6 border-t border-primary-base/5 pt-8 text-sm dark:border-primary-base-dark/5 md:flex-row">
+        <div className="border-primary-base/5 dark:border-primary-base-dark/5 flex flex-col items-center justify-between gap-6 border-t pt-8 text-sm md:flex-row">
           {/* Developer signature */}
           <motion.div variants={fadeInUp} className="flex items-center gap-2">
-            <RiCodeSSlashLine className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
+            <RiCodeSSlashLine className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
             <span className="text-default-base dark:text-default-base-dark">
               Design & Development by{" "}
               <Link
                 href="https://github.com/NabsCodes"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-base-dark transition-colors hover:text-accent-base dark:hover:text-accent-base-dark"
+                className="text-primary-base-dark hover:text-accent-base dark:hover:text-accent-base-dark transition-colors"
               >
                 Hassan Umar Hassan
               </Link>

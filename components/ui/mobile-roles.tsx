@@ -18,17 +18,17 @@ const MobileRolesStacked = () => (
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6 + index * 0.1 }}
-          className="group relative overflow-hidden rounded-lg border border-primary-base/20 bg-background-base/80 backdrop-blur-sm transition-all duration-300 hover:border-accent-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-accent-base-dark/50"
+          className="group border-primary-base/20 bg-background-base/80 hover:border-accent-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-accent-base-dark/50 relative overflow-hidden rounded-lg border backdrop-blur-sm transition-all duration-300"
         >
           <div className="flex items-center gap-3 p-3">
-            <div className="rounded-md bg-primary-base/10 p-2 transition-all duration-300 group-hover:bg-accent-base/10 dark:bg-primary-base-dark/10 dark:group-hover:bg-accent-base-dark/20">
-              <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
+            <div className="bg-primary-base/10 group-hover:bg-accent-base/10 dark:bg-primary-base-dark/10 dark:group-hover:bg-accent-base-dark/20 rounded-md p-2 transition-all duration-300">
+              <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
             </div>
-            <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+            <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
               {item.label}
             </span>
           </div>
-          <div className="absolute bottom-0 h-[2px] w-full bg-gradient-to-r from-accent-base to-primary-base opacity-0 transition-all duration-300 group-hover:opacity-100 dark:from-accent-base-dark dark:to-primary-base-dark" />
+          <div className="from-accent-base to-primary-base dark:from-accent-base-dark dark:to-primary-base-dark absolute bottom-0 h-[2px] w-full bg-linear-to-r opacity-0 transition-all duration-300 group-hover:opacity-100" />
         </motion.div>
       ))}
     </div>
@@ -56,10 +56,10 @@ const MobileRolesChips = () => (
           }}
           className="group relative"
         >
-          <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-primary-base via-accent-base to-primary-base opacity-0 blur transition duration-300 group-hover:opacity-50 dark:from-primary-base-dark dark:via-accent-base-dark dark:to-primary-base-dark" />
-          <div className="relative flex items-center gap-2 rounded-lg border border-primary-base bg-background-base/90 px-4 py-2 backdrop-blur-sm transition-colors dark:border-primary-base-dark/30 dark:bg-background-base-dark/90">
-            <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
-            <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+          <div className="from-primary-base via-accent-base to-primary-base dark:from-primary-base-dark dark:via-accent-base-dark dark:to-primary-base-dark absolute -inset-1 rounded-lg bg-linear-to-r opacity-0 blur transition duration-300 group-hover:opacity-50" />
+          <div className="border-primary-base bg-background-base/90 dark:border-primary-base-dark/30 dark:bg-background-base-dark/90 relative flex items-center gap-2 rounded-lg border px-4 py-2 backdrop-blur-sm transition-colors">
+            <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
+            <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
               {item.label}
             </span>
           </div>
@@ -77,10 +77,10 @@ const MobileRolesSidebar = () => (
     transition={{ duration: 0.5, delay: 0.5 }}
     className="mb-8 lg:hidden"
   >
-    <div className="relative rounded-lg border border-primary-base/30 bg-background-base/80 p-4 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/50">
+    <div className="border-primary-base/30 bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 relative rounded-lg border p-4 backdrop-blur-sm">
       <div className="absolute inset-x-0 -top-px mx-4 flex space-x-4">
-        <div className="h-px w-8 bg-gradient-to-r from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark" />
-        <div className="h-px flex-1 bg-primary-base/10 dark:bg-primary-base-dark/10" />
+        <div className="from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark h-px w-8 bg-linear-to-r" />
+        <div className="bg-primary-base/10 dark:bg-primary-base-dark/10 h-px flex-1" />
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -90,10 +90,10 @@ const MobileRolesSidebar = () => (
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 + index * 0.1 }}
-            className="group flex items-center gap-3 rounded-md border border-transparent bg-primary-base/5 p-2 transition-all duration-300 hover:border-accent-base/50 hover:bg-accent-base/5 dark:bg-primary-base-dark/5 dark:hover:border-accent-base-dark/50 dark:hover:bg-accent-base-dark/5"
+            className="group bg-primary-base/5 hover:border-accent-base/50 hover:bg-accent-base/5 dark:bg-primary-base-dark/5 dark:hover:border-accent-base-dark/50 dark:hover:bg-accent-base-dark/5 flex items-center gap-3 rounded-md border border-transparent p-2 transition-all duration-300"
           >
-            <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
-            <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+            <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
+            <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
               {item.label}
             </span>
           </motion.div>
@@ -111,27 +111,27 @@ const MobileRolesGrid = () => (
     transition={{ duration: 0.5, delay: 0.5 }}
     className="mb-8 lg:hidden"
   >
-    <div className="overflow-hidden rounded-lg border border-primary-base/20 bg-background-base/80 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/50">
-      <div className="grid divide-x divide-y divide-primary-base/10 dark:divide-primary-base-dark/10 sm:grid-cols-3">
+    <div className="border-primary-base/20 bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 overflow-hidden rounded-lg border backdrop-blur-sm">
+      <div className="divide-primary-base/10 dark:divide-primary-base-dark/10 grid divide-x divide-y sm:grid-cols-3">
         {heroContent.roles.map((item, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 + index * 0.1 }}
-            className="group relative p-4 transition-colors duration-300 hover:bg-accent-base/5 dark:hover:bg-accent-base-dark/5"
+            className="group hover:bg-accent-base/5 dark:hover:bg-accent-base-dark/5 relative p-4 transition-colors duration-300"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="rounded-md bg-primary-base/10 p-2 transition-all duration-300 group-hover:bg-accent-base/10 dark:bg-primary-base-dark/10 dark:group-hover:bg-accent-base-dark/10">
-                  <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
+                <div className="bg-primary-base/10 group-hover:bg-accent-base/10 dark:bg-primary-base-dark/10 dark:group-hover:bg-accent-base-dark/10 rounded-md p-2 transition-all duration-300">
+                  <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
                 </div>
-                <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+                <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
                   {item.label}
                 </span>
               </div>
             </div>
-            <div className="absolute inset-x-0 top-0 h-[2px] scale-x-0 bg-gradient-to-r from-accent-base to-primary-base opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100 dark:from-accent-base-dark dark:to-primary-base-dark" />
+            <div className="from-accent-base to-primary-base dark:from-accent-base-dark dark:to-primary-base-dark absolute inset-x-0 top-0 h-[2px] scale-x-0 bg-linear-to-r opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100" />
           </motion.div>
         ))}
       </div>
@@ -147,10 +147,10 @@ const MobileRolesCode = () => (
     transition={{ duration: 0.5, delay: 0.5 }}
     className="mb-8 lg:hidden"
   >
-    <div className="overflow-hidden rounded-lg border border-primary-base bg-background-base/60 backdrop-blur-sm dark:border-primary-base-dark/30 dark:bg-background-base-dark/50">
-      <div className="border-b border-primary-base/20 bg-primary-base/5 px-4 py-2 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5">
+    <div className="border-primary-base bg-background-base/60 dark:border-primary-base-dark/30 dark:bg-background-base-dark/50 overflow-hidden rounded-lg border backdrop-blur-sm">
+      <div className="border-primary-base/20 bg-primary-base/5 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 border-b px-4 py-2">
         <div className="flex items-center justify-between">
-          <span className="font-space-grotesk text-xs text-primary-base-dark/70 dark:text-primary-base-dark/70">
+          <span className="font-space-grotesk text-primary-base-dark/70 dark:text-primary-base-dark/70 text-xs">
             skills
           </span>
           <div className="flex gap-1.5">
@@ -168,13 +168,13 @@ const MobileRolesCode = () => (
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 + index * 0.1 }}
-              className="group flex items-center gap-2 rounded-md border border-primary-base/10 bg-primary-base/5 p-2 transition-all duration-300 hover:border-accent-base/30 hover:bg-accent-base/5 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:hover:border-accent-base-dark/30 dark:hover:bg-accent-base-dark/5"
+              className="group border-primary-base/10 bg-primary-base/5 hover:border-accent-base/30 hover:bg-accent-base/5 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 dark:hover:border-accent-base-dark/30 dark:hover:bg-accent-base-dark/5 flex items-center gap-2 rounded-md border p-2 transition-all duration-300"
             >
-              <span className="font-mono text-xs text-primary-base-dark/50 dark:text-primary-base-dark/50">
+              <span className="text-primary-base-dark/50 dark:text-primary-base-dark/50 font-mono text-xs">
                 {(index + 1).toString().padStart(2, "0")}
               </span>
-              <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
-              <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+              <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
+              <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
                 {item.label}
               </span>
             </motion.div>
@@ -203,14 +203,14 @@ const MobileRolesFloating = () => (
           className="group relative"
         >
           {/* Gradient Glow */}
-          <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-primary-base to-accent-base opacity-0 blur transition duration-300 group-hover:opacity-30 dark:from-primary-base-dark dark:to-accent-base-dark" />
+          <div className="from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark absolute -inset-0.5 rounded-lg bg-linear-to-r opacity-0 blur transition duration-300 group-hover:opacity-30" />
 
           {/* Card Content */}
-          <div className="relative flex items-center gap-3 rounded-lg border border-primary-base/20 bg-background-base/80 p-3 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-accent-base-dark/50">
-            <div className="rounded-md bg-primary-base/10 p-2 ring-1 ring-primary-base/20 transition-all duration-300 group-hover:bg-accent-base/10 group-hover:ring-accent-base/30 dark:bg-primary-base-dark/10 dark:ring-primary-base-dark/20 dark:group-hover:bg-accent-base-dark/20 dark:group-hover:ring-accent-base-dark/30">
-              <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
+          <div className="border-primary-base/20 bg-background-base/80 hover:border-accent-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 dark:hover:border-accent-base-dark/50 relative flex items-center gap-3 rounded-lg border p-3 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
+            <div className="bg-primary-base/10 ring-primary-base/20 group-hover:bg-accent-base/10 group-hover:ring-accent-base/30 dark:bg-primary-base-dark/10 dark:ring-primary-base-dark/20 dark:group-hover:bg-accent-base-dark/20 dark:group-hover:ring-accent-base-dark/30 rounded-md p-2 ring-1 transition-all duration-300">
+              <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
             </div>
-            <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+            <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
               {item.label}
             </span>
           </div>
@@ -228,13 +228,13 @@ const MobileRolesGlass = () => (
     transition={{ duration: 0.5, delay: 0.5 }}
     className="mb-8 lg:hidden"
   >
-    <div className="relative rounded-lg border border-primary-base/20 bg-background-base/60 p-4 backdrop-blur-md dark:border-primary-base-dark/20 dark:bg-background-base-dark/40">
+    <div className="border-primary-base/20 bg-background-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/40 relative rounded-lg border p-4 backdrop-blur-md">
       {/* Decorative Header */}
-      <div className="absolute inset-x-0 top-0 flex items-center justify-between border-b border-primary-base/10 px-4 py-2 dark:border-primary-base-dark/10">
-        <div className="h-px w-16 bg-gradient-to-r from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark" />
+      <div className="border-primary-base/10 dark:border-primary-base-dark/10 absolute inset-x-0 top-0 flex items-center justify-between border-b px-4 py-2">
+        <div className="from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark h-px w-16 bg-linear-to-r" />
         <div className="flex space-x-1">
-          <div className="h-1 w-1 rounded-full bg-primary-base/40 dark:bg-primary-base-dark/40" />
-          <div className="h-1 w-1 rounded-full bg-accent-base/40 dark:bg-accent-base-dark/40" />
+          <div className="bg-primary-base/40 dark:bg-primary-base-dark/40 h-1 w-1 rounded-full" />
+          <div className="bg-accent-base/40 dark:bg-accent-base-dark/40 h-1 w-1 rounded-full" />
         </div>
       </div>
 
@@ -250,11 +250,11 @@ const MobileRolesGlass = () => (
               stiffness: 100,
               delay: 0.6 + index * 0.1,
             }}
-            className="group relative rounded-lg bg-gradient-to-r from-background-base to-background-base p-[1px] transition-all duration-300 hover:from-primary-base hover:to-accent-base dark:from-background-base-dark dark:to-background-base-dark dark:hover:from-primary-base-dark dark:hover:to-accent-base-dark"
+            className="group from-background-base to-background-base hover:from-primary-base hover:to-accent-base dark:from-background-base-dark dark:to-background-base-dark dark:hover:from-primary-base-dark dark:hover:to-accent-base-dark relative rounded-lg bg-linear-to-r p-px transition-all duration-300"
           >
-            <div className="relative flex items-center gap-2 rounded-lg bg-background-base/80 p-3 backdrop-blur-sm dark:bg-background-base-dark/80">
-              <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
-              <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+            <div className="bg-background-base/80 dark:bg-background-base-dark/80 relative flex items-center gap-2 rounded-lg p-3 backdrop-blur-sm">
+              <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
+              <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
                 {item.label}
               </span>
             </div>
@@ -273,38 +273,38 @@ const MobileRolesMinimal = () => (
     transition={{ duration: 0.5, delay: 0.5 }}
     className="mb-8 lg:hidden"
   >
-    <div className="overflow-hidden rounded-lg border border-primary-base/20 bg-background-base/60 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/40">
+    <div className="border-primary-base/20 bg-background-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/40 overflow-hidden rounded-lg border backdrop-blur-sm">
       {/* Top Bar */}
-      <div className="flex items-center justify-between border-b border-primary-base/10 px-4 py-2 dark:border-primary-base-dark/10">
-        <span className="font-space-grotesk text-xs text-primary-base-dark/70 dark:text-primary-base-dark/70">
+      <div className="border-primary-base/10 dark:border-primary-base-dark/10 flex items-center justify-between border-b px-4 py-2">
+        <span className="font-space-grotesk text-primary-base-dark/70 dark:text-primary-base-dark/70 text-xs">
           current.stack
         </span>
         <div className="flex items-center gap-2">
-          <div className="h-1.5 w-1.5 rounded-full bg-primary-base/30 dark:bg-primary-base-dark/30" />
-          <div className="h-1.5 w-1.5 rounded-full bg-accent-base/30 dark:bg-accent-base-dark/30" />
+          <div className="bg-primary-base/30 dark:bg-primary-base-dark/30 h-1.5 w-1.5 rounded-full" />
+          <div className="bg-accent-base/30 dark:bg-accent-base-dark/30 h-1.5 w-1.5 rounded-full" />
         </div>
       </div>
 
       {/* Content Grid */}
-      <div className="grid gap-px bg-primary-base/5 p-px dark:bg-primary-base-dark/5 sm:grid-cols-3">
+      <div className="bg-primary-base/5 dark:bg-primary-base-dark/5 grid gap-px p-px sm:grid-cols-3">
         {heroContent.roles.map((item, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 + index * 0.1 }}
-            className="group relative bg-background-base p-3 transition-all duration-300 hover:bg-accent-base/5 dark:bg-background-base-dark dark:hover:bg-accent-base-dark/5"
+            className="group bg-background-base hover:bg-accent-base/5 dark:bg-background-base-dark dark:hover:bg-accent-base-dark/5 relative p-3 transition-all duration-300"
           >
             <div className="flex items-center gap-3">
-              <div className="rounded-md bg-primary-base/10 p-2 transition-all duration-300 group-hover:bg-accent-base/10 dark:bg-primary-base-dark/10 dark:group-hover:bg-accent-base-dark/10">
-                <item.icon className="h-4 w-4 text-primary-base transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark" />
+              <div className="bg-primary-base/10 group-hover:bg-accent-base/10 dark:bg-primary-base-dark/10 dark:group-hover:bg-accent-base-dark/10 rounded-md p-2 transition-all duration-300">
+                <item.icon className="text-primary-base group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark h-4 w-4 transition-colors" />
               </div>
-              <span className="font-space-grotesk text-sm text-primary-base-dark transition-colors group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark">
+              <span className="font-space-grotesk text-primary-base-dark group-hover:text-accent-base dark:text-primary-base-dark dark:group-hover:text-accent-base-dark text-sm transition-colors">
                 {item.label}
               </span>
             </div>
             {/* Active Indicator */}
-            <div className="absolute inset-x-0 bottom-0 h-[2px] scale-x-0 bg-gradient-to-r from-primary-base to-accent-base transition-transform duration-300 group-hover:scale-x-100 dark:from-primary-base-dark dark:to-accent-base-dark" />
+            <div className="from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark absolute inset-x-0 bottom-0 h-[2px] scale-x-0 bg-linear-to-r transition-transform duration-300 group-hover:scale-x-100" />
           </motion.div>
         ))}
       </div>

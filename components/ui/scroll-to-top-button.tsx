@@ -33,7 +33,7 @@ const ScrollToTopButton = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
       aria-label="Scroll to top"
-      className="absolute right-5 top-3 -translate-y-1/2 rounded-xl border border-primary-base/40 bg-background-base/80 p-3 text-primary-base backdrop-blur-sm transition-colors hover:border-primary-base/80 hover:text-accent-base dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:text-accent-base-dark"
+      className="border-primary-base/40 bg-background-base/80 text-primary-base hover:border-primary-base/80 hover:text-accent-base dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:text-accent-base-dark absolute top-3 right-5 -translate-y-1/2 rounded-xl border p-3 backdrop-blur-sm transition-colors"
     >
       <RiArrowUpLine className="h-5 w-5" />
       <span className="sr-only">Scroll to top of page</span>

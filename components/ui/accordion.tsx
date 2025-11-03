@@ -90,7 +90,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
     <AccordionItemContext.Provider value={value}>
       <div
         className={cn(
-          "overflow-hidden rounded-lg border border-primary-base/40 bg-background-base/50 backdrop-blur-sm transition-colors dark:border-primary-base-dark/20 dark:bg-background-base-dark/50",
+          "border-primary-base/40 bg-background-base/50 dark:border-primary-base-dark/20 dark:bg-background-base-dark/50 overflow-hidden rounded-lg border backdrop-blur-sm transition-colors",
           className,
         )}
       >
@@ -125,7 +125,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
     <button
       onClick={() => toggleItem(value)}
       className={cn(
-        "flex w-full items-center justify-between p-4 text-left transition-colors hover:bg-primary-base/5 dark:hover:bg-primary-base-dark/5",
+        "hover:bg-primary-base/5 dark:hover:bg-primary-base-dark/5 flex w-full items-center justify-between p-4 text-left transition-colors",
         className,
       )}
     >
@@ -133,7 +133,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
       {showChevron && (
         <ChevronDown
           className={cn(
-            "h-4 w-4 text-primary-base transition-transform dark:text-primary-base-dark",
+            "text-primary-base dark:text-primary-base-dark h-4 w-4 transition-transform",
             isOpen ? "rotate-180" : "",
           )}
         />
@@ -173,7 +173,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
         >
           <div
             className={cn(
-              "border-t border-primary-base/20 p-4 dark:border-primary-base-dark/10",
+              "border-primary-base/20 dark:border-primary-base-dark/10 border-t p-4",
               className,
             )}
           >

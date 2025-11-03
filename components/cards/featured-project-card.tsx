@@ -12,8 +12,10 @@ import { ProjectPreview } from "@/components/ui/project-preview";
 
 export default function FeaturedProjectCard({
   project,
+  onTechClick,
 }: {
   project: ProjectData;
+  onTechClick?: (techName: string) => void;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isClampable, setIsClampable] = useState(false);
@@ -150,13 +152,18 @@ export default function FeaturedProjectCard({
               {/* Tech Stack */}
               <div className="flex flex-wrap gap-2">
                 {project.tech.map(({ name, icon: Icon }) => (
-                  <div
+                  <button
                     key={name}
-                    className="flex items-center gap-1.5 rounded-full bg-primary-base/10 px-3 py-1.5 text-xs text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onTechClick?.(name);
+                    }}
+                    className="flex items-center gap-1.5 rounded-full bg-primary-base/10 px-3 py-1.5 text-xs text-primary-base transition-all hover:scale-105 hover:bg-primary-base/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-base/40 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 dark:focus-visible:ring-primary-base-dark/40"
+                    aria-label={`Filter projects by ${name}`}
                   >
                     <Icon className="h-3 w-3" />
                     <span>{name}</span>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>

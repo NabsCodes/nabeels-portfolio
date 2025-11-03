@@ -12,6 +12,7 @@ import { SiGithub, SiLinkedin } from "react-icons/si";
 import { PiReadCvLogoLight } from "react-icons/pi";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { trackEvent } from "@/lib/services/analytics";
+import { Kbd } from "@/components/ui/kbd";
 import {
   fadeInUp,
   scaleIn,
@@ -234,6 +235,22 @@ export default function Hero() {
                 <SiLinkedin className="h-5 w-5 text-primary-base-dark/70 transition-colors group-hover:text-primary-base-dark dark:text-primary-base-dark/60 dark:group-hover:text-primary-base-dark" />
               </Link>
             </div>
+          </motion.div>
+
+          {/* Command Palette Hint */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="mt-6 flex items-center gap-2 font-mono text-xs text-primary-base-dark/40 dark:text-primary-base-dark/40"
+          >
+            <span>Quick search:</span>
+            <Kbd>⌘</Kbd>
+            <Kbd>K</Kbd>
+            <span className="text-primary-base-dark/30 dark:text-primary-base-dark/30">
+              or
+            </span>
+            <Kbd>/</Kbd>
           </motion.div>
         </div>
       </motion.div>

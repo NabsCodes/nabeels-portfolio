@@ -7,7 +7,13 @@ import { ProjectData } from "@/lib/types";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const OtherProjectCard = ({ project }: { project: ProjectData }) => {
+const OtherProjectCard = ({
+  project,
+  onTechClick,
+}: {
+  project: ProjectData;
+  onTechClick?: (techName: string) => void;
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isClampable, setIsClampable] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -112,13 +118,18 @@ const OtherProjectCard = ({ project }: { project: ProjectData }) => {
           <div className="mt-4">
             <div className="flex flex-wrap gap-2">
               {project.tech.map(({ name, icon: Icon }) => (
-                <div
+                <button
                   key={name}
-                  className="flex items-center gap-1.5 rounded-full bg-primary-base/10 px-2 py-0.5 text-xs text-primary-base dark:bg-primary-base-dark/5 dark:text-primary-base-dark/80"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onTechClick?.(name);
+                  }}
+                  className="flex items-center gap-1.5 rounded-full bg-primary-base/10 px-2 py-0.5 text-xs text-primary-base transition-all hover:scale-105 hover:bg-primary-base/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-base/40 dark:bg-primary-base-dark/5 dark:text-primary-base-dark/80 dark:hover:bg-primary-base-dark/15 dark:focus-visible:ring-primary-base-dark/40"
+                  aria-label={`Filter projects by ${name}`}
                 >
                   <Icon className="h-3.5 w-3.5" />
                   <span>{name}</span>
-                </div>
+                </button>
               ))}
             </div>
           </div>

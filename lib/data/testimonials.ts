@@ -42,5 +42,16 @@ export const testimonialsContent: TestimonialsContent = {
         avatarUrl: "/images/kola.webp",
       },
     },
+    {
+      id: "t4",
+      quote:
+        "I had the pleasure of mentoring Hassan over the past year as he explored how to define his craft as a software engineer. His combination of technical curiosity, consistency, and tenacity will make him an asset to any engineering team. He approaches learning with both creativity and curiosity, always eager to understand not just how things work, but why.",
+      author: {
+        name: "Janet Onyeche Audu",
+        role: "Lead Software Engineer",
+        company: "Morgan Stanley",
+        avatarUrl: "/images/janet.webp",
+      },
+    },
   ],
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import { trackEvent } from "@/lib/services/analytics";
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
 import { projectsData, projectsSection } from "@/lib/data";
@@ -11,6 +11,7 @@ import OtherProjectCard from "@/components/cards/other-project-card";
 import FeaturedProjectCard from "@/components/cards/featured-project-card";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeInUp } from "@/lib/animation-presets";
+import { ProjectFilter } from "@/components/ui/project-filter";
 
 export default function Projects() {
   // Lower threshold for projects section due to complex layout
@@ -19,9 +20,90 @@ export default function Projects() {
     desktopThreshold: 0.3,
   });
 
-  // Data filtering
-  const featuredProjects = projectsData.filter((p) => p.featured);
-  const otherProjects = projectsData.filter((p) => !p.featured);
+  // Filter state with localStorage persistence
+  const [activeFilter, setActiveFilter] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("projectFilter");
+      return saved || "All";
+    }
+    return "All";
+  });
+
+  // Extract unique tech stacks and calculate filter options
+  const filterOptions = useMemo(() => {
+    const techMap = new Map<string, number>();
+
+    projectsData.forEach((project) => {
+      project.tech.forEach((tech) => {
+        techMap.set(tech.name, (techMap.get(tech.name) || 0) + 1);
+      });
+    });
+
+    // Sort by count (descending) and then alphabetically
+    const techOptions = Array.from(techMap.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => {
+        if (b.count === a.count) {
+          return a.name.localeCompare(b.name);
+        }
+        return b.count - a.count;
+      });
+
+    // Add "All" option at the beginning
+    return [{ name: "All", count: projectsData.length }, ...techOptions];
+  }, []);
+
+  // Filter projects based on active filter
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All") {
+      return projectsData;
+    }
+    return projectsData.filter((project) =>
+      project.tech.some((tech) => tech.name === activeFilter),
+    );
+  }, [activeFilter]);
+
+  // Split into featured and other
+  const featuredProjects = filteredProjects.filter((p) => p.featured);
+  const otherProjects = filteredProjects.filter((p) => !p.featured);
+
+  // Handle filter change with localStorage
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("projectFilter", filter);
+    }
+    trackEvent("project_filter", "interaction", filter);
+  };
+
+  // Handle tech badge click from cards
+  const handleTechClick = (techName: string) => {
+    setActiveFilter(techName);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("projectFilter", techName);
+    }
+    trackEvent("project_tech_badge_click", "interaction", techName);
+    // Smooth scroll to top of section
+    const projectsSection = document.getElementById("projects");
+    projectsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // Listen for filter events from command palette
+  useEffect(() => {
+    const handleFilterEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        setActiveFilter(customEvent.detail);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("projectFilter", customEvent.detail);
+        }
+      }
+    };
+
+    window.addEventListener("filterProjects", handleFilterEvent);
+    return () =>
+      window.removeEventListener("filterProjects", handleFilterEvent);
+  }, []);
 
   // Analytics tracking
   useEffect(() => {
@@ -57,8 +139,20 @@ export default function Projects() {
           />
         </div>
 
+        {/* Project Filter */}
+        <div className="mt-8">
+          <ProjectFilter
+            options={filterOptions}
+            activeFilter={activeFilter}
+            onFilterChange={handleFilterChange}
+          />
+        </div>
+
         {/* Featured Projects */}
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          layout
+        >
           {featuredProjects.map((project) => (
             <div
               key={project.id}
@@ -72,10 +166,11 @@ export default function Projects() {
                     live: project.links.live || undefined,
                   },
                 }}
+                onTechClick={handleTechClick}
               />
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Other Projects Section */}
         <motion.div
@@ -99,7 +194,10 @@ export default function Projects() {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            layout
+          >
             {otherProjects.map((project) => (
               <div
                 key={project.id}
@@ -113,10 +211,11 @@ export default function Projects() {
                       live: project.links.live || undefined,
                     },
                   }}
+                  onTechClick={handleTechClick}
                 />
               </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

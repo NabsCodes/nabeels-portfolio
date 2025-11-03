@@ -7,6 +7,7 @@ import { ToastProvider } from "@/contexts/toast-context";
 import { SparklesBackground } from "@/components/layout/sparkles-background";
 import { cn } from "@/lib/utils";
 import { AnalyticsProviders } from "@/app/_providers";
+import { CommandPalette } from "@/components/ui/command-palette";
 
 // Raleway for body text
 const raleway = Raleway({
@@ -171,6 +172,7 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
+                <CommandPalette />
                 <SparklesBackground />
                 {children}
               </ThemeProvider>

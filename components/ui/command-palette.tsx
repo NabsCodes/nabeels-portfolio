@@ -30,6 +30,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FiCopy, FiDownload } from "react-icons/fi";
 import { projectsData, contactData, heroContent } from "@/lib/data";
 import { useCommandPalette } from "@/contexts/command-palette-context";
+import { useToast } from "@/contexts/toast-context";
 
 interface CommandPaletteProps {
   blogPosts?: Array<{
@@ -42,6 +43,7 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
   const { open, setOpen, toggle } = useCommandPalette();
   const router = useRouter();
   const { setTheme } = useTheme();
+  const { showToast } = useToast();
 
   // Keyboard shortcuts
   React.useEffect(() => {
@@ -91,10 +93,25 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
   };
 
   // Copy email to clipboard
-  const copyEmail = React.useCallback(() => {
-    navigator.clipboard.writeText(contactData.email);
-    // Could add toast notification here if you have a toast system
-  }, []);
+  const copyEmail = React.useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(contactData.email);
+      showToast(
+        "Email Copied!",
+        `${contactData.email} has been copied to your clipboard`,
+        "success",
+      );
+    } catch (error) {
+      // Handle clipboard API failures (e.g., permissions denied)
+      showToast(
+        "Copy Failed",
+        "Unable to copy email. Please copy it manually.",
+        "error",
+      );
+      // Fallback: try to select the text for manual copy
+      console.error("Failed to copy email to clipboard:", error);
+    }
+  }, [showToast]);
 
   // Open external link
   const openLink = (url: string) => {
@@ -246,9 +263,8 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
         <CommandGroup heading="Contact & Resume">
           <CommandItem
             onSelect={() => {
-              runCommand(() => {
-                copyEmail();
-                scrollToSection("contact");
+              runCommand(async () => {
+                await copyEmail();
               });
             }}
             className="gap-2"

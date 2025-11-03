@@ -105,49 +105,45 @@ export default function FeaturedProjectCard({
             <div className="space-y-4 overflow-y-auto">
               {/* Description with Expand/Collapse */}
               <div className="relative">
-                <div
-                  onClick={() => isClampable && setIsExpanded(!isExpanded)}
-                  className={isClampable ? "cursor-pointer" : ""}
+                <motion.div
+                  initial={{ height: "4.5rem" }}
+                  animate={{ height: isExpanded ? "auto" : "4.5rem" }}
+                  transition={{
+                    duration: 0.4,
+                    ease: [0.04, 0.62, 0.23, 0.98],
+                  }}
+                  className="overflow-hidden"
                 >
-                  <motion.div
-                    initial={{ height: "4.5rem" }}
-                    animate={{ height: isExpanded ? "auto" : "4.5rem" }}
-                    transition={{
-                      duration: 0.4,
-                      ease: [0.04, 0.62, 0.23, 0.98],
-                    }}
-                    className="overflow-hidden"
+                  <p
+                    ref={textRef}
+                    className={`text-sm leading-relaxed text-default-base/70 dark:text-default-base-dark/70 ${
+                      !isExpanded ? "line-clamp-3" : ""
+                    }`}
                   >
-                    <p
-                      ref={textRef}
-                      className={`text-sm leading-relaxed text-default-base/70 dark:text-default-base-dark/70 ${
-                        !isExpanded ? "line-clamp-3" : ""
-                      }`}
-                    >
-                      {project.description}
-                    </p>
-                  </motion.div>
-                </div>
+                    {project.description}
+                  </p>
+                </motion.div>
 
                 {isClampable && (
-                  <motion.div
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.2 }}
+                  <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="mt-1 cursor-pointer font-space-grotesk text-xs text-primary-base/60 transition-colors hover:text-primary-base dark:text-primary-base-dark/60 dark:hover:text-primary-base-dark"
+                    className="mt-1 flex items-center gap-1 font-space-grotesk text-xs text-primary-base/60 transition-colors hover:text-primary-base focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-base/40 dark:text-primary-base-dark/60 dark:hover:text-primary-base-dark dark:focus-visible:ring-primary-base-dark/40"
+                    aria-expanded={isExpanded}
+                    aria-label={
+                      isExpanded
+                        ? "Show less description"
+                        : "Read more description"
+                    }
                   >
-                    <div className="flex items-center gap-1">
-                      <span>{isExpanded ? "show less" : "read more"}</span>
-                      <motion.div
-                        initial={{ rotate: 0 }}
-                        animate={{ rotate: isExpanded ? 180 : 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                      >
-                        <ChevronDown className="h-3 w-3" />
-                      </motion.div>
-                    </div>
-                  </motion.div>
+                    <span>{isExpanded ? "show less" : "read more"}</span>
+                    <motion.div
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <ChevronDown className="h-3 w-3" />
+                    </motion.div>
+                  </button>
                 )}
               </div>
 

@@ -88,6 +88,7 @@ export default function Testimonials() {
     toggle: toggleMobile,
     topRef,
     firstExpandedRef,
+    buttonRef,
   } = useToggleWithScroll();
 
   const items = testimonialsContent.items;
@@ -146,6 +147,7 @@ export default function Testimonials() {
         {hasHiddenMobile && (
           <div className="flex justify-center pt-1">
             <Button
+              ref={buttonRef}
               variant="outline"
               size="sm"
               aria-expanded={showAllMobile}

@@ -48,18 +48,18 @@ export default function FeaturedProjectCard({
         className="group relative"
       >
         {/* Main Card Container */}
-        <div className="relative flex h-fit w-full flex-col overflow-hidden rounded-lg border border-primary-base/50 bg-background-base/80 backdrop-blur-sm transition-colors hover:border-primary-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/40">
+        <div className="border-primary-base/50 bg-background-base/80 hover:border-primary-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 dark:hover:border-primary-base-dark/40 relative flex h-fit w-full flex-col overflow-hidden rounded-lg border backdrop-blur-sm transition-colors">
           {/* Header Section - Fixed height */}
-          <div className="flex h-14 shrink-0 items-center border-b border-primary-base/10 bg-primary-base/5 px-5 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5">
+          <div className="border-primary-base/10 bg-primary-base/5 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/5 flex h-14 shrink-0 items-center border-b px-5">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-3">
-                <Code2 className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
-                <h3 className="bg-gradient-to-r from-primary-base to-accent-base bg-clip-text font-space-grotesk text-sm font-medium text-transparent transition-colors dark:from-primary-base-dark dark:to-accent-base-dark md:text-base">
+                <Code2 className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
+                <h3 className="from-primary-base to-accent-base font-space-grotesk dark:from-primary-base-dark dark:to-accent-base-dark bg-linear-to-r bg-clip-text text-sm font-medium text-transparent transition-colors md:text-base">
                   {project.title}
                 </h3>
               </div>
               {project.featured && (
-                <span className="rounded-full bg-primary-base/10 px-2 py-0.5 text-xs text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark">
+                <span className="bg-primary-base/10 text-primary-base dark:bg-primary-base-dark/10 dark:text-primary-base-dark rounded-full px-2 py-0.5 text-xs">
                   Featured
                 </span>
               )}
@@ -67,7 +67,7 @@ export default function FeaturedProjectCard({
           </div>
 
           {/* Image Section with Enhanced Overlay */}
-          <div className="group/preview relative aspect-video w-full overflow-hidden border-b border-primary-base/30 dark:border-primary-base-dark/20">
+          <div className="group/preview border-primary-base/30 dark:border-primary-base-dark/20 relative aspect-video w-full overflow-hidden border-b">
             {!imageError && project.cover ? (
               <>
                 <Image
@@ -82,10 +82,10 @@ export default function FeaturedProjectCard({
                 />
 
                 {/* Subtle overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background-base-dark/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100" />
+                <div className="from-background-base-dark/30 absolute inset-0 bg-linear-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100" />
 
                 {project.links.live && (
-                  <div className="absolute bottom-4 right-4 translate-y-2 opacity-0 transition-all duration-300 group-hover/preview:translate-y-0 group-hover/preview:opacity-100">
+                  <div className="absolute right-4 bottom-4 translate-y-2 opacity-0 transition-all duration-300 group-hover/preview:translate-y-0 group-hover/preview:opacity-100">
                     <button
                       onClick={handlePreviewClick}
                       className="flex items-center gap-2 rounded-lg border border-white/20 bg-black/70 px-4 py-2 text-sm font-medium text-white shadow-2xl ring-1 ring-white/10 backdrop-blur-md transition-all duration-200 hover:scale-[1.02] hover:bg-black/80 dark:border-white/30 dark:bg-black/80 dark:hover:bg-black/90"
@@ -118,7 +118,7 @@ export default function FeaturedProjectCard({
                 >
                   <p
                     ref={textRef}
-                    className={`text-sm leading-relaxed text-default-base/70 dark:text-default-base-dark/70 ${
+                    className={`text-default-base/70 dark:text-default-base-dark/70 text-sm leading-relaxed ${
                       !isExpanded ? "line-clamp-3" : ""
                     }`}
                   >
@@ -129,7 +129,7 @@ export default function FeaturedProjectCard({
                 {isClampable && (
                   <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="mt-1 flex items-center gap-1 font-space-grotesk text-xs text-primary-base/60 transition-colors hover:text-primary-base focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-base/40 dark:text-primary-base-dark/60 dark:hover:text-primary-base-dark dark:focus-visible:ring-primary-base-dark/40"
+                    className="font-space-grotesk text-primary-base/60 hover:text-primary-base focus-visible:ring-primary-base/40 dark:text-primary-base-dark/60 dark:hover:text-primary-base-dark dark:focus-visible:ring-primary-base-dark/40 mt-1 flex items-center gap-1 text-xs transition-colors focus:outline-none focus-visible:ring-2"
                     aria-expanded={isExpanded}
                     aria-label={
                       isExpanded
@@ -158,7 +158,7 @@ export default function FeaturedProjectCard({
                       e.stopPropagation();
                       onTechClick?.(name);
                     }}
-                    className="flex items-center gap-1.5 rounded-full bg-primary-base/10 px-3 py-1.5 text-xs text-primary-base transition-all hover:scale-105 hover:bg-primary-base/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-base/40 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 dark:focus-visible:ring-primary-base-dark/40"
+                    className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 focus-visible:ring-primary-base/40 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 dark:focus-visible:ring-primary-base-dark/40 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs transition-all hover:scale-105 focus:outline-none focus-visible:ring-2"
                     aria-label={`Filter projects by ${name}`}
                   >
                     <Icon className="h-3 w-3" />
@@ -175,7 +175,7 @@ export default function FeaturedProjectCard({
                   href={project.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-lg border border-primary-base/20 bg-primary-base/5 px-4 py-2 text-xs text-primary-base transition-all hover:border-primary-base/40 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10"
+                  className="border-primary-base/20 bg-primary-base/5 text-primary-base hover:border-primary-base/40 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10 flex items-center gap-2 rounded-lg border px-4 py-2 text-xs transition-all"
                 >
                   <FiGithub className="h-4 w-4" />
                   <span>View Code</span>
@@ -186,7 +186,7 @@ export default function FeaturedProjectCard({
                   href={project.links.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-lg border border-primary-base/20 bg-primary-base/5 px-4 py-2 text-xs text-primary-base transition-all hover:border-primary-base/40 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10"
+                  className="border-primary-base/20 bg-primary-base/5 text-primary-base hover:border-primary-base/40 hover:bg-primary-base/10 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 dark:text-primary-base-dark dark:hover:border-primary-base-dark/40 dark:hover:bg-primary-base-dark/10 flex items-center gap-2 rounded-lg border px-4 py-2 text-xs transition-all"
                 >
                   <ExternalLink className="h-4 w-4" />
                   <span>Live Demo</span>

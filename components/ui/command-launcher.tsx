@@ -18,8 +18,8 @@ export function CommandLauncher({ className }: CommandLauncherProps) {
       onClick={() => setOpen(true)}
       aria-label="Open command palette"
       className={cn(
-        "fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full border border-primary-base/50 bg-background-base/90 px-4 py-2 text-sm font-medium text-default-base backdrop-blur-sm transition-colors hover:border-primary-base/30 dark:border-primary-base-dark/30 dark:bg-background-base-dark/90 dark:text-default-base-dark dark:hover:border-primary-base-dark/30",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-base/40 dark:focus-visible:ring-primary-base-dark/40",
+        "border-primary-base/50 bg-background-base/90 text-default-base hover:border-primary-base/30 dark:border-primary-base-dark/30 dark:bg-background-base-dark/90 dark:text-default-base-dark dark:hover:border-primary-base-dark/30 fixed right-6 bottom-6 z-40 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium backdrop-blur-sm transition-colors",
+        "focus-visible:ring-primary-base/40 dark:focus-visible:ring-primary-base-dark/40 focus:outline-none focus-visible:ring-2",
         "shadow-none", // avoid shadow per design preference
         className,
       )}

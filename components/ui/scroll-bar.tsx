@@ -21,7 +21,7 @@ export function ScrollBar({ position = "top" }) {
       className={`fixed z-50 ${positionStyles[position as keyof typeof positionStyles]}`}
     >
       <motion.div
-        className="h-full w-full origin-top-left bg-primary-base"
+        className="bg-primary-base h-full w-full origin-top-left"
         style={{
           [isVertical ? "scaleY" : "scaleX"]: scaleProgress,
         }}

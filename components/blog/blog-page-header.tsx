@@ -25,21 +25,21 @@ export function BlogPageHeader({
         <span className="text-accent-base dark:text-accent-base-dark">
           blog
         </span>
-        <span className="ml-2 text-primary-base/70 dark:text-primary-base-dark/70">
+        <span className="text-primary-base/70 dark:text-primary-base-dark/70 ml-2">
           {">"}
         </span>
-        <span className="ml-2 text-default-base dark:text-default-base-dark">
+        <span className="text-default-base dark:text-default-base-dark ml-2">
           {breadcrumb}
         </span>
       </div>
 
       {/* Main heading */}
-      <h1 className="font-raleway text-4xl font-bold text-default-base dark:text-default-base-dark md:text-5xl">
+      <h1 className="font-raleway text-default-base dark:text-default-base-dark text-4xl font-bold md:text-5xl">
         {title}
         <span className="text-accent-base dark:text-accent-base-dark">.</span>
       </h1>
 
-      <p className="text-lg text-primary-base dark:text-primary-base-dark">
+      <p className="text-primary-base dark:text-primary-base-dark text-lg">
         {description}
       </p>
     </motion.div>

@@ -202,16 +202,16 @@ export default function Projects() {
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
-                className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary-base/10 dark:bg-primary-base-dark/10"
+                className="bg-primary-base/10 dark:bg-primary-base-dark/10 mb-6 flex h-20 w-20 items-center justify-center rounded-full"
               >
-                <FolderX className="h-10 w-10 text-primary-base dark:text-primary-base-dark" />
+                <FolderX className="text-primary-base dark:text-primary-base-dark h-10 w-10" />
               </motion.div>
 
-              <h3 className="mb-2 font-space-grotesk text-xl font-semibold text-default-base dark:text-default-base-dark sm:text-2xl">
+              <h3 className="font-space-grotesk text-default-base dark:text-default-base-dark mb-2 text-xl font-semibold sm:text-2xl">
                 No projects available
               </h3>
 
-              <p className="mb-6 max-w-md text-sm text-default-base/70 dark:text-default-base-dark/70 sm:text-base">
+              <p className="text-default-base/70 dark:text-default-base-dark/70 mb-6 max-w-md text-sm sm:text-base">
                 There are currently no projects to display. Check back soon for
                 updates!
               </p>
@@ -256,11 +256,11 @@ export default function Projects() {
                   {/* Section Divider with Text */}
                   <div className="relative mb-8 flex items-center justify-center">
                     <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-primary-base/50 dark:border-primary-base-dark/50" />
+                      <div className="border-primary-base/50 dark:border-primary-base-dark/50 w-full border-t" />
                     </div>
-                    <div className="relative flex items-center gap-2 rounded-full border border-primary-base/50 bg-background-base/95 px-4 py-2 backdrop-blur-sm dark:border-primary-base-dark/30 dark:bg-background-base-dark/95">
-                      <Code2 className="h-4 w-4 text-primary-base dark:text-primary-base-dark" />
-                      <span className="text-sm text-primary-base dark:text-primary-base-dark">
+                    <div className="border-primary-base/50 bg-background-base/95 dark:border-primary-base-dark/30 dark:bg-background-base-dark/95 relative flex items-center gap-2 rounded-full border px-4 py-2 backdrop-blur-sm">
+                      <Code2 className="text-primary-base dark:text-primary-base-dark h-4 w-4" />
+                      <span className="text-primary-base dark:text-primary-base-dark text-sm">
                         More Projects
                       </span>
                     </div>

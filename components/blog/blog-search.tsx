@@ -52,20 +52,20 @@ export function BlogSearch({
     >
       {/* Search Bar */}
       <div className="relative max-w-md">
-        <div className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2">
-          <Search className="h-4 w-4 text-primary-base/60 dark:text-primary-base-dark" />
+        <div className="pointer-events-none absolute top-1/2 left-3 z-10 -translate-y-1/2">
+          <Search className="text-primary-base/60 dark:text-primary-base-dark h-4 w-4" />
         </div>
         <Input
           type="text"
           placeholder="Search posts..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-lg border border-primary-base/50 bg-background-base/60 py-3 pl-10 pr-10 text-default-base backdrop-blur-sm transition-all placeholder:text-primary-base/60 focus:border-accent-base focus:outline-none focus:ring-1 focus:ring-accent-base/20 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 dark:text-default-base-dark dark:placeholder:text-primary-base-dark/60 dark:focus:border-accent-base-dark dark:focus:ring-accent-base-dark/20"
+          className="border-primary-base/50 bg-background-base/60 text-default-base placeholder:text-primary-base/60 focus:border-accent-base focus:ring-accent-base/20 dark:border-primary-base-dark/20 dark:bg-background-base-dark/60 dark:text-default-base-dark dark:placeholder:text-primary-base-dark/60 dark:focus:border-accent-base-dark dark:focus:ring-accent-base-dark/20 w-full rounded-lg border py-3 pr-10 pl-10 backdrop-blur-sm transition-all focus:ring-1 focus:outline-none"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery("")}
-            className="absolute right-3 top-1/2 z-10 -translate-y-1/2 text-primary-base/60 transition-colors hover:text-accent-base dark:text-primary-base-dark/60 dark:hover:text-accent-base-dark"
+            className="text-primary-base/60 hover:text-accent-base dark:text-primary-base-dark/60 dark:hover:text-accent-base-dark absolute top-1/2 right-3 z-10 -translate-y-1/2 transition-colors"
           >
             <X className="h-4 w-4" />
           </button>
@@ -77,11 +77,11 @@ export function BlogSearch({
         <div className="space-y-3">
           {/* Mobile: horizontal scroll */}
           <div className="space-y-2 md:hidden">
-            <div className="flex items-center gap-2 font-mono text-sm text-primary-base dark:text-primary-base-dark">
+            <div className="text-primary-base dark:text-primary-base-dark flex items-center gap-2 font-mono text-sm">
               <Tag className="h-4 w-4" />
               <span>Topics:</span>
             </div>
-            <div className="-mx-4 overflow-x-auto pb-1 pl-4 pr-6">
+            <div className="-mx-4 overflow-x-auto pr-6 pb-1 pl-4">
               <div className="flex w-max flex-nowrap gap-2">
                 {allTags.map((tag: string) => (
                   <button
@@ -89,7 +89,7 @@ export function BlogSearch({
                     onClick={() => toggleTag(tag)}
                     className={`rounded-full px-4 py-1.5 font-mono text-xs transition-all ${
                       selectedTags.includes(tag)
-                        ? "bg-accent-base text-white shadow-lg dark:bg-accent-base-dark"
+                        ? "bg-accent-base dark:bg-accent-base-dark text-white shadow-lg"
                         : "bg-primary-base/10 text-primary-base hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20"
                     }`}
                   >
@@ -102,7 +102,7 @@ export function BlogSearch({
 
           {/* Desktop: limited chips + dropdown */}
           <div className="hidden flex-wrap items-center gap-3 md:flex">
-            <div className="flex items-center gap-2 font-mono text-sm text-primary-base dark:text-primary-base-dark">
+            <div className="text-primary-base dark:text-primary-base-dark flex items-center gap-2 font-mono text-sm">
               <Tag className="h-4 w-4" />
               <span>Topics:</span>
             </div>
@@ -114,7 +114,7 @@ export function BlogSearch({
                 onClick={() => toggleTag(tag)}
                 className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all ${
                   selectedTags.includes(tag)
-                    ? "bg-accent-base text-white shadow-lg dark:bg-accent-base-dark"
+                    ? "bg-accent-base dark:bg-accent-base-dark text-white shadow-lg"
                     : "bg-primary-base/10 text-primary-base hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20"
                 }`}
               >
@@ -125,15 +125,15 @@ export function BlogSearch({
             {hiddenTags.length > 0 && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-2 rounded-lg bg-primary-base/10 px-3 py-1.5 font-mono text-xs text-primary-base transition-all hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20">
+                  <button className="bg-primary-base/10 text-primary-base hover:bg-accent-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-accent-base-dark/20 inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-mono text-xs transition-all">
                     <MoreHorizontal className="h-4 w-4" />
                     More
-                    <span className="rounded-md bg-primary-base/10 px-1 text-[10px] text-primary-base/70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark/70">
+                    <span className="bg-primary-base/10 text-primary-base/70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark/70 rounded-md px-1 text-[10px]">
                       {hiddenTags.length}
                     </span>
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="max-h-64 w-48 overflow-y-auto border border-primary-base/20 bg-background-base/95 backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark/95">
+                <DropdownMenuContent className="border-primary-base/20 bg-background-base/95 dark:border-primary-base-dark/20 dark:bg-background-base-dark/95 max-h-64 w-48 overflow-y-auto border backdrop-blur-sm">
                   {hiddenTags.map((tag: string) => (
                     <DropdownMenuItem
                       key={tag}
@@ -164,7 +164,7 @@ export function BlogSearch({
               </button>
 
               {/* Results count */}
-              <div className="font-mono text-sm text-primary-base/70 dark:text-primary-base-dark/70">
+              <div className="text-primary-base/70 dark:text-primary-base-dark/70 font-mono text-sm">
                 {resultsCount} post{resultsCount !== 1 ? "s" : ""} found
                 {searchQuery && ` for "${searchQuery}"`}
                 {selectedTags.length > 0 &&

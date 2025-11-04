@@ -67,7 +67,7 @@ export const TracingBeam = ({
       ref={ref}
       className={cn("relative mx-auto h-full w-full max-w-7xl", className)}
     >
-      <div className="absolute -left-4 top-3 hidden md:-left-20 md:block">
+      <div className="absolute top-3 -left-4 hidden md:-left-20 md:block">
         <motion.div
           transition={{
             duration: 0.2,
@@ -79,14 +79,14 @@ export const TracingBeam = ({
                 ? "none"
                 : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}
-          className="ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border border-primary-base/20 bg-background-base shadow-sm backdrop-blur-sm dark:border-primary-base-dark/20 dark:bg-background-base-dark"
+          className="border-primary-base/20 bg-background-base dark:border-primary-base-dark/20 dark:bg-background-base-dark ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm backdrop-blur-sm"
         >
           <motion.div
             transition={{
               duration: 0.2,
               delay: 0.5,
             }}
-            className="h-2 w-2 rounded-full bg-primary-base transition-colors dark:bg-primary-base-dark"
+            className="bg-primary-base dark:bg-primary-base-dark h-2 w-2 rounded-full transition-colors"
           />
         </motion.div>
         <svg

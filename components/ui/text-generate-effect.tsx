@@ -28,7 +28,7 @@ export function TextGenerateEffect({
 
   return (
     <div className="relative">
-      <p className="text-pretty text-sm leading-relaxed md:text-base">
+      <p className="text-sm leading-relaxed text-pretty md:text-base">
         {displayText}
         <motion.span
           animate={{ opacity: [1, 0] }}
@@ -37,7 +37,7 @@ export function TextGenerateEffect({
             repeat: Infinity,
             repeatType: "reverse",
           }}
-          className="ml-[1px] inline-block h-4 w-[2px] bg-primary-base dark:bg-primary-base-dark"
+          className="bg-primary-base dark:bg-primary-base-dark ml-px inline-block h-4 w-[2px]"
         />
       </p>
     </div>

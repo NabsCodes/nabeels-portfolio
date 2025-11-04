@@ -37,9 +37,9 @@ export const ContactFormEmail = ({
       <Head />
       <Preview>New message from {senderName} via your portfolio</Preview>
       <Tailwind>
-        <Body className="m-0 bg-[#0e1714] p-[48px_0px]">
+        <Body className="bg-background-base-dark m-0 p-[48px_0px]">
           <Container className="mx-auto w-full max-w-[465px] rounded-lg bg-[#1a2420] px-4">
-            <Section className="my-[16px] rounded-[8px] bg-[#0e1714] p-[32px_24px] shadow-lg">
+            <Section className="bg-background-base-dark my-[16px] rounded-[8px] p-[32px_24px] shadow-lg">
               {/* Logo Header */}
               <div className="mb-[32px] text-center">
                 <Img
@@ -52,13 +52,13 @@ export const ContactFormEmail = ({
               </div>
 
               {/* Title */}
-              <Heading className="m-0 mb-[24px] text-center text-[24px] font-bold leading-tight text-[#71a295]">
+              <Heading className="text-primary-base m-0 mb-[24px] text-center text-[24px] leading-tight font-bold">
                 New Portfolio Message
               </Heading>
 
               {/* Notification Badge */}
               <div className="mb-[24px] flex items-center justify-center">
-                <div className="inline-block rounded-[20px] bg-[#71a295]/15 px-[16px] py-[8px]">
+                <div className="bg-primary-base/15 inline-block rounded-[20px] px-[16px] py-[8px]">
                   <Text className="m-0 flex items-center gap-[6px] text-center text-[14px] font-medium text-[#9cbcb2]">
                     Received on {date}
                   </Text>
@@ -68,7 +68,7 @@ export const ContactFormEmail = ({
               {/* Sender Info Section - Enhanced */}
               <div className="mb-[24px] overflow-hidden rounded-[8px] bg-gray-800 shadow-md">
                 {/* Header */}
-                <div className="bg-[#71a295]/15 px-[20px] py-[12px]">
+                <div className="bg-primary-base/15 px-[20px] py-[12px]">
                   <Text className="m-0 text-[16px] font-semibold tracking-wide text-[#9cbcb2]">
                     Sender Information
                   </Text>
@@ -81,7 +81,7 @@ export const ContactFormEmail = ({
                     <Text className="m-0 min-w-[60px] text-[14px] text-[#9cbcb2]">
                       Name:
                     </Text>
-                    <Text className="m-0 flex-1 text-[15px] font-medium text-[#71a295]">
+                    <Text className="text-primary-base m-0 flex-1 text-[15px] font-medium">
                       {senderName}
                     </Text>
                   </div>
@@ -91,7 +91,7 @@ export const ContactFormEmail = ({
                     <Text className="m-0 min-w-[60px] text-[14px] text-[#9cbcb2]">
                       Email:
                     </Text>
-                    <Text className="m-0 flex-1 break-all text-[15px] text-gray-400">
+                    <Text className="m-0 flex-1 text-[15px] break-all text-gray-400">
                       {senderEmail}
                     </Text>
                   </div>
@@ -100,14 +100,14 @@ export const ContactFormEmail = ({
 
               {/* Message Section - Enhanced */}
               <div className="overflow-hidden rounded-[8px] bg-gray-800 shadow-md">
-                <div className="bg-[#71a295]/15 px-[20px] py-[12px]">
+                <div className="bg-primary-base/15 px-[20px] py-[12px]">
                   <Text className="m-0 text-[16px] font-semibold tracking-wide text-[#9cbcb2]">
                     Message Content
                   </Text>
                 </div>
 
                 <div className="p-[20px]">
-                  <Text className="m-0 whitespace-pre-wrap text-[16px] leading-relaxed text-gray-300">
+                  <Text className="m-0 text-[16px] leading-relaxed whitespace-pre-wrap text-gray-300">
                     {message}
                   </Text>
                 </div>
@@ -121,13 +121,13 @@ export const ContactFormEmail = ({
                   This email was sent from your contact form on{" "}
                   <Link
                     href="https://nabeelhassan.dev"
-                    className="text-[#71a295] underline"
+                    className="text-primary-base underline"
                   >
                     nabeelhassan.dev
                   </Link>
                 </Text>
 
-                <Text className="mb-0 mt-[16px] text-[12px] text-gray-500">
+                <Text className="mt-[16px] mb-0 text-[12px] text-gray-500">
                   © {new Date().getFullYear()} Nabeel Hassan. All rights
                   reserved.
                 </Text>

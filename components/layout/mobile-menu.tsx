@@ -37,7 +37,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-background-base/60 backdrop-blur-[2px] dark:bg-background-base-dark/60"
+            className="bg-background-base/60 dark:bg-background-base-dark/60 fixed inset-0 z-40 backdrop-blur-[2px]"
             onClick={onClose}
           />
 
@@ -47,7 +47,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute left-0 right-0 top-0 z-50 mt-[80px]"
+            className="absolute top-0 right-0 left-0 z-50 mt-[80px]"
           >
             <motion.div
               initial={false}
@@ -59,9 +59,9 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                 ease: "easeOut",
               }}
               className={cn(
-                "mx-auto rounded-lg bg-background-base/95 p-4 shadow-lg backdrop-blur-md dark:bg-background-base-dark/95",
+                "bg-background-base/95 dark:bg-background-base-dark/95 mx-auto rounded-lg p-4 shadow-lg backdrop-blur-md",
                 isScrolled &&
-                  "border border-primary-base/30 dark:border-primary-base-dark/20",
+                  "border-primary-base/30 dark:border-primary-base-dark/20 border",
               )}
             >
               <nav className="max-w-lg">
@@ -89,13 +89,13 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                             "group relative flex w-fit items-center text-lg transition-all duration-200",
                             // Blog specific styles
                             isBlog &&
-                              "rounded-lg border border-primary-base/10 bg-primary-base/[0.1] px-4 py-2 hover:border-primary-base/20 hover:bg-primary-base/[0.15] dark:border-primary-base-dark/10 dark:bg-primary-base-dark/[0.1] dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/[0.15]",
+                              "border-primary-base/10 bg-primary-base/[0.1] hover:border-primary-base/20 hover:bg-primary-base/[0.15] dark:border-primary-base-dark/10 dark:bg-primary-base-dark/[0.1] dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/[0.15] rounded-lg border px-4 py-2",
                             // Contact button styles
                             isContact && [
                               "cursor-pointer rounded-lg px-5 py-2.5 text-center text-base shadow-lg transition-all duration-200",
                               isActive
-                                ? "bg-primary-base text-white shadow-primary-base/30 dark:bg-primary-base-dark dark:text-white dark:shadow-primary-base-dark/30"
-                                : "bg-secondary-base text-default-base shadow-secondary-base/20 hover:bg-primary-base hover:text-white hover:shadow-xl dark:bg-secondary-base-dark dark:text-default-base-dark dark:shadow-secondary-base-dark/20 dark:hover:bg-primary-base-dark dark:hover:text-white",
+                                ? "bg-primary-base shadow-primary-base/30 dark:bg-primary-base-dark dark:shadow-primary-base-dark/30 text-white dark:text-white"
+                                : "bg-secondary-base text-default-base shadow-secondary-base/20 hover:bg-primary-base dark:bg-secondary-base-dark dark:text-default-base-dark dark:shadow-secondary-base-dark/20 dark:hover:bg-primary-base-dark hover:text-white hover:shadow-xl dark:hover:text-white",
                             ],
                             // Regular nav item text colors
                             !isContact && [
@@ -110,7 +110,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                             {!isBlog && !isContact && isActive && (
                               <motion.span
                                 layoutId="main-mobile-active-indicator"
-                                className="absolute -bottom-1 left-0 right-0 h-0.5 w-full bg-primary-base dark:bg-primary-base-dark"
+                                className="bg-primary-base dark:bg-primary-base-dark absolute right-0 -bottom-1 left-0 h-0.5 w-full"
                                 initial={false}
                                 transition={{
                                   type: "spring",
@@ -121,7 +121,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                             )}
                           </span>
                           {isBlog && (
-                            <ArrowUpRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                            <ArrowUpRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                           )}
                         </Link>
                       </motion.div>

@@ -52,14 +52,14 @@ export function BlogPostsGrid({
         <span className="text-primary-base dark:text-primary-base-dark">
           {"{"}
         </span>
-        <span className="mx-2 text-primary-base/60 dark:text-primary-base-dark/60">
+        <span className="text-primary-base/60 dark:text-primary-base-dark/60 mx-2">
           No posts found
         </span>
         <span className="text-primary-base dark:text-primary-base-dark">
           {"}"}
         </span>
       </div>
-      <p className="mb-6 text-primary-base dark:text-primary-base-dark">
+      <p className="text-primary-base dark:text-primary-base-dark mb-6">
         {searchQuery || selectedTags.length > 0
           ? "Try different search terms or clear filters"
           : "Coming soon..."}
@@ -67,7 +67,7 @@ export function BlogPostsGrid({
       {(searchQuery || selectedTags.length > 0) && (
         <button
           onClick={clearFilters}
-          className="rounded-lg bg-accent-base px-6 py-3 text-sm text-white transition-colors hover:bg-accent-base/80 dark:bg-accent-base-dark dark:hover:bg-accent-base-dark/80"
+          className="bg-accent-base hover:bg-accent-base/80 dark:bg-accent-base-dark dark:hover:bg-accent-base-dark/80 rounded-lg px-6 py-3 text-sm text-white transition-colors"
         >
           Clear all filters
         </button>

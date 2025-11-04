@@ -271,7 +271,7 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
           >
             <FiCopy className="h-4 w-4" />
             <span>Copy Email</span>
-            <span className="ml-auto text-xs text-default-base/60 dark:text-default-base-dark/60">
+            <span className="text-default-base/60 dark:text-default-base-dark/60 ml-auto text-xs">
               {contactData.email}
             </span>
           </CommandItem>

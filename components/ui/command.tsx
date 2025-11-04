@@ -14,7 +14,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={cn(
-      "flex h-full w-full flex-col overflow-hidden rounded-lg border border-primary-base/20 bg-background-base text-default-base dark:border-primary-base-dark/20 dark:bg-background-base-dark dark:text-default-base-dark",
+      "border-primary-base/20 bg-background-base text-default-base dark:border-primary-base-dark/20 dark:bg-background-base-dark dark:text-default-base-dark flex h-full w-full flex-col overflow-hidden rounded-lg border",
       className,
     )}
     {...props}
@@ -25,9 +25,9 @@ Command.displayName = CommandPrimitive.displayName;
 const CommandDialog = ({ children, ...props }: DialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent className="overflow-hidden border border-primary-base/20 bg-background-base p-0 shadow-2xl dark:border-primary-base-dark/20 dark:bg-background-base-dark">
+      <DialogContent className="border-primary-base/20 bg-background-base dark:border-primary-base-dark/20 dark:bg-background-base-dark overflow-hidden border p-0 shadow-2xl">
         <DialogTitle className="sr-only">Command Palette</DialogTitle>
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-space-grotesk [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:text-primary-base [&_[cmdk-group-heading]]:dark:text-primary-base-dark [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <Command className="**:[[cmdk-group-heading]]:font-space-grotesk **:[[cmdk-group-heading]]:text-primary-base **:[[cmdk-group-heading]]:dark:text-primary-base-dark [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-semibold **:[[cmdk-group]]:px-2 **:[[cmdk-input]]:h-12 **:[[cmdk-item]]:px-2 **:[[cmdk-item]]:py-3">
           {children}
         </Command>
       </DialogContent>
@@ -40,14 +40,14 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div
-    className="flex items-center border-b border-primary-base/20 bg-primary-base/5 px-3 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5"
+    className="border-primary-base/20 bg-primary-base/5 dark:border-primary-base-dark/20 dark:bg-primary-base-dark/5 flex items-center border-b px-3"
     cmdk-input-wrapper=""
   >
-    <BiSearch className="mr-2 h-5 w-5 shrink-0 text-primary-base/60 dark:text-primary-base-dark/60" />
+    <BiSearch className="text-primary-base/60 dark:text-primary-base-dark/60 mr-2 h-5 w-5 shrink-0" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        "flex h-12 w-full rounded-md bg-transparent py-3 font-space-grotesk text-sm outline-none placeholder:text-default-base/50 disabled:cursor-not-allowed disabled:opacity-50 dark:placeholder:text-default-base-dark/50",
+        "font-space-grotesk placeholder:text-default-base/50 dark:placeholder:text-default-base-dark/50 flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
       {...props}
@@ -64,8 +64,8 @@ const CommandList = React.forwardRef<
   <CommandPrimitive.List
     ref={ref}
     className={cn(
-      "max-h-[300px] overflow-y-auto overflow-x-hidden",
-      "[&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-thumb]:bg-primary-base/20 dark:[&::-webkit-scrollbar-thumb]:bg-primary-base-dark/20 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2",
+      "max-h-[300px] overflow-x-hidden overflow-y-auto",
+      "[&::-webkit-scrollbar-thumb]:bg-primary-base/20 dark:[&::-webkit-scrollbar-thumb]:bg-primary-base-dark/20 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-track]:bg-transparent",
       className,
     )}
     {...props}
@@ -94,7 +94,7 @@ const CommandGroup = React.forwardRef<
   <CommandPrimitive.Group
     ref={ref}
     className={cn(
-      "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
+      "text-foreground **:[[cmdk-group-heading]]:text-muted-foreground overflow-hidden p-1 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium",
       className,
     )}
     {...props}
@@ -110,7 +110,7 @@ const CommandSeparator = React.forwardRef<
   <CommandPrimitive.Separator
     ref={ref}
     className={cn(
-      "-mx-1 h-px bg-primary-base/15 dark:bg-primary-base-dark/15",
+      "bg-primary-base/15 dark:bg-primary-base-dark/15 -mx-1 h-px",
       className,
     )}
     {...props}
@@ -125,11 +125,11 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md px-3 py-2.5 text-sm outline-none transition-colors",
+      "relative flex cursor-default items-center gap-2 rounded-md px-3 py-2.5 text-sm transition-colors outline-none select-none",
       "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
       "hover:bg-primary-base/10 data-[selected=true]:bg-primary-base/15 data-[selected=true]:text-primary-base",
       "dark:hover:bg-primary-base-dark/10 dark:data-[selected=true]:bg-primary-base-dark/15 dark:data-[selected=true]:text-primary-base-dark",
-      "focus-visible:ring-2 focus-visible:ring-primary-base/30 dark:focus-visible:ring-primary-base-dark/30",
+      "focus-visible:ring-primary-base/30 dark:focus-visible:ring-primary-base-dark/30 focus-visible:ring-2",
       "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
       className,
     )}
@@ -146,7 +146,7 @@ const CommandShortcut = ({
   return (
     <span
       className={cn(
-        "ml-auto text-xs tracking-widest text-muted-foreground",
+        "text-muted-foreground ml-auto text-xs tracking-widest",
         className,
       )}
       {...props}

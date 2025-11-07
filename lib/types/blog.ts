@@ -57,10 +57,9 @@ export interface SanityBlogPost extends SanityDocument {
   seo?: {
     metaTitle?: string;
     metaDescription?: string;
+    ogImage?: SanityImage;
   };
 }
-
-// Transformed types for your UI (easier to work with)
 export interface Author {
   id: string;
   name: string;
@@ -87,6 +86,7 @@ export interface BlogPost {
   seo?: {
     metaTitle?: string;
     metaDescription?: string;
+    ogImage?: SanityImage;
   };
 }
 

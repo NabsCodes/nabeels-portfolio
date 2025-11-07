@@ -421,6 +421,25 @@ export const blogPost = defineType({
           description: "Description for search engines (max 160 characters)",
           validation: (Rule) => Rule.max(160),
         },
+        {
+          name: "ogImage",
+          title: "OG Image",
+          type: "image",
+          description:
+            "Open Graph image for social media sharing (recommended: 1200x630px). If not set, will use default portfolio image.",
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alt Text",
+              description: "Important for accessibility",
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
       ],
       options: {
         collapsible: true,

@@ -30,7 +30,14 @@ const BLOG_POST_BY_SLUG_QUERY = `
     publishedAt,
     updatedAt,
     readingTime,
-    seo
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage {
+        asset,
+        alt
+      }
+    }
   }
 `;
 

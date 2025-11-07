@@ -157,7 +157,7 @@ export function BlogSearch({
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <button
                 onClick={clearFilters}
-                className="flex items-center gap-2 rounded-lg bg-red-500/10 px-3 py-1.5 text-xs text-red-600 transition-colors hover:bg-red-500/20 dark:text-red-400"
+                className="flex w-fit items-center gap-2 rounded-lg bg-red-500/10 px-3 py-1.5 text-xs text-red-600 transition-colors hover:bg-red-500/20 dark:text-red-400"
               >
                 <X className="h-3 w-3" />
                 Clear all filters

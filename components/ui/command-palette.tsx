@@ -31,6 +31,7 @@ import { FiCopy, FiDownload } from "react-icons/fi";
 import { projectsData, contactData, heroContent } from "@/lib/data";
 import { useCommandPalette } from "@/contexts/command-palette-context";
 import { useToast } from "@/contexts/toast-context";
+import { useSmartNavigation } from "@/hooks/use-smart-navigation";
 
 interface CommandPaletteProps {
   blogPosts?: Array<{
@@ -44,6 +45,7 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
   const router = useRouter();
   const { setTheme } = useTheme();
   const { showToast } = useToast();
+  const { isBlogPage } = useSmartNavigation();
 
   // Keyboard shortcuts
   React.useEffect(() => {
@@ -85,6 +87,7 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
     runCommand(() => router.push(path));
   };
 
+  // Scroll to section
   const scrollToSection = (sectionId: string) => {
     runCommand(() => {
       const element = document.getElementById(sectionId);
@@ -127,58 +130,81 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
         {/* Quick Navigation */}
         <CommandGroup heading="Quick Navigation">
           <CommandItem
-            onSelect={() => scrollToSection("hero")}
+            onSelect={() => {
+              scrollToSection("hero");
+              navigateTo("/");
+            }}
             className="gap-2"
           >
             <AiOutlineHome className="h-4 w-4" />
             <span>Home</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => scrollToSection("about")}
+            onSelect={() => {
+              scrollToSection("about");
+              navigateTo("/#about");
+            }}
             className="gap-2"
           >
             <AiOutlineUser className="h-4 w-4" />
             <span>About</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => scrollToSection("projects")}
+            onSelect={() => {
+              scrollToSection("projects");
+              navigateTo("/#projects");
+            }}
             className="gap-2"
           >
             <HiOutlineBriefcase className="h-4 w-4" />
             <span>Projects</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => scrollToSection("skills")}
+            onSelect={() => {
+              scrollToSection("skills");
+              navigateTo("/#skills");
+            }}
             className="gap-2"
           >
             <AiOutlineThunderbolt className="h-4 w-4" />
             <span>Skills</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => scrollToSection("experience")}
+            onSelect={() => {
+              scrollToSection("experience");
+              navigateTo("/#experience");
+            }}
             className="gap-2"
           >
             <AiOutlineCode className="h-4 w-4" />
             <span>Experience</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => scrollToSection("testimonials")}
+            onSelect={() => {
+              scrollToSection("testimonials");
+              navigateTo("/#testimonials");
+            }}
             className="gap-2"
           >
             <AiOutlineStar className="h-4 w-4" />
             <span>Testimonials</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => scrollToSection("contact")}
+            onSelect={() => {
+              scrollToSection("contact");
+              navigateTo("/#contact");
+            }}
             className="gap-2"
           >
             <AiOutlineMail className="h-4 w-4" />
             <span>Contact</span>
           </CommandItem>
-          <CommandItem onSelect={() => navigateTo("/blog")} className="gap-2">
-            <AiOutlineFileText className="h-4 w-4" />
-            <span>Blog</span>
-          </CommandItem>
+          {!isBlogPage && (
+            <CommandItem onSelect={() => navigateTo("/blog")} className="gap-2">
+              <AiOutlineFileText className="h-4 w-4" />
+              <span>Blog</span>
+            </CommandItem>
+          )}
         </CommandGroup>
 
         <CommandSeparator />

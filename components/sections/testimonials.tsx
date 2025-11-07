@@ -10,19 +10,15 @@ import { fadeInUp, staggerContainer } from "@/lib/animation-presets";
 import { Quote } from "lucide-react";
 import clsx from "clsx";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { useToggleWithScroll } from "@/hooks/use-toggle-with-scroll";
 
 type TestimonialItem = (typeof testimonialsContent.items)[number];
 
 function TestimonialCard({
   t,
   className,
-  containerRef,
 }: {
   t: TestimonialItem;
   className?: string;
-  containerRef?: React.Ref<HTMLDivElement>;
 }) {
   return (
     <motion.div
@@ -31,7 +27,6 @@ function TestimonialCard({
         "group border-primary-base/50 bg-background-base/70 hover:border-primary-base/60 dark:border-primary-base-dark/20 dark:bg-background-base-dark/70 dark:hover:border-primary-base-dark/40 relative h-full overflow-hidden rounded-xl border p-6 backdrop-blur-sm transition-all duration-300",
         className,
       )}
-      ref={containerRef}
     >
       {/* Decorative background icon */}
       <Quote className="text-primary-base/10 dark:text-primary-base-dark/10 pointer-events-none absolute -top-2 -right-2 h-14 w-14 rotate-12" />
@@ -83,17 +78,8 @@ export default function Testimonials() {
     mobileThreshold: 0.3,
     desktopThreshold: 0.9,
   });
-  const {
-    isExpanded: showAllMobile,
-    toggle: toggleMobile,
-    topRef,
-    firstExpandedRef,
-    buttonRef,
-  } = useToggleWithScroll();
 
   const items = testimonialsContent.items;
-  const initialVisibleMobile = 3; // show 3 by default on mobile; reveals the rest on toggle
-  const hasHiddenMobile = items.length > initialVisibleMobile;
 
   return (
     <section
@@ -115,52 +101,18 @@ export default function Testimonials() {
         />
       </div>
 
-      {/* Desktop / tablet grid */}
+      {/* Responsive grid - single column on mobile, 2 columns on tablet, 3 on desktop */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="mt-10 hidden gap-6 md:grid md:grid-cols-2 lg:grid-cols-3"
+        className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
         {items.map((t) => (
           <TestimonialCard key={t.id} t={t} />
         ))}
       </motion.div>
-
-      {/* Mobile stacked with button-controlled expand/collapse */}
-      <div ref={topRef} className="mt-10 space-y-4 md:hidden">
-        {items
-          .slice(0, showAllMobile ? items.length : initialVisibleMobile)
-          .map((t, idx) => (
-            <TestimonialCard
-              key={t.id}
-              t={t}
-              containerRef={
-                showAllMobile && idx === initialVisibleMobile
-                  ? firstExpandedRef
-                  : undefined
-              }
-            />
-          ))}
-
-        {hasHiddenMobile && (
-          <div className="flex justify-center pt-1">
-            <Button
-              ref={buttonRef}
-              variant="outline"
-              size="sm"
-              aria-expanded={showAllMobile}
-              onClick={toggleMobile}
-              className="border-primary-base/40 text-primary-base hover:bg-primary-base/10 dark:border-primary-base-dark/30 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/10"
-            >
-              {showAllMobile
-                ? "Show less"
-                : `Show ${items.length - initialVisibleMobile} more`}
-            </Button>
-          </div>
-        )}
-      </div>
     </section>
   );
 }

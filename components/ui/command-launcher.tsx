@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { AiOutlineSearch } from "react-icons/ai";
 import { cn } from "@/lib/utils";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -11,6 +12,12 @@ interface CommandLauncherProps {
 
 export function CommandLauncher({ className }: CommandLauncherProps) {
   const { setOpen } = useCommandPalette();
+  const pathname = usePathname();
+
+  // Hide command launcher on /studio routes
+  if (pathname?.startsWith("/studio")) {
+    return null;
+  }
 
   return (
     <button

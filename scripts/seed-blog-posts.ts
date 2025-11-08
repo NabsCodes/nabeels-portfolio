@@ -104,87 +104,361 @@ function createCodeBlock(
 
 const seedPosts: SeedBlogPost[] = [
   {
-    title: "Building Websites That Grow: Simple Patterns for Success",
-    slug: "building-websites-that-grow",
+    title:
+      "From Setup to Production: Building Scalable Apps with Next.js and TypeScript",
+    slug: "building-modern-web-apps",
     excerpt:
-      "Learn how to structure web applications so they can grow without breaking. When everything has its place, finding and adding new features becomes easy. Here are practical patterns that help teams work faster and build better products.",
-    category: "Web Development",
-    tags: ["React", "Architecture", "Best Practices"],
-    publishedAt: new Date("2025-11-05T10:00:00Z").toISOString(),
-    readingTime: 6,
+      "A practical guide to building production-ready React applications with Next.js and TypeScript, covering project structure, custom hooks, and deployment strategies.",
+    category: "Tutorial",
+    tags: ["Next.js", "TypeScript", "React", "Web Development"],
+    publishedAt: new Date("2025-01-15T10:00:00Z").toISOString(),
+    readingTime: 8,
     seo: {
-      metaTitle: "Building Scalable Web Applications: Simple Patterns",
+      metaTitle:
+        "From Setup to Production: Building Scalable Apps with Next.js and TypeScript",
       metaDescription:
-        "Learn simple patterns for building web applications that can grow and scale without complexity. Practical advice for developers and product teams.",
+        "A practical guide to building production-ready React applications with Next.js and TypeScript, covering project structure, custom hooks, and deployment strategies.",
     },
     content: [
-      createHeadingBlock("Why Organization Matters", 2),
+      createHeadingBlock("Why Next.js and TypeScript?", 2),
       createTextBlock(
-        "Imagine building a house without a blueprint, or organizing a library where books are randomly placed. That's what happens when web applications aren't structured well. As your project grows, adding new features becomes harder, finding bugs takes longer, and new team members struggle to understand how everything fits together.",
+        "Web development has evolved significantly over the past few years. In this comprehensive guide, we'll explore how to build modern, scalable web applications using Next.js and TypeScript.",
       ),
       createTextBlock(
-        "The good news is you don't need to be a technical expert to understand good organization. It's really about creating clear patterns that make sense. Think about organizing a kitchen where you know exactly where to find everything you need.",
-      ),
-      createHeadingBlock("Organizing by Features, Not by Type", 2),
-      createTextBlock(
-        "One of the most effective ways to structure a web application is to organize code by what it does (features) rather than what it is (types). Think of it like organizing a store: instead of putting all the boxes together, all the labels together, and all the products together, you organize by departments (electronics, clothing, groceries).",
+        "Next.js provides an excellent foundation for React applications with features like Server-Side Rendering (SSR) for better SEO, Static Site Generation (SSG) for optimal performance, API Routes for backend functionality, and Image Optimization out of the box.",
       ),
       createTextBlock(
-        "In web development, this means grouping everything related to user authentication together. So your login form, password reset, and user profile all live in the same place. Instead of putting all forms in one folder and all buttons in another, you keep related functionality together. This makes it way easier to find code and understand how features actually work together.",
+        "TypeScript adds type safety and developer experience improvements that are crucial for large-scale applications.",
+      ),
+      createHeadingBlock("Getting Started", 3),
+      createTextBlock(
+        "First, let's create a new Next.js project with TypeScript:",
       ),
       createCodeBlock(
-        `// Good organization: Everything related to authentication together
-src/
-  features/
-    authentication/
-      login-form.tsx
-      password-reset.tsx
-      user-profile.tsx
-    shopping-cart/
-      cart-items.tsx
-      checkout.tsx
-    shared/
-      buttons.tsx
-      inputs.tsx`,
+        `npx create-next-app@latest my-app --typescript --tailwind --eslint
+cd my-app
+npm run dev`,
+        "bash",
+      ),
+      createTextBlock(
+        "This will set up a project with TypeScript configuration, Tailwind CSS for styling, and ESLint for code quality.",
+      ),
+      createHeadingBlock("Project Structure", 2),
+      createTextBlock(
+        "A well-organized project structure is crucial for maintainability:",
+      ),
+      createCodeBlock(
+        `app/
+├── components/        # Reusable UI components
+├── hooks/            # Custom React hooks
+├── lib/              # Utility functions and configurations
+├── types/            # TypeScript type definitions
+└── (routes)/         # App Router pages`,
+        "text",
+        "project-structure.txt",
+      ),
+      createHeadingBlock("Key Features to Implement", 3),
+      createTextBlock(
+        "Key features include the App Router for better performance and layouts, Server Components to reduce bundle size, Middleware for authentication and redirects, and API Routes for full-stack capabilities.",
+      ),
+      createHeadingBlock("Advanced Patterns", 2),
+      createHeadingBlock("Custom Hooks", 3),
+      createTextBlock("Creating reusable logic with custom hooks:"),
+      createCodeBlock(
+        `import { useState, useEffect } from 'react';
+
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === 'undefined') {
+      return initialValue;
+    }
+    
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(\`Error reading localStorage key "\${key}":\`, error);
+      return initialValue;
+    }
+  });
+
+  const setValue = (value: T | ((val: T) => T)) => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
+    } catch (error) {
+      console.error(\`Error setting localStorage key "\${key}":\`, error);
+    }
+  };
+
+  return [storedValue, setValue] as const;
+}`,
         "typescript",
-        "project-structure.ts",
+        "use-local-storage.ts",
       ),
-      createHeadingBlock("Managing Information Flow", 2),
-      createTextBlock(
-        "Every web application needs to manage information. User data, product listings, shopping cart contents. Think of it like managing inventory in a store. You need to know what you have, where it is, and how to update it when things change.",
+      createHeadingBlock("Theme Provider", 3),
+      createTextBlock("Implementing a dark mode theme provider:"),
+      createCodeBlock(
+        `"use client";
+
+import { createContext, useContext, useEffect, useState } from 'react';
+
+type Theme = 'light' | 'dark' | 'system';
+
+interface ThemeContextProps {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+}
+
+const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<Theme>('system');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as Theme;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    const isDark = theme === 'dark' || 
+      (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    if (isDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
+}`,
+        "typescript",
+        "theme-provider.tsx",
       ),
       createTextBlock(
-        "The key is choosing the right tool for the job. Simple information that only one part of your app needs can stay local (like a shopping cart that only appears on one page). Information that needs to be shared across multiple pages (like user login status) needs a more centralized approach.",
+        "Pro Tip: Always handle edge cases like SSR when working with browser APIs like localStorage or window.",
       ),
-      createHeadingBlock("Making Things Fast", 2),
+      createHeadingBlock("Performance Optimization", 2),
+      createHeadingBlock("Image Optimization", 3),
       createTextBlock(
-        "Speed matters. Users expect websites to load quickly and respond instantly. But here's the thing: you don't need to optimize everything. It's like cooking. You don't need to use every spice in your cabinet. Focus on what actually matters.",
+        "Next.js provides excellent image optimization out of the box:",
+      ),
+      createCodeBlock(
+        `import Image from 'next/image';
+
+export function HeroImage() {
+  return (
+    <Image
+      src="/hero-image.jpg"
+      alt="Hero section image"
+      width={1200}
+      height={600}
+      priority
+      className="rounded-lg"
+    />
+  );
+}`,
+        "jsx",
+        "hero-image.tsx",
+      ),
+      createHeadingBlock("Code Splitting", 3),
+      createTextBlock("Implement dynamic imports for better performance:"),
+      createCodeBlock(
+        `import { lazy, Suspense } from 'react';
+
+const DynamicChart = lazy(() => import('./Chart'));
+
+export function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <Suspense fallback={<div>Loading chart...</div>}>
+        <DynamicChart />
+      </Suspense>
+    </div>
+  );
+}`,
+        "typescript",
+        "dashboard.tsx",
+      ),
+      createHeadingBlock("Deployment Considerations", 2),
+      createTextBlock(
+        "When deploying your Next.js application: Use .env.local for development environment variables, enable compression and minification for build optimization, use Vercel or similar platforms for CDN integration, and consider serverless databases like PlanetScale for database setup.",
       ),
       createTextBlock(
-        "The best approach? Measure first. See what's actually slow, then fix those specific issues. Often, the biggest wins come from simple changes: loading images more efficiently, showing content as it becomes available, and not loading everything at once.",
+        "For more advanced topics, check out the official Next.js documentation.",
       ),
-      createHeadingBlock("Real-World Impact", 2),
+      createTextBlock("Happy coding! 🚀"),
+    ],
+  },
+  {
+    title: "Why I Switched to Tailwind CSS and Never Looked Back",
+    slug: "why-i-switched-to-tailwind-css",
+    excerpt:
+      "My journey from traditional CSS to Tailwind CSS, and why the utility-first approach changed how I think about styling web applications.",
+    category: "Web Development",
+    tags: ["Tailwind CSS", "CSS", "Frontend", "Development"],
+    publishedAt: new Date("2025-01-10T10:00:00Z").toISOString(),
+    readingTime: 6,
+    seo: {
+      metaTitle: "Why I Switched to Tailwind CSS and Never Looked Back",
+      metaDescription:
+        "A developer's perspective on switching to Tailwind CSS and how it changed their approach to styling web applications.",
+    },
+    content: [
+      createHeadingBlock("The Initial Skepticism", 2),
       createTextBlock(
-        "I've worked on projects where code organization made all the difference. When applications are well-organized, everyone benefits. Developers can add features faster, which means products get to market sooner. Bugs are easier to find and fix, which means fewer frustrated users. New team members can contribute sooner, which means better collaboration.",
+        "When I first heard about Tailwind CSS, I was skeptical. Writing styles directly in HTML? That sounded like going back to inline styles, which we'd all agreed was bad practice. I'd spent years learning CSS architecture, BEM methodology, and organizing stylesheets. Why would I throw that away?",
       ),
       createTextBlock(
-        "The investment in good structure pays off quickly. It's like keeping your workspace organized. It takes a bit of effort upfront, but it saves time every single day afterward. I've seen teams cut their development time in half just by organizing their code better.",
+        "But after building a few projects with Tailwind, I realized I had it all wrong. It wasn't about abandoning good practices—it was about a different way of thinking about styling that actually made more sense for modern web development.",
+      ),
+      createHeadingBlock("What Changed My Mind", 2),
+      createTextBlock(
+        "The turning point came when I was building this portfolio. I needed to create responsive layouts, implement dark mode, and ensure everything looked consistent. With traditional CSS, I'd spend hours writing media queries, creating custom classes, and managing a growing stylesheet.",
+      ),
+      createTextBlock(
+        "With Tailwind, I found myself moving faster. Not because I was writing less code—honestly, sometimes there's more—but because I wasn't context-switching between files. I could see exactly what styles were applied right there in the component. No more hunting through CSS files wondering where a style came from.",
+      ),
+      createCodeBlock(
+        `// Before: Separate CSS file
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 768px) {
+  .card {
+    flex-direction: row;
+  }
+}
+
+// With Tailwind: Right there in the component
+<div className="flex flex-col md:flex-row p-6 bg-white rounded-lg shadow-sm hover:shadow-md">
+  {/* content */}
+</div>`,
+        "typescript",
+      ),
+      createHeadingBlock("The Real Benefits", 2),
+      createTextBlock(
+        "What I love most about Tailwind isn't the speed—though that's nice. It's the consistency. When I use `p-4`, I know it's always 1rem of padding. When I use `text-primary-base`, I know it matches my design system. There's no guessing, no inconsistencies, no 'wait, did I use padding-16 or padding-large here?'",
+      ),
+      createTextBlock(
+        "Dark mode became trivial. Instead of writing separate stylesheets or complex CSS variables, I just add `dark:` variants. The same component works in both themes without any extra effort. It's elegant.",
+      ),
+      createCodeBlock(
+        `<div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6 rounded-lg">
+  <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+    This Just Works
+  </h2>
+  <p className="text-gray-600 dark:text-gray-400">
+    No separate stylesheets needed.
+  </p>
+</div>`,
+        "jsx",
+      ),
+      createHeadingBlock("The Learning Curve", 2),
+      createTextBlock(
+        "I won't lie—there was a learning curve. The class names felt verbose at first. But after a few weeks, I stopped thinking about the classes and started thinking about the design. The utility classes became muscle memory, like typing.",
+      ),
+      createTextBlock(
+        "The Tailwind IntelliSense extension helped tremendously. Having autocomplete for all the utilities meant I didn't need to memorize everything. I could discover new utilities as I needed them.",
+      ),
+      createHeadingBlock("What I Still Use Custom CSS For", 2),
+      createTextBlock(
+        "I'm not dogmatic about it. There are still times when custom CSS makes sense. Complex animations, unique layouts that don't fit Tailwind's model, or when I need to style third-party components that I can't modify directly.",
+      ),
+      createTextBlock(
+        "But for 90% of what I build, Tailwind covers it. And when I do need custom CSS, I use Tailwind's `@apply` directive or add it to my global styles. The best part? I'm not fighting against Tailwind—it's designed to work alongside custom CSS when needed.",
+      ),
+      createCodeBlock(
+        `// Custom animation that doesn't fit Tailwind's model
+@keyframes customSlide {
+  from {
+    transform: translateX(-100%) rotate(-5deg);
+  }
+  to {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+.custom-animation {
+  animation: customSlide 0.5s ease-out;
+}
+
+// Still use Tailwind for everything else
+<div className="p-6 bg-white rounded-lg custom-animation">
+  Content here
+</div>`,
+        "css",
+      ),
+      createHeadingBlock("The Migration Experience", 2),
+      createTextBlock(
+        "When I migrated this portfolio to Tailwind CSS v4, I was worried about breaking changes. But the migration was smoother than expected. The new CSS-first configuration made sense, and having everything in one place (globals.css) actually simplified things.",
+      ),
+      createTextBlock(
+        "The biggest win? No more `tailwind.config.ts` file cluttering my project. Everything is defined in CSS using `@theme`, which feels more natural. Colors, spacing, fonts—all in one place, easy to find and modify.",
+      ),
+      createHeadingBlock("Why It Works for Me", 2),
+      createTextBlock(
+        "Tailwind CSS fits how I work. I think in terms of components, not stylesheets. When I'm building a button component, I want to see all its styles right there. When I'm adjusting spacing, I want to do it inline, not jump to another file.",
+      ),
+      createTextBlock(
+        "It's not for everyone, and that's okay. Some developers prefer the separation of concerns that traditional CSS provides. But for me, Tailwind has made styling more enjoyable and less frustrating. I spend less time fighting CSS and more time building features.",
+      ),
+      createHeadingBlock("Final Thoughts", 2),
+      createTextBlock(
+        "If you're on the fence about Tailwind CSS, my advice is simple: try it on a small project. Don't try to migrate everything at once. Build something new with it, see how it feels, and decide if it fits your workflow.",
+      ),
+      createTextBlock(
+        "For me, it's become an essential tool. It's not perfect—no tool is—but it's made me more productive and my code more maintainable. And honestly, that's what matters most.",
       ),
     ],
   },
   {
-    title: "Making Websites Faster: A Simple Guide to Better Performance",
+    title:
+      "Speed Matters: Performance Optimization Strategies for React Applications",
     slug: "making-websites-faster-performance-guide",
     excerpt:
-      "Learn how modern web development techniques can make websites load faster and feel more responsive. No technical background needed. Just practical insights about why speed matters and how to achieve it.",
+      "Practical techniques to improve React app performance, from image optimization to code splitting. Real strategies that deliver measurable results.",
     category: "Web Development",
     tags: ["Next.js", "Performance", "Web Development"],
     publishedAt: new Date("2025-10-29T10:00:00Z").toISOString(),
     readingTime: 5,
     seo: {
-      metaTitle: "Making Websites Faster: Performance Guide",
+      metaTitle:
+        "Speed Matters: Performance Optimization Strategies for React Applications",
       metaDescription:
-        "Learn simple techniques to make websites load faster and feel more responsive. Practical advice for better user experience.",
+        "Practical techniques to improve React app performance, from image optimization to code splitting. Real strategies that deliver measurable results.",
     },
     content: [
       createHeadingBlock("Why Speed Matters", 2),
@@ -219,81 +493,19 @@ src/
   },
   {
     title:
-      "Why Website Speed Affects Your Business: Understanding Core Web Vitals",
-    slug: "why-website-speed-affects-business",
-    excerpt:
-      "Learn why website speed matters for your business and how Google measures it. Simple explanations of technical metrics that affect your search rankings and user experience.",
-    category: "Web Development",
-    tags: ["Performance", "SEO", "Web Development"],
-    publishedAt: new Date("2025-10-22T10:00:00Z").toISOString(),
-    readingTime: 7,
-    seo: {
-      metaTitle: "Why Website Speed Affects Your Business",
-      metaDescription:
-        "Learn why website speed matters for business success and how Google measures it. Simple guide to Core Web Vitals.",
-    },
-    content: [
-      createHeadingBlock("Why Speed Is a Business Issue", 2),
-      createTextBlock(
-        "Imagine you're shopping at a physical store. If it takes forever to find what you need, you'll probably leave. The same thing happens online, but faster. Studies show that every second of delay can cost businesses 7% in conversions. That's real money walking out the door.",
-      ),
-      createTextBlock(
-        "Google knows this too, which is why they've created Core Web Vitals. These are three simple measurements that tell you how fast and responsive your website is. These metrics don't just affect user experience. They directly impact your search rankings. Better rankings mean more visitors, which means more business.",
-      ),
-      createHeadingBlock("The Three Measurements That Matter", 2),
-      createTextBlock(
-        "Google measures three main things: how quickly your main content appears (like the headline of an article), how fast your site responds when someone clicks something, and whether things jump around on the page while loading.",
-      ),
-      createHeadingBlock("1. How Fast Content Appears", 2),
-      createTextBlock(
-        "The first measurement is like timing how long it takes for the main course to arrive at your table. Google wants to see your most important content (like a hero image or main headline) appear within 2.5 seconds. If it takes longer, users get frustrated and leave.",
-      ),
-      createTextBlock(
-        "The solution? Optimize your images, don't load everything at once, and show the most important content first. It's like serving appetizers while the main course is being prepared. Users see something useful immediately, which keeps them engaged.",
-      ),
-      createHeadingBlock("2. How Fast Your Site Responds", 2),
-      createTextBlock(
-        "The second measurement checks how quickly your site responds when someone clicks a button or link. Think of it like testing how fast a door opens when you push it. Google wants this to happen in under 100 milliseconds. That's basically instant.",
-      ),
-      createTextBlock(
-        "This is about making sure your website doesn't feel sluggish. When someone clicks something, it should respond immediately. If there's a delay, it feels broken, even if it's working correctly.",
-      ),
-      createHeadingBlock("3. Preventing Page Jumps", 2),
-      createTextBlock(
-        "The third measurement checks if things on your page jump around while loading. Have you ever been reading an article when suddenly an ad loads and pushes everything down? That's what Google is trying to prevent.",
-      ),
-      createTextBlock(
-        "The solution is simple: reserve space for content that will load later. It's like setting the table before guests arrive. Everything has its place, so nothing moves unexpectedly. This prevents that jarring experience where you're reading something and suddenly everything shifts.",
-      ),
-      createHeadingBlock("How to Improve", 2),
-      createTextBlock(
-        "The good news? You don't need to be a technical expert to understand these concepts. Start by measuring your current performance using free tools like Google's PageSpeed Insights. Then, work with your development team to address the biggest issues first.",
-      ),
-      createTextBlock(
-        "Often, the biggest improvements come from simple changes. Optimizing images, loading content progressively, and ensuring your site responds quickly to user interactions. These improvements don't just make Google happy. They make your users happy too, which is what really matters.",
-      ),
-      createHeadingBlock("The Business Impact", 2),
-      createTextBlock(
-        "When websites are fast, everyone wins. Users get a better experience, which means they're more likely to convert. Google ranks your site higher, which means more organic traffic. And faster sites often have lower hosting costs because they use resources more efficiently.",
-      ),
-      createTextBlock(
-        "It's one of those rare situations where doing the right thing for users also happens to be the right thing for business. Speed isn't just a technical metric. It's a competitive advantage. When your site loads faster than your competitors, you win.",
-      ),
-    ],
-  },
-  {
-    title: "Writing Better Code: How TypeScript Helps Prevent Mistakes",
+      "TypeScript in Practice: How Type Safety Transformed My Development Workflow",
     slug: "typescript-helps-prevent-mistakes",
     excerpt:
-      "Learn how TypeScript helps developers catch errors before they become problems. It's a tool that adds structure to JavaScript. Think of it like spell-check for code, but much more powerful.",
+      "Real-world insights on using TypeScript effectively. How type safety catches bugs early, improves team collaboration, and makes code more maintainable.",
     category: "TypeScript",
     tags: ["TypeScript", "JavaScript", "Best Practices"],
     publishedAt: new Date("2025-10-15T10:00:00Z").toISOString(),
     readingTime: 6,
     seo: {
-      metaTitle: "How TypeScript Helps Prevent Coding Mistakes",
+      metaTitle:
+        "TypeScript in Practice: How Type Safety Transformed My Development Workflow",
       metaDescription:
-        "Learn how TypeScript helps developers write better code and catch errors early. Simple explanation of a powerful tool.",
+        "Real-world insights on using TypeScript effectively. How type safety catches bugs early, improves team collaboration, and makes code more maintainable.",
     },
     content: [
       createHeadingBlock("What Is TypeScript?", 2),
@@ -358,18 +570,20 @@ function Button({ label, onClick, variant = 'primary' }: ButtonProps) {
     ],
   },
   {
-    title: "Building Websites Everyone Can Use: Why Accessibility Matters",
+    title:
+      "Accessibility First: Building Inclusive React Applications That Work for Everyone",
     slug: "building-websites-everyone-can-use",
     excerpt:
-      "Learn why building accessible websites isn't just the right thing to do. It's good for business too. Discover simple ways to make your website usable by everyone, including people with disabilities.",
+      "Beyond compliance: practical strategies for building accessible React applications. Real techniques that improve usability for all users while enhancing SEO and maintainability.",
     category: "Web Development",
     tags: ["Accessibility", "Web Development", "Best Practices"],
     publishedAt: new Date("2025-10-08T10:00:00Z").toISOString(),
     readingTime: 7,
     seo: {
-      metaTitle: "Building Accessible Websites: Why It Matters",
+      metaTitle:
+        "Accessibility First: Building Inclusive React Applications That Work for Everyone",
       metaDescription:
-        "Learn why accessibility matters for websites and how to make your site usable by everyone. Good for users and business.",
+        "Beyond compliance: practical strategies for building accessible React applications. Real techniques that improve usability for all users while enhancing SEO and maintainability.",
     },
     content: [
       createHeadingBlock("What Is Accessibility?", 2),
@@ -430,18 +644,20 @@ function Button({ label, onClick, variant = 'primary' }: ButtonProps) {
     ],
   },
   {
-    title: "Managing Information in Web Applications: A Simple Guide",
+    title:
+      "React State Management: Choosing the Right Approach for Your Application",
     slug: "managing-information-web-applications",
     excerpt:
-      "Learn how web applications keep track of information. From user data to shopping cart contents. Simple explanations of different approaches and when to use each one.",
+      "A practical guide to React state management. When to use local state, context, or external libraries. Real-world patterns for managing data in modern React applications.",
     category: "React",
     tags: ["React", "State Management", "Best Practices"],
     publishedAt: new Date("2025-10-01T10:00:00Z").toISOString(),
     readingTime: 6,
     seo: {
-      metaTitle: "Managing Information in Web Applications",
+      metaTitle:
+        "React State Management: Choosing the Right Approach for Your Application",
       metaDescription:
-        "Learn how web applications manage information and data. Simple guide to state management concepts.",
+        "A practical guide to React state management. When to use local state, context, or external libraries. Real-world patterns for managing data in modern React applications.",
     },
     content: [
       createHeadingBlock("What Is State Management?", 2),
@@ -492,74 +708,6 @@ function Button({ label, onClick, variant = 'primary' }: ButtonProps) {
       ),
       createTextBlock(
         "When done well, users never think about state management. They just see a website that works smoothly and remembers what it should remember. That's the mark of good state management. It's invisible to users, but essential for developers.",
-      ),
-    ],
-  },
-  {
-    title: "Styling Websites: Two Popular Approaches Explained",
-    slug: "styling-websites-two-approaches",
-    excerpt:
-      "Learn about two popular ways to style websites: writing styles in JavaScript files or using utility classes. Simple explanations of each approach and when to use them.",
-    category: "Frontend",
-    tags: ["CSS", "Tailwind CSS", "Frontend"],
-    publishedAt: new Date("2025-09-28T10:00:00Z").toISOString(),
-    readingTime: 5,
-    seo: {
-      metaTitle: "Styling Websites: CSS Approaches Explained",
-      metaDescription:
-        "Learn about different approaches to styling websites. Simple guide to CSS-in-JS and utility-first CSS.",
-    },
-    content: [
-      createHeadingBlock("The Styling Challenge", 2),
-      createTextBlock(
-        "Every website needs styling. Colors, spacing, fonts, layouts. But there are different ways to add styles, and each has its advantages. Think of it like decorating a room. You could paint each wall individually, which is traditional CSS. You could write detailed instructions for each wall, which is CSS-in-JS. Or you could use pre-made color swatches, which is utility-first CSS.",
-      ),
-      createHeadingBlock("The Traditional Way: Separate CSS Files", 2),
-      createTextBlock(
-        "Traditionally, websites used separate CSS files. You'd write styles in one file and reference them in your HTML. It's like having a style guide in a separate notebook. It's organized, but sometimes hard to keep track of what styles apply to which components. As projects grew, this became a problem.",
-      ),
-      createTextBlock(
-        "This works, but as websites got more complex, developers wanted styles to be closer to the components they styled. That's where newer approaches came in.",
-      ),
-      createHeadingBlock("CSS-in-JS: Styles in JavaScript", 2),
-      createTextBlock(
-        "CSS-in-JS is like writing styling instructions directly in your component code. Instead of having styles in a separate file, you write them alongside the component they style. It's like having the decoration instructions right next to the furniture description.",
-      ),
-      createTextBlock(
-        "The advantage? Styles are scoped to specific components, so you don't have to worry about styles from one component affecting another. It's like having separate rooms where each room's decoration doesn't affect the others.",
-      ),
-      createTextBlock(
-        "This approach is great for complex, dynamic styling. Like components that change appearance based on user interactions or data. But it can be slower to develop simple, consistent designs. Sometimes you just need to style a button, and writing JavaScript for that feels like overkill.",
-      ),
-      createHeadingBlock("Utility-First: Pre-Made Building Blocks", 2),
-      createTextBlock(
-        "Utility-first CSS (like Tailwind CSS) is like having a box of pre-made building blocks. Instead of writing custom styles, you use small, reusable utility classes. Want a blue button? Use the 'blue' and 'button' classes. Want spacing? Use the 'padding' classes.",
-      ),
-      createTextBlock(
-        "Think of it like LEGO blocks. You have standard pieces that you combine to build what you need. This makes it fast to build consistent designs because everyone uses the same building blocks. There's less decision fatigue. You just pick the pieces you need.",
-      ),
-      createTextBlock(
-        "The advantage? Speed and consistency. You can build interfaces quickly, and everything looks consistent because everyone uses the same design tokens (colors, spacing, etc.). The downside? For highly custom designs, you might need to write custom CSS anyway.",
-      ),
-      createHeadingBlock("Which Should You Choose?", 2),
-      createTextBlock(
-        "The answer depends on your project. For most websites, utility-first CSS like Tailwind is faster and easier to maintain. It's like using a well-stocked toolbox. You have everything you need, and it's organized. But for highly custom designs, you might need something more flexible.",
-      ),
-      createTextBlock(
-        "For component libraries or applications with highly dynamic, complex styling needs, CSS-in-JS might be better. It's like having a custom workshop where you can build exactly what you need.",
-      ),
-      createTextBlock(
-        "Many successful projects use both: utility classes for layout and common styles, and custom CSS (or CSS-in-JS) for complex, component-specific styling. It's like using standard furniture for most rooms, but custom pieces for special areas.",
-      ),
-      createHeadingBlock("The Bottom Line", 2),
-      createTextBlock(
-        "Both approaches have their place. Utility-first CSS is great for speed and consistency. CSS-in-JS is great for complex, dynamic styling. The best choice depends on your team, your project, and your specific needs.",
-      ),
-      createTextBlock(
-        "The good news? You don't have to choose exclusively. Many teams use utility classes for 80% of their styling and custom CSS for the remaining 20%. This gives you the speed of utilities with the flexibility of custom styles when you need it.",
-      ),
-      createTextBlock(
-        "At the end of the day, the best approach is the one that helps your team build better websites faster. Whether that's utility-first, CSS-in-JS, or a combination, the goal is always the same: create beautiful, functional websites that users love.",
       ),
     ],
   },

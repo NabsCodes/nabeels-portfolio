@@ -214,7 +214,7 @@ export function BlogPortableTextRenderer({
       h1: ({ children, value }: any) => (
         <h1
           id={value?._key}
-          className="font-raleway text-default-base dark:text-default-base-dark mt-12 mb-6 scroll-mt-20 text-4xl leading-tight font-bold first:mt-0"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-6 mb-6 scroll-mt-20 text-4xl leading-tight font-bold first:mt-0"
         >
           {children}
         </h1>
@@ -223,7 +223,7 @@ export function BlogPortableTextRenderer({
       h2: ({ children, value }: any) => (
         <h2
           id={value?._key}
-          className="font-raleway text-default-base dark:text-default-base-dark mt-10 mb-4 scroll-mt-20 text-3xl leading-tight font-semibold"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-4 mb-4 scroll-mt-20 text-3xl leading-tight font-semibold"
         >
           {children}
         </h2>
@@ -232,7 +232,7 @@ export function BlogPortableTextRenderer({
       h3: ({ children, value }: any) => (
         <h3
           id={value?._key}
-          className="font-raleway text-default-base dark:text-default-base-dark mt-8 mb-3 scroll-mt-20 text-2xl leading-snug font-semibold"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-3 mb-3 scroll-mt-20 text-2xl leading-snug font-semibold"
         >
           {children}
         </h3>
@@ -241,7 +241,7 @@ export function BlogPortableTextRenderer({
       h4: ({ children, value }: any) => (
         <h4
           id={value?._key}
-          className="font-raleway text-default-base dark:text-default-base-dark mt-6 mb-3 scroll-mt-20 text-xl leading-snug font-semibold"
+          className="font-raleway text-default-base dark:text-default-base-dark mt-3 mb-3 scroll-mt-20 text-xl leading-snug font-semibold"
         >
           {children}
         </h4>

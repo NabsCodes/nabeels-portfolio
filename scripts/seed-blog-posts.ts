@@ -725,17 +725,18 @@ async function seedBlogPosts() {
       }`,
     );
 
-    const existingPostsMap = new Map<string, string>(
+    // Create a map of existing posts by slug
+    const existingPostsMap: Map<string, string> = new Map(
       existingPosts.map((post: { _id: string; slug: string }) => [
         post.slug,
         post._id,
       ]),
     );
 
+    // Separate posts into create and update lists
     const postsToCreate: SeedBlogPost[] = [];
     const postsToUpdate: Array<{ id: string; post: SeedBlogPost }> = [];
 
-    // Separate posts into create and update lists
     seedPosts.forEach((post) => {
       const existingId = existingPostsMap.get(post.slug);
       if (existingId) {
@@ -760,7 +761,7 @@ async function seedBlogPosts() {
       );
 
       const createdResults = await Promise.all(createTransactions);
-      createdResults.forEach((post, index) => {
+      createdResults.forEach((_post, index) => {
         console.log(`   ✨ Created: ${postsToCreate[index].title}`);
       });
     }
@@ -788,7 +789,7 @@ async function seedBlogPosts() {
       );
 
       const updatedResults = await Promise.all(updateTransactions);
-      updatedResults.forEach((post, index) => {
+      updatedResults.forEach((_post, index) => {
         console.log(`   ✏️  Updated: ${postsToUpdate[index].post.title}`);
       });
     }
@@ -838,7 +839,7 @@ if (require.main === module) {
       console.log("\n🎉 Done!");
       process.exit(0);
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       console.error("\n💥 Seeding failed:", error);
       process.exit(1);
     });

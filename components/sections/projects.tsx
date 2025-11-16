@@ -122,14 +122,6 @@ export default function Projects() {
   // Check if there are no projects at all (not filtered, but empty data)
   const hasNoProjects = projectsData.length === 0;
 
-  // Handle tech badge click from cards
-  const handleTechClick = (techName: string) => {
-    handleFilterChange(techName, "tech");
-    // Smooth scroll to top of section
-    const projectsSection = document.getElementById("projects");
-    projectsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   // Listen for filter events from command palette
   useEffect(() => {
     const handleFilterEvent = (e: Event) => {
@@ -237,7 +229,6 @@ export default function Projects() {
                             live: project.links.live || undefined,
                           },
                         }}
-                        onTechClick={handleTechClick}
                       />
                     </div>
                   ))}
@@ -286,7 +277,6 @@ export default function Projects() {
                               live: project.links.live || undefined,
                             },
                           }}
-                          onTechClick={handleTechClick}
                         />
                       </div>
                     ))}

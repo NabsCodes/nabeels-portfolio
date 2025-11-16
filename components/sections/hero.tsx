@@ -90,7 +90,6 @@ export default function Hero() {
             </span>
           </HoverBorderGradient>
         </motion.div>
-
         {/* Main Content */}
         <div className="relative">
           {/* Name Section with Terminal-style Decoration */}

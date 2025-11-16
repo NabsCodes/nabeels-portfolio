@@ -1,30 +1,26 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import { FiGithub } from "react-icons/fi";
-import { ExternalLink, ChevronDown, ChevronUp, Folder } from "lucide-react";
+import { ExternalLink, ChevronDown, Folder } from "lucide-react";
 import { ProjectData } from "@/lib/types";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useExpandableContent } from "@/hooks/use-expandable-content";
+import clsx from "clsx";
 
-const OtherProjectCard = ({
-  project,
-  onTechClick,
-}: {
-  project: ProjectData;
-  onTechClick?: (techName: string) => void;
-}) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isClampable, setIsClampable] = useState(false);
-  const textRef = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    if (textRef.current) {
-      setIsClampable(
-        textRef.current.scrollHeight > textRef.current.clientHeight,
-      );
-    }
-  }, [project.description]);
+const OtherProjectCard = ({ project }: { project: ProjectData }) => {
+  const {
+    isExpanded,
+    isClampable,
+    toggle,
+    motionProps,
+    contentRef,
+    measureRef,
+    clampClassName,
+  } = useExpandableContent<HTMLParagraphElement>({
+    collapsedHeight: "4rem",
+    clampClassName: "line-clamp-3",
+  });
 
   return (
     <motion.div
@@ -72,28 +68,32 @@ const OtherProjectCard = ({
 
           {/* Description with read more */}
           <div className="relative">
-            <motion.div
-              initial={{ height: "4.2rem" }}
-              animate={{ height: isExpanded ? "auto" : "4.2rem" }}
-              transition={{
-                duration: 0.4,
-                ease: "easeInOut",
-              }}
-              className="overflow-hidden"
+            <p
+              ref={measureRef}
+              className={clsx(
+                "text-default-base/70 dark:text-default-base-dark/70 text-sm leading-relaxed",
+                "pointer-events-none invisible absolute top-0 left-0 -z-10 w-full",
+              )}
+              aria-hidden="true"
             >
+              {project.description}
+            </p>
+
+            <motion.div {...motionProps} className="overflow-hidden">
               <p
-                ref={textRef}
-                className={`text-default-base/70 dark:text-default-base-dark/70 text-sm leading-relaxed ${
-                  !isExpanded ? "line-clamp-3" : ""
-                }`}
+                ref={contentRef}
+                className={clsx(
+                  "text-default-base/70 dark:text-default-base-dark/70 text-sm leading-relaxed",
+                  !isExpanded && clampClassName,
+                )}
               >
                 {project.description}
               </p>
             </motion.div>
 
-            {isClampable && (
+            {(isClampable || isExpanded) && (
               <button
-                onClick={() => setIsExpanded(!isExpanded)}
+                onClick={toggle}
                 className="font-space-grotesk text-primary-base/60 hover:text-primary-base focus-visible:ring-primary-base/40 dark:text-primary-base-dark/60 dark:hover:text-primary-base-dark dark:focus-visible:ring-primary-base-dark/40 mt-1 flex items-center gap-1 text-xs transition-colors focus:outline-none focus-visible:ring-2"
                 aria-expanded={isExpanded}
                 aria-label={
@@ -106,11 +106,7 @@ const OtherProjectCard = ({
                   animate={{ rotate: isExpanded ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  {isExpanded ? (
-                    <ChevronUp className="h-3 w-3" />
-                  ) : (
-                    <ChevronDown className="h-3 w-3" />
-                  )}
+                  <ChevronDown className="h-3 w-3" />
                 </motion.div>
               </button>
             )}
@@ -120,18 +116,13 @@ const OtherProjectCard = ({
           <div className="mt-4">
             <div className="flex flex-wrap gap-2">
               {project.tech.map(({ name, icon: Icon }) => (
-                <button
+                <div
                   key={name}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onTechClick?.(name);
-                  }}
-                  className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 focus-visible:ring-primary-base/40 dark:bg-primary-base-dark/5 dark:text-primary-base-dark/80 dark:hover:bg-primary-base-dark/15 dark:focus-visible:ring-primary-base-dark/40 flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs transition-all hover:scale-105 focus:outline-none focus-visible:ring-2"
-                  aria-label={`Filter projects by ${name}`}
+                  className="bg-primary-base/10 text-primary-base dark:bg-primary-base-dark/5 dark:text-primary-base-dark/80 flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs"
                 >
                   <Icon className="h-3.5 w-3.5" />
                   <span>{name}</span>
-                </button>
+                </div>
               ))}
             </div>
           </div>

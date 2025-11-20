@@ -30,11 +30,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   // Basic
   title: {
-    default: "Nabeel Hassan | Web Developer",
+    default: "Nabeel Hassan | Software Engineer",
     template: "%s | Nabeel Hassan",
   },
   description:
-    "Hey, I'm Nabeel! A Web Developer specialized in building modern web applications with React, Next.js, and TypeScript. Crafting responsive, user-centric solutions with clean code and optimal performance.",
+    "Hey, I'm Nabeel! A Software Engineer specialized in building modern web applications with React, Next.js, and TypeScript. Crafting responsive, user-centric solutions with clean code and optimal performance.",
   metadataBase: new URL("https://nabeelhassan.dev"),
   applicationName: "Nabeel Hassan Portfolio",
 
@@ -98,9 +98,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Nabeel Hassan Portfolio",
-    title: "Nabeel Hassan | Web Developer",
+    title: "Nabeel Hassan | Software Engineer",
     description:
-      "Hey, I'm Nabeel! A Web Developer specialized in building modern web applications with React, Next.js, and TypeScript.",
+      "Hey, I'm Nabeel! A Software Engineer specialized in building modern web applications with React, Next.js, and TypeScript.",
     url: "https://nabeelhassan.dev",
     locale: "en_US",
   },
@@ -108,9 +108,9 @@ export const metadata: Metadata = {
   // Twitter
   twitter: {
     card: "summary_large_image",
-    title: "Nabeel Hassan | Web Developer",
+    title: "Nabeel Hassan | Software Engineer",
     description:
-      "Web Developer specialized in building modern web applications with React, Next.js, and TypeScript.",
+      "Software Engineer specialized in building modern web applications with React, Next.js, and TypeScript.",
     creator: "@nabeelhassan_",
     site: "@nabeelhassan_",
   },

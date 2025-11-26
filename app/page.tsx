@@ -12,6 +12,7 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { pageTransition } from "@/lib/animation-presets";
+// import Now from "@/components/sections/now";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
           <Skills />
           <Testimonials />
           <Experience />
+          {/* <Now /> */}
           <Contact />
         </main>
       </TracingBeam>

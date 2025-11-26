@@ -20,4 +20,5 @@ export type SectionName =
   | "testimonials"
   | "experience"
   | "contact me"
-  | "blog";
+  | "blog"
+  | "now";

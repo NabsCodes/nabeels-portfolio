@@ -89,7 +89,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
                             "group relative flex w-fit items-center text-lg transition-all duration-200",
                             // Blog specific styles
                             isBlog &&
-                              "border-primary-base/10 bg-primary-base/[0.1] hover:border-primary-base/20 hover:bg-primary-base/[0.15] dark:border-primary-base-dark/10 dark:bg-primary-base-dark/[0.1] dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/[0.15] rounded-lg border px-4 py-2",
+                              "border-primary-base/10 bg-primary-base/10 hover:border-primary-base/20 hover:bg-primary-base/15 dark:border-primary-base-dark/10 dark:bg-primary-base-dark/10 dark:hover:border-primary-base-dark/20 dark:hover:bg-primary-base-dark/15 rounded-lg border px-4 py-2",
                             // Contact button styles
                             isContact && [
                               "cursor-pointer rounded-lg px-5 py-2.5 text-center text-base shadow-lg transition-all duration-200",

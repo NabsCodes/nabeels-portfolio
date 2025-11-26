@@ -99,13 +99,12 @@ export const TracingBeam = ({
           <motion.path
             d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
             fill="none"
-            stroke="currentColor"
-            className="text-primary-base/20 dark:text-primary-base-dark/20"
+            stroke="var(--primary-base)"
             strokeOpacity="0.16"
             transition={{
               duration: 10,
             }}
-          ></motion.path>
+          />
           <motion.path
             d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
             fill="none"
@@ -115,7 +114,7 @@ export const TracingBeam = ({
             transition={{
               duration: 10,
             }}
-          ></motion.path>
+          />
           <defs>
             <motion.linearGradient
               id="gradient"
@@ -125,47 +124,14 @@ export const TracingBeam = ({
               y1={y1}
               y2={y2}
             >
-              <stop
-                stopColor="var(--primary-base)"
-                stopOpacity="0"
-                className="dark:hidden"
-              ></stop>
-              <stop
-                stopColor="var(--primary-base)"
-                className="dark:hidden"
-              ></stop>
-              <stop
-                stopColor="var(--accent-base)"
-                offset="0.325"
-                className="dark:hidden"
-              ></stop>
+              <stop stopColor="var(--primary-base)" stopOpacity="0" />
+              <stop stopColor="var(--primary-base)" />
+              <stop stopColor="var(--accent-base)" offset="0.325" />
               <stop
                 stopColor="var(--secondary-base)"
                 offset="1"
                 stopOpacity="0"
-                className="dark:hidden"
-              ></stop>
-              {/* Dark mode gradient stops */}
-              <stop
-                stopColor="var(--primary-base-dark)"
-                stopOpacity="0"
-                className="hidden dark:block"
-              ></stop>
-              <stop
-                stopColor="var(--primary-base-dark)"
-                className="hidden dark:block"
-              ></stop>
-              <stop
-                stopColor="var(--accent-base-dark)"
-                offset="0.325"
-                className="hidden dark:block"
-              ></stop>
-              <stop
-                stopColor="var(--secondary-base-dark)"
-                offset="1"
-                stopOpacity="0"
-                className="hidden dark:block"
-              ></stop>
+              />
             </motion.linearGradient>
           </defs>
         </svg>

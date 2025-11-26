@@ -19,6 +19,7 @@ const nextConfig: import("next").NextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 85, 90, 95],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",

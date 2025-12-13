@@ -109,13 +109,25 @@ export default function Projects() {
     );
   }, [activeFilter]);
 
-  // Split into featured and other
+  // Split into featured and other, sorted by dateAdded (newest first)
   const featuredProjects = useMemo(
-    () => filteredProjects.filter((p) => p.featured),
+    () =>
+      filteredProjects
+        .filter((p) => p.featured)
+        .sort(
+          (a, b) =>
+            new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+        ),
     [filteredProjects],
   );
   const otherProjects = useMemo(
-    () => filteredProjects.filter((p) => !p.featured),
+    () =>
+      filteredProjects
+        .filter((p) => !p.featured)
+        .sort(
+          (a, b) =>
+            new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+        ),
     [filteredProjects],
   );
 

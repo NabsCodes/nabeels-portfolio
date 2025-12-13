@@ -15,6 +15,7 @@ import {
   SiCss3,
   SiHtml5,
   SiEjs,
+  SiSanity,
 } from "react-icons/si";
 import { ProjectSection, ProjectData } from "@/lib/types";
 
@@ -35,6 +36,7 @@ export const projectsData: ProjectData[] = [
     description:
       "Enterprise web application for a multi-sector Nigerian company, featuring responsive design, optimized performance, and scalable architecture. Delivered improved user engagement and streamlined business operations.",
     featured: true,
+    dateAdded: "2024-11-10",
     cover: {
       url: "/projects/abdamin.webp",
       alt: "Abdamin International Limited",
@@ -56,6 +58,7 @@ export const projectsData: ProjectData[] = [
     description:
       "AI-powered SaaS platform for crypto startups, featuring real-time trend analysis, intelligent query processing, and strategic decision-making tools. Designed to help businesses make data-driven decisions in volatile markets.",
     featured: true,
+    dateAdded: "2024-07-20",
     cover: {
       url: "/projects/horizon.webp",
       alt: "Horizon - Crypto SaaS",
@@ -76,7 +79,8 @@ export const projectsData: ProjectData[] = [
     title: "Library Meta Bot System",
     description:
       "Advanced library management system with AI-assisted cataloging, comprehensive classification tools, and robust metadata management. Streamlines library operations and improves resource discovery for users.",
-    featured: true,
+    featured: false,
+    dateAdded: "2024-09-05",
     cover: {
       url: "/projects/lib-meta-bot.webp",
       alt: "Library Metabot System",
@@ -100,6 +104,7 @@ export const projectsData: ProjectData[] = [
     description:
       "A landing page built for eCommerce small businesses. Yara is a project crafted from my time at Perxcels UI/UX school.",
     featured: false,
+    dateAdded: "2024-03-08",
     cover: {
       url: "/projects/yara.webp",
       alt: "Blog platform interface",
@@ -120,6 +125,7 @@ export const projectsData: ProjectData[] = [
     description:
       "An SMS Scheduler app developed for MKEL Networks to schedule SMS messages. It allows automation of sending recurring messages at specific times and intervals using third-party API(s).",
     featured: false,
+    dateAdded: "2023-11-13",
     tech: [
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Express", icon: SiExpress },
@@ -138,6 +144,7 @@ export const projectsData: ProjectData[] = [
     description:
       "An elderly care management system to monitor and manage the health and well-being of elderly individuals.",
     featured: false,
+    dateAdded: "2023-09-01",
     cover: {
       url: "/projects/ecms.webp",
       alt: "Fitness tracking dashboard",
@@ -159,6 +166,7 @@ export const projectsData: ProjectData[] = [
     description:
       "A CGPA calculator for students to calculate their cumulative grade point average.",
     featured: false,
+    dateAdded: "2023-06-01",
     tech: [
       { name: "HTML", icon: SiHtml5 },
       { name: "CSS", icon: SiCss3 },
@@ -177,6 +185,7 @@ export const projectsData: ProjectData[] = [
     description:
       "Enhanced academic planning platform with goal setting, scenario analysis, and progress visualization. Empowers students to make strategic academic decisions and track long-term performance trends.",
     featured: true,
+    dateAdded: "2025-04-15",
     cover: {
       url: "/projects/cgpa-calculator-1.png",
       alt: "CGPA Calculator V2",
@@ -192,14 +201,38 @@ export const projectsData: ProjectData[] = [
       live: "https://cgpa-calculator-v2.vercel.app",
     },
   },
+  {
+    id: "project-9",
+    title: "Q-DAS Global",
+    description:
+      "Q-DAS Global is a technology company that empowers organizations across Nigeria and Africa with ICT solutions, software development, and managed IT services",
+    featured: true,
+    dateAdded: "2025-12-11",
+    cover: {
+      url: "/projects/q-das-global.webp",
+      alt: "Q-DAS Global",
+    },
+    tech: [
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "React", icon: SiReact },
+      { name: "Tailwind", icon: SiTailwindcss },
+      { name: "Sanity.io", icon: SiSanity },
+      { name: "Framer Motion", icon: SiFramer },
+    ],
+    links: {
+      live: "https://qdasglobal.com",
+    },
+  },
   // {
-  //   id: "project-9",
+  //   id: "project-10",
   //   title: "Drive-X",
   //   description:
-  //     "Drive X is a google drive clone built with Next.js and TypeScript. It was inspired by a tutorial by Theo - T3.gg",
+  //     "Drive-X is a google drive clone built with Next.js and TypeScript. It was inspired by a tutorial by Theo - T3.gg",
   //   featured: true,
+  //   dateAdded: "2025-12-12",
   //   cover: {
-  //     url: "/projects/drive-x.png",
+  //     url: "/projects/drive-x.webp",
   //     alt: "Drive-X",
   //   },
   //   tech: [
@@ -207,7 +240,8 @@ export const projectsData: ProjectData[] = [
   //     { name: "Next.js", icon: SiNextdotjs },
   //     { name: "React", icon: SiReact },
   //     { name: "Tailwind", icon: SiTailwindcss },
-  //     { name: "Clerk", icon: SiClerk },
+  //     { name: "Sanity.io", icon: SiSanity },
+  //     { name: "Framer Motion", icon: SiFramer },
   //   ],
   //   links: {
   //     github: "https://github.com/NabsCodes/drive-x",

@@ -211,25 +211,32 @@ export function CommandPalette({ blogPosts = [] }: CommandPaletteProps) {
 
         {/* Projects */}
         <CommandGroup heading="Projects">
-          {projectsData.slice(0, 6).map((project) => (
-            <CommandItem
-              key={project.id}
-              onSelect={() => {
-                if (project.links.live) {
-                  runCommand(() => window.open(project.links.live, "_blank"));
-                } else {
-                  scrollToSection("projects");
-                }
-              }}
-              className="gap-2"
-            >
-              <AiOutlineCode className="h-4 w-4" />
-              <span>{project.title}</span>
-              {project.links.live && (
-                <HiOutlineExternalLink className="ml-auto h-3 w-3 opacity-50" />
-              )}
-            </CommandItem>
-          ))}
+          {[...projectsData]
+            .sort(
+              (a, b) =>
+                new Date(b.dateAdded).getTime() -
+                new Date(a.dateAdded).getTime(),
+            )
+            .slice(0, 6)
+            .map((project) => (
+              <CommandItem
+                key={project.id}
+                onSelect={() => {
+                  if (project.links.live) {
+                    runCommand(() => window.open(project.links.live, "_blank"));
+                  } else {
+                    scrollToSection("projects");
+                  }
+                }}
+                className="gap-2"
+              >
+                <AiOutlineCode className="h-4 w-4" />
+                <span>{project.title}</span>
+                {project.links.live && (
+                  <HiOutlineExternalLink className="ml-auto h-3 w-3 opacity-50" />
+                )}
+              </CommandItem>
+            ))}
         </CommandGroup>
 
         {/* Blog Posts */}

@@ -8,6 +8,7 @@ export interface ProjectData {
   title: string;
   description: string;
   featured: boolean;
+  dateAdded: string; // ISO date format: "YYYY-MM-DD"
   cover?: {
     url: string;
     alt: string;

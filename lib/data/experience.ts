@@ -10,6 +10,26 @@ export const experienceData: ExperienceContent = {
   },
   experiences: [
     {
+      id: "exp-4",
+      role: "Founder & CEO",
+      company: "Vextra Limited",
+      companyUrl: "https://vextralimited.com",
+      location: "Remote",
+      type: "Full-time",
+      dates: {
+        start: "2025-12",
+        end: "Present",
+      },
+      description:
+        "Lead Vextra Limited's strategy, operations, and product direction while building digital solutions and partnerships.",
+      achievements: [
+        "Define the company vision, service offering, and long-term growth strategy for Vextra Limited.",
+        "Lead product execution across branding, web presence, and client delivery from concept through launch.",
+        "Manage partnerships, business development, and day-to-day operations while steering technical direction.",
+      ],
+      current: true,
+    },
+    {
       id: "exp-1",
       role: "Technical Support",
       company: "Nigerian Communications Commission",

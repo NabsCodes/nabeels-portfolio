@@ -16,11 +16,11 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
-// Convert YYYY-MM format to display format (MMM YYYY)
+// Convert YYYY-MM or YYYY-MM-DD to a readable display format.
 const formatDate = (dateStr: string) => {
   if (dateStr === "Present") return "Present";
 
-  const [year, month] = dateStr.split("-");
+  const [year, month, day] = dateStr.split("-");
   const monthNames = [
     "Jan",
     "Feb",
@@ -37,6 +37,11 @@ const formatDate = (dateStr: string) => {
   ];
 
   const monthIndex = parseInt(month) - 1;
+
+  if (!Number.isNaN(Number(day))) {
+    return `${monthNames[monthIndex]} ${Number(day)}, ${year}`;
+  }
+
   return `${monthNames[monthIndex]} ${year}`;
 };
 

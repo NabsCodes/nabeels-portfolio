@@ -10,6 +10,13 @@ import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeInUp, getStaggerDelay } from "@/lib/animation-presets";
 import { cn } from "@/lib/utils";
 
+const toSortableDate = (date: string) => {
+  if (date === "Present") return Number.POSITIVE_INFINITY;
+
+  const [year, month, day] = date.split("-").map(Number);
+  return Date.UTC(year, (month || 1) - 1, day || 1);
+};
+
 export default function Experience() {
   const { ref } = useSectionInView("experience", {
     desktopThreshold: 0.3,
@@ -22,11 +29,12 @@ export default function Experience() {
       if (a.current && !b.current) return -1;
       if (!a.current && b.current) return 1;
 
-      // Then by end date (most recent first) - simple string comparison
-      if (a.dates.end === "Present") return -1;
-      if (b.dates.end === "Present") return 1;
+      // Then by end date (most recent first)
+      const endDiff = toSortableDate(b.dates.end) - toSortableDate(a.dates.end);
+      if (endDiff !== 0) return endDiff;
 
-      return b.dates.end.localeCompare(a.dates.end);
+      // Use start date as a tie-breaker for overlapping current roles.
+      return toSortableDate(b.dates.start) - toSortableDate(a.dates.start);
     });
   }, []);
 

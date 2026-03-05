@@ -79,7 +79,7 @@ export default function Experience() {
           >
             {/* Connector Dot - Left aligned on mobile, centered on desktop */}
             <div className="absolute top-6 left-4 -translate-x-1/2 md:top-0 md:left-1/2 md:-translate-y-6">
-              <div className="border-primary-base/50 bg-primary-base dark:border-primary-base-dark/30 dark:bg-primary-base-dark h-[10px] w-[10px] rounded-full border-2" />
+              <div className="border-primary-base/50 bg-primary-base dark:border-primary-base-dark/30 dark:bg-primary-base-dark h-2.5 w-2.5 rounded-full border-2" />
             </div>
 
             {/* Card - Alternating Layout (only on md+) */}

@@ -1,7 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useTransform, useScroll, useSpring } from "framer-motion";
+import React, { useEffect, useId, useRef, useState } from "react";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const TracingBeam = ({
@@ -11,60 +18,82 @@ export const TracingBeam = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [svgHeight, setSvgHeight] = useState(0);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const gradientId = useId();
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [svgHeight, setSvgHeight] = useState(0);
-
   useEffect(() => {
+    let frameId = 0;
     const updateHeight = () => {
       if (contentRef.current) {
-        setSvgHeight(contentRef.current.offsetHeight);
+        const nextHeight = Math.ceil(contentRef.current.offsetHeight);
+        setSvgHeight((previousHeight) =>
+          previousHeight === nextHeight ? previousHeight : nextHeight,
+        );
       }
     };
 
     // Initial height
     updateHeight();
 
-    // Update height on resize
-    window.addEventListener("resize", updateHeight);
+    const scheduleHeightUpdate = () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+      frameId = window.requestAnimationFrame(updateHeight);
+    };
 
-    // Update height when content changes
-    const observer = new ResizeObserver(updateHeight);
+    window.addEventListener("resize", scheduleHeightUpdate);
+
+    const observer = new ResizeObserver(scheduleHeightUpdate);
     if (contentRef.current) {
       observer.observe(contentRef.current);
     }
 
     return () => {
-      window.removeEventListener("resize", updateHeight);
+      window.removeEventListener("resize", scheduleHeightUpdate);
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
       observer.disconnect();
     };
   }, []);
 
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    const nextScrolled = value > 0.005;
+    setHasScrolled((previousScrolled) =>
+      previousScrolled === nextScrolled ? previousScrolled : nextScrolled,
+    );
+  });
+
+  const safeSvgHeight = Math.max(svgHeight, 1);
   const y1 = useSpring(
-    useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]),
+    useTransform(scrollYProgress, [0, 0.8], [50, safeSvgHeight]),
     {
-      stiffness: 500,
-      damping: 90,
+      stiffness: 460,
+      damping: 82,
       mass: 1,
     },
   );
   const y2 = useSpring(
-    useTransform(scrollYProgress, [0, 1], [50, svgHeight - 200]),
+    useTransform(scrollYProgress, [0, 1], [50, safeSvgHeight - 200]),
     {
-      stiffness: 500,
-      damping: 90,
+      stiffness: 460,
+      damping: 82,
       mass: 1,
     },
   );
 
   return (
     <motion.div
-      ref={ref}
+      ref={containerRef}
       className={cn("relative mx-auto h-full w-full max-w-7xl", className)}
     >
       <div className="absolute top-3 -left-4 hidden md:-left-20 md:block">
@@ -74,12 +103,9 @@ export const TracingBeam = ({
             delay: 0.5,
           }}
           animate={{
-            boxShadow:
-              scrollYProgress.get() > 0
-                ? "none"
-                : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+            boxShadow: hasScrolled ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
           }}
-          className="border-primary-base/20 bg-background-base dark:border-primary-base-dark/20 dark:bg-background-base-dark ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm backdrop-blur-sm"
+          className="border-primary-base/20 bg-background-base dark:border-primary-base-dark/20 dark:bg-background-base-dark ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm"
         >
           <motion.div
             transition={{
@@ -90,34 +116,32 @@ export const TracingBeam = ({
           />
         </motion.div>
         <svg
-          viewBox={`0 0 20 ${svgHeight}`}
+          viewBox={`0 0 20 ${safeSvgHeight}`}
           width="20"
-          height={svgHeight}
+          height={safeSvgHeight}
           className="ml-4 block"
           aria-hidden="true"
         >
-          <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+          <path
+            d={`M 1 0V -36 l 18 24 V ${safeSvgHeight * 0.8} l -18 24V ${safeSvgHeight}`}
             fill="none"
             stroke="var(--primary-base)"
             strokeOpacity="0.16"
-            transition={{
-              duration: 10,
-            }}
           />
-          <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
-            fill="none"
-            stroke="url(#gradient)"
-            strokeWidth="1.25"
-            className="motion-reduce:hidden"
-            transition={{
-              duration: 10,
-            }}
-          />
+          {!shouldReduceMotion && (
+            <motion.path
+              d={`M 1 0V -36 l 18 24 V ${safeSvgHeight * 0.8} l -18 24V ${safeSvgHeight}`}
+              fill="none"
+              stroke={`url(#${gradientId})`}
+              strokeWidth="1.25"
+              transition={{
+                duration: 10,
+              }}
+            />
+          )}
           <defs>
             <motion.linearGradient
-              id="gradient"
+              id={gradientId}
               gradientUnits="userSpaceOnUse"
               x1="0"
               x2="0"

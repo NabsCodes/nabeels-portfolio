@@ -58,7 +58,7 @@ export function ProjectFilter({
         {option.name}
         <span
           className={cn(
-            "flex h-4 min-w-[16px] items-center justify-center rounded px-1 text-[10px] font-semibold",
+            "flex h-4 min-w-4 items-center justify-center rounded px-1 text-[10px] font-semibold",
             isActive
               ? "bg-white/25 text-white"
               : "bg-primary-base/10 text-primary-base/70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark/70",
@@ -105,7 +105,7 @@ export function ProjectFilter({
                 <button className="bg-primary-base/10 text-primary-base hover:bg-primary-base/20 dark:bg-primary-base-dark/10 dark:text-primary-base-dark dark:hover:bg-primary-base-dark/20 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all">
                   <BiDotsHorizontalRounded className="h-4 w-4" />
                   More
-                  <span className="bg-primary-base/10 text-primary-base/70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark/70 flex h-4 min-w-[16px] items-center justify-center rounded px-1 text-[10px] font-semibold">
+                  <span className="bg-primary-base/10 text-primary-base/70 dark:bg-primary-base-dark/10 dark:text-primary-base-dark/70 flex h-4 min-w-4 items-center justify-center rounded px-1 text-[10px] font-semibold">
                     {hiddenOptions.length}
                   </span>
                 </button>

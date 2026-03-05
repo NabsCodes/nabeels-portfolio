@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -47,24 +47,16 @@ export function HoverBorderGradient({
 
   const highlight =
     "radial-gradient(75% 181.15% at 50% 50%, #3f7d6e 0%, rgba(130, 192, 176, 0) 100%)";
-
-  useEffect(() => {
-    if (!hovered) {
-      const interval = setInterval(() => {
-        setDirection((prevState) => rotateDirection(prevState));
-      }, duration * 1000);
-      return () => clearInterval(interval);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hovered]);
   return (
     <Tag
       onMouseEnter={() => {
+        // Rotate direction only on interaction to avoid idle timer-driven re-renders.
+        setDirection((previousDirection) => rotateDirection(previousDirection));
         setHovered(true);
       }}
       onMouseLeave={() => setHovered(false)}
       className={cn(
-        "relative flex h-min w-fit flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-full border bg-black/20 decoration-clone p-px transition duration-500 hover:bg-black/10 dark:bg-white/20",
+        "relative flex h-min w-fit flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-full border bg-black/20 box-decoration-clone p-px transition duration-500 hover:bg-black/10 dark:bg-white/20",
         containerClassName,
       )}
       {...props}
@@ -95,7 +87,7 @@ export function HoverBorderGradient({
         }}
         transition={{ ease: "linear", duration: duration ?? 1 }}
       />
-      <div className="absolute inset-[2px] z-1 flex-none rounded-[100px] bg-black" />
+      <div className="absolute inset-0.5 z-1 flex-none rounded-[100px] bg-black" />
     </Tag>
   );
 }

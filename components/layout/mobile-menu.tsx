@@ -47,7 +47,7 @@ export function MobileMenu({ isOpen, isScrolled, onClose }: MobileMenuProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute top-0 right-0 left-0 z-50 mt-[80px]"
+            className="absolute top-0 right-0 left-0 z-50 mt-20"
           >
             <motion.div
               initial={false}

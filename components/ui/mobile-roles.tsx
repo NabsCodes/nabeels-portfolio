@@ -28,7 +28,7 @@ const MobileRolesStacked = () => (
               {item.label}
             </span>
           </div>
-          <div className="from-accent-base to-primary-base dark:from-accent-base-dark dark:to-primary-base-dark absolute bottom-0 h-[2px] w-full bg-linear-to-r opacity-0 transition-all duration-300 group-hover:opacity-100" />
+          <div className="from-accent-base to-primary-base dark:from-accent-base-dark dark:to-primary-base-dark absolute bottom-0 h-0.5 w-full bg-linear-to-r opacity-0 transition-all duration-300 group-hover:opacity-100" />
         </motion.div>
       ))}
     </div>
@@ -131,7 +131,7 @@ const MobileRolesGrid = () => (
                 </span>
               </div>
             </div>
-            <div className="from-accent-base to-primary-base dark:from-accent-base-dark dark:to-primary-base-dark absolute inset-x-0 top-0 h-[2px] scale-x-0 bg-linear-to-r opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100" />
+            <div className="from-accent-base to-primary-base dark:from-accent-base-dark dark:to-primary-base-dark absolute inset-x-0 top-0 h-0.5 scale-x-0 bg-linear-to-r opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100" />
           </motion.div>
         ))}
       </div>
@@ -304,7 +304,7 @@ const MobileRolesMinimal = () => (
               </span>
             </div>
             {/* Active Indicator */}
-            <div className="from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark absolute inset-x-0 bottom-0 h-[2px] scale-x-0 bg-linear-to-r transition-transform duration-300 group-hover:scale-x-100" />
+            <div className="from-primary-base to-accent-base dark:from-primary-base-dark dark:to-accent-base-dark absolute inset-x-0 bottom-0 h-0.5 scale-x-0 bg-linear-to-r transition-transform duration-300 group-hover:scale-x-100" />
           </motion.div>
         ))}
       </div>

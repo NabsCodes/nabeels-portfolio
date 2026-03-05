@@ -1,30 +1,40 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function TextGenerateEffect({
   words,
-  textSpeed = 15,
+  textSpeed = 28,
 }: {
   words: string;
   textSpeed?: number;
 }) {
   const [displayText, setDisplayText] = useState("");
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      setDisplayText(words);
+      return;
+    }
+
+    setDisplayText("");
     let currentIndex = 0;
+    const step = Math.max(1, Math.ceil(words.length / 80));
+    const intervalSpeed = Math.max(24, textSpeed);
+
     const interval = setInterval(() => {
-      if (currentIndex <= words.length) {
-        setDisplayText(words.slice(0, currentIndex));
-        currentIndex++;
-      } else {
+      currentIndex = Math.min(words.length, currentIndex + step);
+      setDisplayText(words.slice(0, currentIndex));
+
+      if (currentIndex >= words.length) {
         clearInterval(interval);
       }
-    }, textSpeed);
+    }, intervalSpeed);
 
     return () => clearInterval(interval);
-  }, [words, textSpeed]);
+  }, [words, textSpeed, shouldReduceMotion]);
 
   return (
     <div className="relative">
@@ -37,7 +47,7 @@ export function TextGenerateEffect({
             repeat: Infinity,
             repeatType: "reverse",
           }}
-          className="bg-primary-base dark:bg-primary-base-dark ml-px inline-block h-4 w-[2px]"
+          className="bg-primary-base dark:bg-primary-base-dark ml-px inline-block h-4 w-0.5"
         />
       </p>
     </div>

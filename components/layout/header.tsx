@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback, memo } from "react";
+import { useState, useEffect, useCallback, memo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { easeInOut, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import { navigationItems } from "@/lib/data";
@@ -33,16 +33,34 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const { isBlogPage, isBlogPost } = useSmartNavigation();
+  const isScrollTickingRef = useRef(false);
+  const previousIsScrolledRef = useRef(false);
 
   // Add initial animation state
   const [hasAnimated, setHasAnimated] = useState(false);
 
+  // Keep scroll-state updates cheap: run at most once per frame and
+  // only update React state when threshold status actually changes.
   const handleScroll = useCallback(() => {
-    const scrollPosition = window.scrollY;
-    setIsScrolled(scrollPosition > 40);
+    if (isScrollTickingRef.current) {
+      return;
+    }
+
+    isScrollTickingRef.current = true;
+    window.requestAnimationFrame(() => {
+      const nextIsScrolled = window.scrollY > 40;
+
+      if (previousIsScrolledRef.current !== nextIsScrolled) {
+        previousIsScrolledRef.current = nextIsScrolled;
+        setIsScrolled(nextIsScrolled);
+      }
+
+      isScrollTickingRef.current = false;
+    });
   }, []);
 
   useEffect(() => {
+    handleScroll();
     // Add passive event listener for better scroll performance
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -59,13 +77,13 @@ export function Header() {
 
   const nameVariants = {
     visible: {
-      width: "auto",
       opacity: 1,
+      x: 0,
       transition: { duration: shouldReduceMotion ? 0 : 0.3 },
     },
     hidden: {
-      width: 0,
       opacity: 0,
+      x: -8,
       transition: { duration: shouldReduceMotion ? 0 : 0.3 },
     },
   };
@@ -179,7 +197,7 @@ export function Header() {
                   initial="visible"
                   animate={isScrolled ? "hidden" : "visible"}
                   className="flex overflow-hidden"
-                  style={{ willChange: "width, opacity" }}
+                  style={{ willChange: "transform, opacity" }}
                 >
                   <span className="flex text-lg font-medium">
                     <span className="text-primary-base dark:text-primary-base-dark">
@@ -237,7 +255,7 @@ export function Header() {
                   initial="visible"
                   animate={isScrolled ? "hidden" : "visible"}
                   className="flex overflow-hidden"
-                  style={{ willChange: "width, opacity" }}
+                  style={{ willChange: "transform, opacity" }}
                 >
                   <span className="flex text-base font-medium whitespace-nowrap">
                     <span className="text-primary-base dark:text-primary-base-dark">
@@ -333,24 +351,14 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <motion.div variants={headerVariants} className="lg:hidden">
-        <motion.div
-          animate={{
-            width: isScrolled ? "95%" : "100%",
-            borderRadius: isScrolled && !isMobileMenuOpen ? 9999 : 10,
-          }}
-          transition={{
-            duration: shouldReduceMotion ? 0 : 0.5,
-            ease: easeInOut,
-            borderRadius: { duration: shouldReduceMotion ? 0 : 0.2 },
-          }}
-          style={{ willChange: "width, border-radius" }}
+        <div
           className={cn(
-            "relative z-50 mx-auto flex flex-col items-center justify-between bg-transparent px-4 py-2", // Is not scrolled and not open
+            "relative z-50 mx-auto flex w-full flex-col items-center justify-between rounded-[10px] bg-transparent px-4 py-2 transition-[margin,width,border-radius,background-color,border-color] duration-200", // Is not scrolled and not open
             isScrolled &&
-              "border-primary-base/30 dark:border-primary-base-dark/20 mt-3 border", // Is scrolled but open
+              "border-primary-base/30 dark:border-primary-base-dark/20 mt-3 w-[95%] border", // Is scrolled but open
             isScrolled &&
               !isMobileMenuOpen &&
-              "border-primary-base/20 bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 border backdrop-blur-md", // Is scrolled but not open
+              "border-primary-base/20 bg-background-base/80 dark:border-primary-base-dark/20 dark:bg-background-base-dark/80 rounded-full border backdrop-blur-md", // Is scrolled but not open
             isMobileMenuOpen &&
               "bg-background-base/80 dark:bg-background-base-dark/80 backdrop-blur-md", // Is open Mobile Menu and Navbar (scrolled or not)
           )}
@@ -388,7 +396,7 @@ export function Header() {
                 initial="visible"
                 animate={!isMobileMenuOpen && isScrolled ? "hidden" : "visible"}
                 className="flex overflow-hidden"
-                style={{ willChange: "width, opacity" }}
+                style={{ willChange: "transform, opacity" }}
               >
                 {isBlogPage ? (
                   <span className="flex text-base font-medium whitespace-nowrap">
@@ -439,7 +447,7 @@ export function Header() {
               )}
             </div>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Mobile Menu */}

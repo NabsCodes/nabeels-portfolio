@@ -45,7 +45,7 @@ export default function Hero() {
     >
       {/* Dynamic Side Roles - Desktop only */}
       <div className="absolute top-20 right-10 hidden h-full lg:block xl:top-3 xl:right-0">
-        <div className="bg-primary-base dark:bg-primary-base-dark/20 relative h-full w-[1.5px] dark:w-[2px]">
+        <div className="bg-primary-base dark:bg-primary-base-dark/20 relative h-full w-[1.5px] dark:w-0.5">
           <div className="absolute bottom-20 -left-[150px] flex h-full flex-col justify-center space-y-16 xl:bottom-0">
             {heroContent.roles.map((item, index) => (
               <motion.div
@@ -158,10 +158,7 @@ export default function Hero() {
                   README.md
                 </span>
               </div>
-              <TextGenerateEffect
-                words={heroContent.description}
-                textSpeed={10}
-              />
+              <TextGenerateEffect words={heroContent.description} />
             </div>
           </motion.div>
 

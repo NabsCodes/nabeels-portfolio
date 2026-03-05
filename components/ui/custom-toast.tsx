@@ -19,9 +19,9 @@ export function CustomToast({ title, message, variant }: CustomToastProps) {
     >
       <div className="flex items-start gap-2">
         {variant === "success" ? (
-          <CheckCircle2 className="mt-[2px] h-4 w-4 shrink-0" />
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
         ) : (
-          <AlertCircle className="mt-[2px] h-4 w-4 shrink-0" />
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
         )}
         <div>
           <AlertTitle className="text-sm leading-none font-medium">

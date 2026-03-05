@@ -4,12 +4,10 @@ import { ThemeProvider } from "@/contexts/theme-provider";
 import "./globals.css";
 import ActiveSectionContextProvider from "@/contexts/active-section-context";
 import { ToastProvider } from "@/contexts/toast-context";
-import { SparklesBackground } from "@/components/layout/sparkles-background";
 import { cn } from "@/lib/utils";
 import { AnalyticsProviders } from "@/app/_providers";
-import { CommandPalette } from "@/components/ui/command-palette";
 import { CommandPaletteProvider } from "@/contexts/command-palette-context";
-import { CommandLauncher } from "@/components/ui/command-launcher";
+import { DeferredGlobalUI } from "@/components/layout/deferred-global-ui";
 
 // Raleway for body text
 const raleway = Raleway({
@@ -175,9 +173,7 @@ export default function RootLayout({
                   enableSystem
                   disableTransitionOnChange
                 >
-                  <CommandPalette />
-                  <CommandLauncher />
-                  <SparklesBackground />
+                  <DeferredGlobalUI />
                   {children}
                 </ThemeProvider>
               </CommandPaletteProvider>

@@ -150,7 +150,7 @@ export const ExperienceCard: React.FC<{
         {experience.achievements.map((achievement, i) => (
           <li key={i} className="group relative flex items-start gap-3">
             <div className="relative mt-1.5">
-              <div className="from-accent-base dark:from-accent-base-dark absolute -left-[3px] h-full w-[2px] bg-linear-to-b to-transparent" />
+              <div className="from-accent-base dark:from-accent-base-dark absolute -left-[3px] h-full w-0.5 bg-linear-to-b to-transparent" />
               <div className="border-accent-base/30 bg-accent-base/30 group-hover:border-accent-base/50 group-hover:bg-accent-base/30 dark:border-accent-base-dark/30 dark:bg-accent-base-dark/30 dark:group-hover:border-accent-base-dark/50 dark:group-hover:bg-accent-base-dark/30 relative h-2 w-2 rounded-full border transition-colors" />
             </div>
             <span className="text-default-base/70 group-hover:text-default-base/90 dark:text-default-base-dark/70 dark:group-hover:text-default-base-dark/90 text-sm transition-colors">
